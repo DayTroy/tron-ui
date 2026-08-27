@@ -1,0 +1,51 @@
+@use 'tokens' as *;
+
+@mixin tron-glow($color, $glow, $size: 8px) {
+  box-shadow: 0 0 $size $glow;
+  border-color: $color;
+}
+
+@mixin tron-glow-interactive($color, $glow) {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:focus-visible {
+    @include tron-glow($color, $glow, 1px);
+    outline: none;
+  }
+}
+
+@mixin tron-form-input-highlight {
+  color: $tron-color-primary;
+  border-color: $tron-color-primary;
+  @include tron-glow-interactive($tron-color-primary, 1px);
+}
+
+@mixin tron-text-base {
+  font-family: $tron-font-primary;
+  color: $tron-text-primary;
+}
+
+@mixin tron-text-display {
+  font-family: $tron-font-primary;
+  color: $tron-text-primary;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@mixin tron-text-secondary {
+  font-family: $tron-font-secondary;
+  color: black;
+  letter-spacing: 0.05em;
+}
+
+@mixin tron-form-label {
+  font-family: $tron-font-secondary;
+  color: #4a9ab5;
+  text-transform: uppercase;
+}
+
+@mixin tron-form-input {
+  background-color: $tron-bg-elevated;
+  font-family: $tron-font-secondary;
+  color: #0b2e3c;
+}

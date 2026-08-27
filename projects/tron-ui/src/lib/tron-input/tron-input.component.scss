@@ -1,0 +1,57 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.tron-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $tron-space-1;
+
+  &__control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $tron-space-2;
+    padding: $tron-space-3;
+
+    @include tron-form-input;
+    color: $tron-text-primary;
+
+    border: 1px solid $tron-color-primary-dim;
+    border-radius: $tron-radius-sm;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:focus-within {
+      outline: none;
+      @include tron-glow($tron-color-primary, $tron-color-primary-glow, 6px);
+    }
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    appearance: none;
+    line-height: 1.25;
+    font: inherit;
+    color: $tron-text-primary;
+
+    &::placeholder {
+      color: $tron-text-muted;
+    }
+  }
+  
+  &__label {
+    @include tron-form-label;
+  }
+
+  &__prefix:not(:has(*)),
+  &__suffix:not(:has(*)),
+  &__hint:empty {
+    display: none;
+  }
+}

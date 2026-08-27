@@ -1,0 +1,65 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.tron-slider {
+  display: flex;
+  align-items: center;
+  gap: $tron-space-3;
+  width: 100%;
+}
+
+.tron-slider__track {
+  position: relative;
+  flex: 1;
+  height: 4px;
+
+  background: $tron-bg-surface;
+  border: 1px solid $tron-border;
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    @include tron-glow($tron-color-primary, $tron-color-primary-glow, 6px);
+  }
+}
+
+.tron-slider__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+
+  background: $tron-color-primary;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.tron-slider__thumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+
+  background: $tron-color-primary;
+  border: 2px solid $tron-text-primary;
+  border-radius: 50%;
+  box-shadow: 0 0 6px $tron-color-primary-glow;
+
+  transform: translate(-50%, -50%);
+  transition: box-shadow 0.15s ease;
+  cursor: grab;
+
+  &--dragging {
+    cursor: grabbing;
+    box-shadow: 0 0 12px $tron-color-primary-glow;
+  }
+}
+
+.tron-slider__value {
+  @include tron-text-display;
+  min-width: 3ch;
+  text-align: right;
+  font-size: 14px;
+}

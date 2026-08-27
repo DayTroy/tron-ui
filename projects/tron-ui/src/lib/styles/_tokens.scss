@@ -1,0 +1,43 @@
+$tron-bg-base:      #05070d;
+$tron-bg-surface:   #0b1220;
+$tron-bg-elevated:  #10192e;
+
+$tron-color-primary:      #00e5ff;
+$tron-color-primary-dim:  #0d7d94;
+$tron-color-primary-glow: rgba(45, 225, 255, 0.6);
+
+$tron-color-warning:      #ff6a1a;
+$tron-color-warning-dim:  #9c3f0e;
+$tron-color-warning-glow: rgba(255, 106, 26, 0.6);
+
+$tron-color-clu:      #ffd400;
+$tron-color-clu-dim:  #9c8300;
+$tron-color-clu-glow: rgba(255, 212, 0, 0.6);
+
+$tron-color-danger:  #ff2d55;
+$tron-color-success: #2dff88;
+
+$tron-text-primary: #e6f7ff;
+$tron-text-muted:   #7a8ba0;
+
+// ---- Borders / grid lines ----
+$tron-border:     #1c2b42;
+$tron-grid-line:  rgba(45, 225, 255, 0.15);
+
+// ---- Effects ----
+$tron-glow-sm: 0 0 4px $tron-color-primary-glow;
+$tron-glow-md: 0 0 12px $tron-color-primary-glow;
+
+// ---- Typography ----
+$tron-font-primary: 'Orbitron', sans-serif;
+$tron-font-secondary:    'Share Tech Mono', sans-serif;
+
+$tron-radius-sm: 2px;
+$tron-radius-md: 4px;
+
+$tron-space-1: 4px;
+$tron-space-2: 8px;
+$tron-space-3: 12px;
+$tron-space-4: 16px;
+$tron-space-5: 24px;
+$tron-space-6: 32px;

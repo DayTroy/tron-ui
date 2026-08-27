@@ -1,0 +1,25 @@
+<div class="tron-stepper">
+  @for (item of $data(); track item.name; let i = $index; let isLast = $last) {
+    <div class="tron-stepper__item">
+      <button
+        class="tron-stepper__btn"
+        [class.tron-stepper__btn--active]="$currentStep() === i"
+        [class.tron-stepper__btn--completed]="$currentStep() > i"
+        type="button"
+        [attr.aria-current]="$currentStep() === i ? 'step' : null"
+        (click)="setStep(i)"
+      >
+        {{ i + 1 }}
+      </button>
+
+      <div class="tron-stepper__title">{{ item.name }}</div>
+    </div>
+
+    @if (!isLast) {
+      <div
+        class="tron-stepper__connector"
+        [class.tron-stepper__connector--active]="$currentStep() > i"
+      ></div>
+    }
+  }
+</div>

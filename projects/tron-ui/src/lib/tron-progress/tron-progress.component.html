@@ -1,0 +1,16 @@
+<div class="tron-progress" [attr.data-status]="$status()">
+  <div class="tron-progress__label">{{ $label() }}</div>
+
+  <div
+    class="tron-progress__track"
+    role="progressbar"
+    [attr.aria-valuenow]="$value()"
+    [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="$max()"
+  >
+    <div
+      class="tron-progress__fill"
+      [style.width.%]="$percent()"
+    ></div>
+  </div>
+</div>

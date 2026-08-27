@@ -1,0 +1,22 @@
+<div class="tron-slider">
+  <div
+    class="tron-slider__track"
+    #track
+    role="slider"
+    tabindex="0"
+    [attr.aria-valuenow]="$value()"
+    [attr.aria-valuemin]="$min()"
+    [attr.aria-valuemax]="$max()"
+    (mousedown)="onTrackMouseDown($event)"
+  >
+    <div class="tron-slider__fill" [style.width.%]="$percent()"></div>
+
+    <div
+      class="tron-slider__thumb"
+      [class.tron-slider__thumb--dragging]="$isDragging()"
+      [style.left.%]="$percent()"
+    ></div>
+  </div>
+
+  <div class="tron-slider__value">{{ $value() }}</div>
+</div>
