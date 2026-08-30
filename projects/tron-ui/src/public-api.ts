@@ -3,6 +3,7 @@
  */
 
 export * from './lib/core/destroyable';
+export * from './lib/core/tron-control';
 export * from './lib/tron-input/tron-input.component';
 export * from './lib/tron-errors/tron-errors.directive';
 export * from './lib/tron-errors/tron-error.component';

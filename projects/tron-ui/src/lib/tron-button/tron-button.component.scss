@@ -1,0 +1,88 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+:host {
+  display: inline-block;
+}
+
+.tron-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  margin: 0;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: $space-2 $space-4;
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  line-height: $line-height-tight;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+
+  color: $color-primary;
+  background-color: $color-primary-fill;
+  border: $border-width solid $color-primary;
+  transition:
+    box-shadow $duration-normal $easing-out,
+    border-color $duration-normal $easing-out,
+    background-color $duration-normal $easing-out,
+    color $duration-normal $easing-out;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    @include tron-glow($color-primary, $color-focus-ring);
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border-color: $color-border-strong;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      box-shadow: none;
+      color: $color-primary;
+      background-color: $color-primary-fill;
+      border-color: $color-primary;
+    }
+  }
+
+  &--danger {
+    color: $color-danger;
+    background-color: $color-danger-fill;
+    border-color: $color-danger;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      color: $color-danger;
+      background-color: $color-danger-fill;
+      @include tron-glow($color-danger, $color-danger-muted);
+    }
+  }
+
+  &--sm {
+    gap: $space-1;
+    padding: $space-1 $space-3;
+    font-size: $font-size-xs;
+  }
+
+  &:disabled,
+  &--disabled {
+    opacity: $opacity-disabled;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  &__prefix,
+  &__suffix {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__prefix:not(:has(*)),
+  &__suffix:not(:has(*)) {
+    display: none;
+  }
+}

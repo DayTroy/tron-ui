@@ -1,14 +1,14 @@
-<label class="tron-toggle" [class.tron-toggle--disabled]="$disabled()">
+<label class="tron-toggle" [class.tron-toggle--disabled]="$isDisabled()">
   <button
     class="tron-toggle__track"
     type="button"
     role="switch"
-    [attr.aria-checked]="$checked()"
+    [attr.aria-checked]="$value()"
     [attr.aria-label]="$label()"
-    [disabled]="$disabled()"
+    [disabled]="$isDisabled()"
     (click)="toggle()"
   >
-    <div class="tron-toggle__thumb" [class.tron-toggle__thumb--on]="$checked()"></div>
+    <div class="tron-toggle__thumb" [class.tron-toggle__thumb--on]="$value()"></div>
   </button>
 
   @if ($label()) {

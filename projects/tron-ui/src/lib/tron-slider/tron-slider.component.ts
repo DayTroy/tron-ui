@@ -5,10 +5,10 @@ import {
   computed,
   effect,
   input,
-  model,
   signal,
   viewChild
 } from '@angular/core';
+import { TronControl } from '../core/tron-control';
 
 @Component({
   selector: 'tron-slider',
@@ -18,8 +18,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class TronSliderComponent {
-  readonly $value = model<number>(0, { alias: 'value' });
+export class TronSliderComponent extends TronControl<number> {
   readonly $min = input<number>(0, { alias: 'min' });
   readonly $max = input<number>(100, { alias: 'max' });
   readonly $step = input<number>(1, { alias: 'step' });
@@ -27,20 +26,28 @@ export class TronSliderComponent {
   readonly $isDragging = signal(false);
   readonly $track = viewChild.required<ElementRef<HTMLDivElement>>('track');
 
-  readonly $percent = computed(() =>
-    ((this.$value() - this.$min()) / (this.$max() - this.$min())) * 100
-  );
+  readonly $percent = computed(() => {
+    const min = this.$min();
+    const max = this.$max();
+    const span = max - min;
+    if (span === 0) return 0;
+
+    const value = this.$value() ?? min;
+    return ((value - min) / span) * 100;
+  });
 
   constructor() {
+    super();
+
     effect((onCleanup) => {
       if (!this.$isDragging()) return;
-  
-      const onMouseMove = (e: MouseEvent) => this.$value.set(this.calculateValueFromEvent(e));
+
+      const onMouseMove = (e: MouseEvent) => this.emitValue(this.calculateValueFromEvent(e));
       const onMouseUp = () => this.$isDragging.set(false);
-  
+
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
-  
+
       onCleanup(() => {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
@@ -49,28 +56,35 @@ export class TronSliderComponent {
   }
 
   onTrackMouseDown(event: MouseEvent): void {
+    if (this.$isDisabled()) return;
+
     this.$isDragging.set(true);
-    this.$value.set(this.calculateValueFromEvent(event));
+    this.emitValue(this.calculateValueFromEvent(event));
+    this.onTouched();
   }
 
-  // Клик/драг (пиксели) -> значение в диапазоне [min, max], округлённое до step
+  override writeValue(value: number | null): void {
+    super.writeValue(this.clamp(value ?? this.$min()));
+  }
+
   private calculateValueFromEvent(event: MouseEvent): number {
     const rect = this.$track().nativeElement.getBoundingClientRect();
 
-    // 1. Доля пройденного пути по ширине трека (0..1), с ограничением краёв
     const rawRatio = (event.clientX - rect.left) / rect.width;
     const clampedRatio = Math.min(1, Math.max(0, rawRatio));
 
-    // 2. Перевод доли в значение внутри [min, max]
     const min = this.$min();
     const max = this.$max();
     const rawValue = min + clampedRatio * (max - min);
 
-    // 3. Округление до ближайшего кратного step
+    return this.clamp(rawValue);
+  }
+
+  private clamp(rawValue: number): number {
+    const min = this.$min();
+    const max = this.$max();
     const step = this.$step();
     const steppedValue = Math.round(rawValue / step) * step;
-
-    // 4. Финальная защита от выхода за границы (на случай погрешностей округления)
     return Math.min(max, Math.max(min, steppedValue));
   }
 }

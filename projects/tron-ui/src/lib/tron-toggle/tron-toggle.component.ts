@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, model } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { TronControl } from '../core/tron-control';
 
 @Component({
   selector: 'tron-toggle',
@@ -8,14 +9,13 @@ import { ChangeDetectionStrategy, Component, input, model } from "@angular/core"
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class TronToggleComponent {
-  $checked = model<boolean>(false, { alias: 'checked' });
-  $label = input<string>('', { alias: 'label'} );
-  $disabled = input<boolean>(false, { alias: 'disabled' }); 
+export class TronToggleComponent extends TronControl<boolean> {
+  readonly $label = input<string>('', { alias: 'label' });
 
   toggle(): void {
-    if (this.$disabled()) return;
+    if (this.$isDisabled()) return;
 
-    this.$checked.update(checked => !checked);
+    this.emitValue(!this.$value());
+    this.onTouched();
   }
 }

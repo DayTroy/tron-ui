@@ -18,6 +18,12 @@
   border-radius: $radius-full;
   cursor: pointer;
 
+  .tron-slider--disabled & {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
   &:focus-visible {
     outline: none;
     @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);

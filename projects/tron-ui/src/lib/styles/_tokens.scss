@@ -66,15 +66,22 @@ $color-border:             $color-cyan-border-muted; // default rest
 $color-border-strong:      $color-cyan-border;       // idle interactive
 $color-border-active:      $color-cyan-pure;         // focus / selected
 
-// Intent
+// Intent — neon (text/border) / muted (soft border, glow) / fill (background only)
 $color-primary:            $color-cyan-pure;
 $color-primary-muted:      $color-cyan-border;
 $color-primary-fill:       $color-cyan-fill;
 $color-accent:             $color-orange-pure;
+$color-accent-muted:       $color-orange-border;
+$color-accent-fill:        $color-orange-fill;
 $color-success:            $color-green-pure;
+$color-success-muted:      $color-green-border;
+$color-success-fill:       $color-green-fill;
 $color-warning:            $color-amber-pure;
+$color-warning-muted:      $color-amber-border;
+$color-warning-fill:       $color-amber-fill;
 $color-danger:             $color-red-pure;
 $color-danger-muted:       $color-red-border;
+$color-danger-fill:        $color-red-fill;
 
 // Text roles
 $color-text-primary:       $color-text-bright;

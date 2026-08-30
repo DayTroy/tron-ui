@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, model, signal } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { TronControl } from '../core/tron-control';
 
 let nextId = 0;
 
@@ -11,21 +11,14 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class TronInputComponent implements ControlValueAccessor {
+export class TronInputComponent extends TronControl<string> {
   readonly $label = input<string>('', { alias: 'label' });
   readonly $placeholder = input<string>('', { alias: 'placeholder' });
   readonly $hint = input<string>('', { alias: 'hint' });
   readonly $readonly = input<boolean>(false, { alias: 'readonly' });
-  readonly $disabled = input<boolean>(false, { alias: 'disabled' });
   readonly $type = input<'text' | 'password' | 'email' | 'number' | 'search' | 'tel'>('text', { alias: 'type' });
-  readonly $value = model<string>('', { alias: 'value' });
-
-  public readonly ngControl = inject(NgControl, { optional: true, self: true });
 
   protected readonly fieldId = `tron-input-${nextId++}`;
-  private readonly disabledByForm = signal(false);
-
-  readonly $isDisabled = computed(() => this.$disabled() || this.disabledByForm());
 
   readonly $isInvalid = computed(() => {
     if (this.$isDisabled()) return false;
@@ -33,32 +26,11 @@ export class TronInputComponent implements ControlValueAccessor {
     return !!(control?.invalid && (control.dirty || control.touched));
   });
 
-  constructor() {
-    if (this.ngControl != null) {
-      this.ngControl.valueAccessor = this;
-    }
-  }
-
-  writeValue(value: string | null): void {
-    this.$value.set(value ?? '');
-  }
-
-  onChange: (value: string) => void = () => {};
-  onTouched: () => void = () => {};
-
-  registerOnChange(fn: (value: string) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
-
   onInputChange(newValue: string): void {
-    this.$value.set(newValue);
-    this.onChange(newValue);
+    this.emitValue(newValue);
   }
 
   onBlur(): void {
     this.onTouched();
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

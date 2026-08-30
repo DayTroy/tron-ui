@@ -1,0 +1,13 @@
+<button
+  class="tron-button"
+  [class.tron-button--ghost]="$variant() === 'ghost'"
+  [class.tron-button--danger]="$variant() === 'danger'"
+  [class.tron-button--sm]="$size() === 'sm'"
+  [class.tron-button--disabled]="$disabled()"
+  [type]="$type()"
+  [disabled]="$disabled()"
+>
+  <span class="tron-button__prefix"><ng-content select="[tronPrefix]" /></span>
+  <ng-content />
+  <span class="tron-button__suffix"><ng-content select="[tronSuffix]" /></span>
+</button>
