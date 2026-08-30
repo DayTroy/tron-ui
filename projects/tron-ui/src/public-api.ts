@@ -2,6 +2,7 @@
  * Public API Surface of tron-ui
  */
 
+export * from './lib/core/destroyable';
 export * from './lib/tron-input/tron-input.component';
 export * from './lib/tron-errors/tron-errors.directive';
 export * from './lib/tron-errors/tron-error.component';

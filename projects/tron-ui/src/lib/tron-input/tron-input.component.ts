@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, model, OnInit, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model, signal } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 let nextId = 0;
@@ -12,7 +11,7 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class TronInputComponent implements ControlValueAccessor, OnInit {
+export class TronInputComponent implements ControlValueAccessor {
   readonly $label = input<string>('', { alias: 'label' });
   readonly $placeholder = input<string>('', { alias: 'placeholder' });
   readonly $hint = input<string>('', { alias: 'hint' });
@@ -22,16 +21,13 @@ export class TronInputComponent implements ControlValueAccessor, OnInit {
   readonly $value = model<string>('', { alias: 'value' });
 
   public readonly ngControl = inject(NgControl, { optional: true, self: true });
-  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly fieldId = `tron-input-${nextId++}`;
   private readonly disabledByForm = signal(false);
-  private readonly formTick = signal(0);
 
   readonly $isDisabled = computed(() => this.$disabled() || this.disabledByForm());
 
   readonly $isInvalid = computed(() => {
-    this.formTick();
     if (this.$isDisabled()) return false;
     const control = this.ngControl;
     return !!(control?.invalid && (control.dirty || control.touched));
@@ -41,12 +37,6 @@ export class TronInputComponent implements ControlValueAccessor, OnInit {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
-  }
-
-  ngOnInit(): void {
-    this.ngControl?.control?.events
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.formTick.update(n => n + 1));
   }
 
   writeValue(value: string | null): void {
@@ -66,7 +56,6 @@ export class TronInputComponent implements ControlValueAccessor, OnInit {
 
   onBlur(): void {
     this.onTouched();
-    this.formTick.update(n => n + 1);
   }
 
   setDisabledState(isDisabled: boolean): void {
