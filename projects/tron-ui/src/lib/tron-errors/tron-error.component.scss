@@ -1,0 +1,16 @@
+@use '../styles/tokens' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tron-error {
+  width: 100%;
+  color: $color-danger;
+  font-family: $font-secondary;
+
+  &--first {
+    margin-top: $space-2;
+  }
+}

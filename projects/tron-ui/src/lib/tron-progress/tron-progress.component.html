@@ -1,6 +1,9 @@
 <div class="tron-progress" [attr.data-status]="$status()">
-  <div class="tron-progress__label">{{ $label() }}</div>
+  <div class="tron-progress__header">
+    <div class="tron-progress__label">{{ $label() }}</div>
 
+    <div class="tron-progress__percent">{{ $percent() }}%</div>
+  </div>
   <div
     class="tron-progress__track"
     role="progressbar"

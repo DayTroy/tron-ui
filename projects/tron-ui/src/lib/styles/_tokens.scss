@@ -1,3 +1,95 @@
+// ─── TRON UI — Color Tokens ───────────────────────────────────────────────────
+
+// Canvas
+$color-grid-void:        #00080f;   // фон страницы
+$color-grid-deep:        #000d14;   // sidebar, footer
+$color-grid-surface:     #00101a;   // карточки, панели
+$color-grid-raised:      #001520;   // muted-поверхности, инпуты
+$color-grid-elevated:    #001825;   // hover-состояние карточек
+
+// Primary — Cyan (основной цвет системы, пользователи)
+$color-cyan-pure:        #00e5ff;   // основной акцент, бордеры, активные элементы
+$color-cyan-glow:        rgba(0, 229, 255, 0.60); // focus rings, свечение
+$color-cyan-border:      rgba(0, 229, 255, 0.40); // пассивные бордеры
+$color-cyan-border-muted:rgba(0, 229, 255, 0.25); // очень тихие разделители
+$color-cyan-fill:        rgba(0, 229, 255, 0.15); // фон активных кнопок
+$color-cyan-fill-subtle: rgba(0, 229, 255, 0.08); // фон badge, chip
+$color-cyan-fill-ghost:  rgba(0, 229, 255, 0.05); // hover-оверлей
+
+// Accent — Orange (CLU, вражеские программы)
+$color-orange-pure:      #ff6a00;
+$color-orange-border:    rgba(255, 106, 0, 0.50);
+$color-orange-fill:      rgba(255, 106, 0, 0.15);
+$color-orange-fill-subtle:rgba(255, 106, 0, 0.08);
+
+// Success — Green (ISO, подтверждённые операции)
+$color-green-pure:       #00e676;
+$color-green-border:     rgba(0, 230, 118, 0.50);
+$color-green-fill:       rgba(0, 230, 118, 0.12);
+
+// Warning — Amber (системные предупреждения)
+$color-amber-pure:       #ffab00;
+$color-amber-border:     rgba(255, 171, 0, 0.50);
+$color-amber-fill:       rgba(255, 171, 0, 0.10);
+
+// Danger — Red (дерезз, критические ошибки)
+$color-red-pure:         #ff1744;
+$color-red-border:       rgba(255, 23, 68, 0.50);
+$color-red-fill:         rgba(255, 23, 68, 0.10);
+
+// Special — Violet (ISO-программы, классификация)
+$color-violet-pure:      #7c4dff;
+$color-violet-border:    rgba(124, 77, 255, 0.50);
+$color-violet-fill:      rgba(124, 77, 255, 0.12);
+
+// Foreground / Text
+$color-text-primary:     #a8f0ff;   // основной текст
+$color-text-secondary:   #4a9ab5;   // лейблы, подписи, placeholder
+$color-text-muted:    rgba(168, 240, 255, 0.30); // неактивный текст
+
+// Semantic aliases (удобно для компонентов)
+$color-bg:               $color-grid-void;
+$color-surface:          $color-grid-surface;
+$color-border:           $color-cyan-border-muted;
+$color-border-active:    $color-cyan-pure;
+$color-focus-ring:       $color-cyan-glow;
+$color-primary:          $color-cyan-pure;
+$color-accent:           $color-orange-pure;
+$color-success:          $color-green-pure;
+$color-warning:          $color-amber-pure;
+$color-danger:           $color-red-pure;
+
+// Glow helpers (используются в box-shadow / text-shadow)
+$glow-cyan-sm:   0 0 6px  #{$color-cyan-pure};
+$glow-cyan-md:   0 0 12px #{$color-cyan-pure}, 0 0 30px rgba(0, 229, 255, 0.40);
+$glow-cyan-text: 0 0 8px  #{$color-cyan-pure}, 0 0 20px #{$color-cyan-pure};
+
+$glow-orange-md: 0 0 12px #{$color-orange-pure}, 0 0 30px rgba(255, 106, 0, 0.40);
+$glow-red-md:    0 0 12px #{$color-red-pure},    0 0 30px rgba(255, 23,  68, 0.40);
+$glow-green-md:  0 0 12px #{$color-green-pure},  0 0 30px rgba(0,  230, 118, 0.40);
+
+$font-primary:   'Orbitron', sans-serif;
+$font-secondary: 'Share Tech Mono', sans-serif;
+
+$radius-sm: 2px;
+$radius-md: 4px;
+
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+
+
+
+
+
+
+
+
+// ===============
+// OLD variables
 $tron-bg-base:      #05070d;
 $tron-bg-surface:   #0b1220;
 $tron-bg-elevated:  #10192e;
@@ -14,8 +106,8 @@ $tron-color-clu:      #ffd400;
 $tron-color-clu-dim:  #9c8300;
 $tron-color-clu-glow: rgba(255, 212, 0, 0.6);
 
-$tron-color-danger:  #ff2d55;
-$tron-color-success: #2dff88;
+$tron-color-danger:  #ff1744;
+$tron-color-success: #00e676;
 
 $tron-text-primary: #e6f7ff;
 $tron-text-muted:   #7a8ba0;
@@ -27,17 +119,3 @@ $tron-grid-line:  rgba(45, 225, 255, 0.15);
 // ---- Effects ----
 $tron-glow-sm: 0 0 4px $tron-color-primary-glow;
 $tron-glow-md: 0 0 12px $tron-color-primary-glow;
-
-// ---- Typography ----
-$tron-font-primary: 'Orbitron', sans-serif;
-$tron-font-secondary:    'Share Tech Mono', sans-serif;
-
-$tron-radius-sm: 2px;
-$tron-radius-md: 4px;
-
-$tron-space-1: 4px;
-$tron-space-2: 8px;
-$tron-space-3: 12px;
-$tron-space-4: 16px;
-$tron-space-5: 24px;
-$tron-space-6: 32px;

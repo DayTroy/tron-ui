@@ -12,7 +12,7 @@ export class TronProgressComponent {
   readonly $label = input<string>('', { alias: 'label' });
   readonly $type = input<'primary' |  'success' | 'warning' | 'error'>('primary', { alias: 'type' });
   readonly $value = input<number>(0, { alias: 'value' });
-  readonly $max = input<number>(100);
+  readonly $max = input<number>(100, { alias: 'max'});
 
   readonly $percent = computed(() => 
     Math.min(100, Math.max(0, Math.floor(this.$value() / this.$max() * 100)))

@@ -1,0 +1,3 @@
+@for (error of errorList(); track $index) {
+  <div class="tron-error" [class.tron-error--first]="$index === 0">{{ error }}</div>
+}

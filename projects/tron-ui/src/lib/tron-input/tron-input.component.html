@@ -1,4 +1,7 @@
-<div class="tron-input">
+<div class="tron-input"
+  [class.tron-input--disabled]="$isDisabled()"
+  [class.tron-input--readonly]="$readonly()"
+  [class.tron-input--error]="$isInvalid()">
   @if ($label()) {
     <label class="tron-input__label" [for]="fieldId">{{ $label() }}</label>
   }
@@ -9,9 +12,14 @@
     <input
       class="tron-input__field"
       [id]="fieldId"
+      [type]="$type()"
+      [readonly]="$readonly()"
+      [disabled]="$isDisabled()"
       [value]="$value()"
       [placeholder]="$placeholder()"
-      (input)="$value.set($any($event.target).value)"
+      [attr.aria-invalid]="$isInvalid()"
+      (input)="onInputChange($any($event.target).value)"
+      (blur)="onBlur()"
     />
 
     <span class="tron-input__suffix"><ng-content select="[tronSuffix]" /></span>
@@ -20,7 +28,4 @@
   @if ($hint()) {
     <div class="tron-input__hint">{{ $hint() }}</div>
   }
-
-  <!-- тут надо подумать как сделать не boilerplate код чтобы мб как-то ошибки подсвечивались -->
-  
 </div>

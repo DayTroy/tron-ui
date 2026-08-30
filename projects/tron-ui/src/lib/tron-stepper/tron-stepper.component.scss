@@ -4,11 +4,7 @@
 .tron-stepper {
   display: flex;
   align-items: center;
-  padding: $tron-space-2 $tron-space-3;
-
-  background: $tron-bg-surface;
-  border: 1px solid $tron-border;
-  border-radius: $tron-radius-sm;
+  padding: $space-2 $space-3;
 
   &__item {
     display: flex;
@@ -18,59 +14,57 @@
   }
 
   &__title {
-    @include tron-text-display;
-    color: $tron-color-primary;
+    color: $color-primary;
+    font-family: $font-secondary;
   }
 
   &__btn {
-    @include tron-text-display;
-
+    font-family: $font-primary;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 32px;
-    height: 32px;
+    // width: 32px;
+    // height: 32px;
 
-    font-size: 18px;
+    padding: $space-2;
+    // font-size: 18px;
     line-height: 1;
 
     background: transparent;
-    border: 1px solid $tron-color-primary-dim;
-    border-radius: $tron-radius-sm;
-    color: $tron-color-primary;
-
+    border: 1.5px solid $color-cyan-glow;
+    color: $color-primary;
     cursor: pointer;
 
     &:disabled {
-      color: $tron-text-muted;
-      border-color: $tron-border;
+      color: $color-text-muted;
+      border-color: $color-border;
       box-shadow: none;
       cursor: not-allowed;
     }
 
     &:active:not(:disabled) {
-      background: $tron-color-primary-dim;
+      background: $color-cyan-glow;
     }
 
     &--active {
-      @include tron-glow($tron-color-primary, $tron-color-primary-glow, 8px);
+      // @include tron-glow($tron-color-primary, $tron-color-primary-glow, 8px);
     }
 
     &--completed {
-      background: $tron-color-primary-dim;
-      border-color: $tron-color-primary;
+      background: $color-cyan-glow;
+      border-color: $color-border;
     }
   }
 
   &__connector {
     width: 100%;
     height: 2px;
-    background-color: $tron-border;
+    background-color: $color-border;
     margin-bottom: 2rem;
 
     &--active {
-      background-color: $tron-color-primary;
+      background-color: $color-primary;
     }
   }
 }

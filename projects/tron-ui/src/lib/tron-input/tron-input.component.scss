@@ -1,29 +1,71 @@
 @use '../styles/tokens' as *;
 @use '../styles/mixins' as *;
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .tron-input {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: $tron-space-1;
+  gap: $space-1;
+
+  &--readonly &__control {
+    background-color: $color-grid-raised;
+    cursor: default;
+
+    &:hover,
+    &:focus-within {
+      box-shadow: none;
+      border-color: $color-border;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .tron-input__control {
+      background-color: $color-grid-deep;
+      cursor: not-allowed;
+
+      &:hover,
+      &:focus-within {
+        box-shadow: none;
+        border-color: $color-border;
+      }
+    }
+
+    .tron-input__field {
+      color: $color-text-muted;
+      cursor: not-allowed;
+    }
+  }
 
   &__control {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: $tron-space-2;
-    padding: $tron-space-3;
-
-    @include tron-form-input;
-    color: $tron-text-primary;
-
-    border: 1px solid $tron-color-primary-dim;
-    border-radius: $tron-radius-sm;
+    gap: $space-2;
+    padding: $space-3;
+    background-color: $color-surface;
+    border: 1px solid $color-border;
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
     &:focus-within {
       outline: none;
       @include tron-glow($tron-color-primary, $tron-color-primary-glow, 6px);
+    }
+  }
+
+  &--error &__control {
+    border-color: $color-danger;
+
+    &:hover,
+    &:focus-within {
+      outline: none;
+      @include tron-glow($color-danger, $color-red-border, 6px);
     }
   }
 
@@ -38,15 +80,18 @@
     appearance: none;
     line-height: 1.25;
     font: inherit;
-    color: $tron-text-primary;
+    color: $color-text-primary;
+    font-family: $font-secondary;
 
     &::placeholder {
-      color: $tron-text-muted;
+      color: $color-text-muted;
     }
   }
   
   &__label {
-    @include tron-form-label;
+    font-family: $font-secondary;
+    color: $color-text-secondary;
+    text-transform: uppercase;
   }
 
   &__prefix:not(:has(*)),

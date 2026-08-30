@@ -3,6 +3,8 @@
  */
 
 export * from './lib/tron-input/tron-input.component';
+export * from './lib/tron-errors/tron-errors.directive';
+export * from './lib/tron-errors/tron-error.component';
 export * from './lib/tron-toggle/tron-toggle.component';
 export * from './lib/tron-stepper/tron-stepper.component';
 export * from './lib/tron-progress/tron-progress.component';
