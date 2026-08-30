@@ -1,6 +1,6 @@
 @use 'tokens' as *;
 
-@mixin tron-glow($color, $glow, $size: 8px) {
+@mixin tron-glow($color, $glow, $size: $glow-size-sm) {
   box-shadow: 0 0 $size $glow;
   border-color: $color;
-} 
+}

@@ -13,7 +13,7 @@
   gap: $space-1;
 
   &--readonly &__control {
-    background-color: $color-grid-raised;
+    background-color: $color-control-muted;
     cursor: default;
 
     &:hover,
@@ -27,7 +27,7 @@
     cursor: not-allowed;
 
     .tron-input__control {
-      background-color: $color-grid-deep;
+      background-color: $color-control-muted;
       cursor: not-allowed;
 
       &:hover,
@@ -49,13 +49,13 @@
     align-items: center;
     gap: $space-2;
     padding: $space-3;
-    background-color: $color-surface;
-    border: 1px solid $color-border;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    background-color: $color-control;
+    border: $border-width solid $color-border;
+    transition: box-shadow $duration-normal $easing-out, border-color $duration-normal $easing-out;
 
     &:focus-within {
       outline: none;
-      @include tron-glow($tron-color-primary, $tron-color-primary-glow, 6px);
+      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
   }
 
@@ -65,7 +65,7 @@
     &:hover,
     &:focus-within {
       outline: none;
-      @include tron-glow($color-danger, $color-red-border, 6px);
+      @include tron-glow($color-danger, $color-danger-muted, $glow-size-sm);
     }
   }
 
@@ -78,10 +78,11 @@
     background: transparent;
     outline: none;
     appearance: none;
-    line-height: 1.25;
+    line-height: $line-height-tight;
     font: inherit;
     color: $color-text-primary;
     font-family: $font-secondary;
+    font-size: $font-size-md;
 
     &::placeholder {
       color: $color-text-muted;
@@ -90,6 +91,7 @@
   
   &__label {
     font-family: $font-secondary;
+    font-size: $font-size-xs;
     color: $color-text-secondary;
     text-transform: uppercase;
   }

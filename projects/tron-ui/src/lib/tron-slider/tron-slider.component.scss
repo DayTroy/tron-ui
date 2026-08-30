@@ -11,17 +11,16 @@
 .tron-slider__track {
   position: relative;
   flex: 1;
-  height: 4px;
+  height: $space-1;
 
-  background: $tron-bg-surface;
-  border: 1px solid $tron-border;
-  border-radius: 999px;
-
+  background: $color-control;
+  border: $border-width solid $color-border;
+  border-radius: $radius-full;
   cursor: pointer;
 
   &:focus-visible {
     outline: none;
-    @include tron-glow($tron-color-primary, $tron-color-primary-glow, 6px);
+    @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
   }
 }
 
@@ -31,35 +30,36 @@
   left: 0;
   height: 100%;
 
-  background: $tron-color-primary;
-  border-radius: 999px;
+  background: $color-primary;
+  border-radius: $radius-full;
   pointer-events: none;
 }
 
 .tron-slider__thumb {
   position: absolute;
   top: 50%;
-  width: 16px;
-  height: 16px;
+  width: $space-4;
+  height: $space-4;
 
-  background: $tron-color-primary;
-  border: 2px solid $tron-text-primary;
+  background: $color-primary;
+  border: $border-width-thick solid $color-text-primary;
   border-radius: 50%;
-  box-shadow: 0 0 6px $tron-color-primary-glow;
+  box-shadow: 0 0 $glow-size-sm $color-focus-ring;
 
   transform: translate(-50%, -50%);
-  transition: box-shadow 0.15s ease;
+  transition: box-shadow $duration-fast $easing-out;
   cursor: grab;
 
   &--dragging {
     cursor: grabbing;
-    box-shadow: 0 0 12px $tron-color-primary-glow;
+    box-shadow: 0 0 $glow-size-md $color-focus-ring;
   }
 }
 
 .tron-slider__value {
-  // @include tron-text-display;
   min-width: 3ch;
   text-align: right;
-  font-size: 14px;
+  font-size: $font-size-sm;
+  font-family: $font-secondary;
+  color: $color-text-primary;
 }
