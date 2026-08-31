@@ -48,7 +48,7 @@
   height: $space-4;
 
   background: $color-primary;
-  border: $border-width-thick solid $color-text-primary;
+  border: $border-width-thick solid $color-text;
   border-radius: 50%;
   box-shadow: 0 0 $glow-size-sm $color-focus-ring;
 
@@ -67,5 +67,5 @@
   text-align: right;
   font-size: $font-size-sm;
   font-family: $font-secondary;
-  color: $color-text-primary;
+  color: $color-text;
 }

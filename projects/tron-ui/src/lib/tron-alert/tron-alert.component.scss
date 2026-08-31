@@ -1,0 +1,116 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+@keyframes tron-alert-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.tron-alert {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 24rem;
+  padding: $space-3 $space-4;
+  overflow: hidden;
+  animation: tron-alert-in $duration-normal $easing-out both;
+  background-color: $color-surface-elevated;
+  border: $border-width solid $color-info-border;
+  border-left-width: $border-width-thick;
+  border-left-color: $color-info;
+  color: $color-text;
+
+  &--success { 
+    background-color: $color-success-fill;
+    border-color: $color-success-border;
+    border-left-color: $color-success;
+  }
+
+  &--warning {
+    background-color: $color-warning-fill;
+    border-color: $color-warning-border;
+    border-left-color: $color-warning;
+  }
+
+  &--danger {
+    background-color: $color-danger-fill;
+    border-color: $color-danger-border;
+    border-left-color: $color-danger;
+  }
+
+  &--info {
+    background-color: $color-info-fill;
+    border-color: $color-info-border;
+    border-left-color: $color-info;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    color: $color-info;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__label {
+    flex: 1;
+    color: $color-info;
+    font-family: $font-primary;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-md;
+    color: $color-text;
+  }
+  
+  &__message {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+
+  &--success &__label,
+  &--success &__icon { color: $color-success; }
+
+  &--warning &__label,
+  &--warning &__icon { color: $color-warning; }
+
+  &--danger &__label,
+  &--danger &__icon { color: $color-danger; }
+
+  &__close {
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    background: none; 
+    cursor: pointer;
+    color: $color-text-secondary;
+  }
+
+  &--info &__close:hover { color: $color-info; }
+  &--success &__close:hover { color: $color-success; }
+  &--warning &__close:hover { color: $color-warning; }
+  &--danger &__close:hover { color: $color-danger; }
+}

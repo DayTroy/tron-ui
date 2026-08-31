@@ -58,7 +58,7 @@
     &:focus-visible:not(:disabled) {
       color: $color-danger;
       background-color: $color-danger-fill;
-      @include tron-glow($color-danger, $color-danger-muted);
+      @include tron-glow($color-danger, $color-danger-glow);
     }
   }
 

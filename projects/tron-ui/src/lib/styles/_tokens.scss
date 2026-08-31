@@ -1,95 +1,164 @@
+// ─── Словарь цвета ────────────────────────────────────────────────────────────
+// Два слоя. В .scss компонента — только семантика. Палитра сюда не импортируется
+// «потому что циан»: если тема сдвинется, меняется блок 2, не компоненты.
+//
+// Палитра — из чего сделано (слой сетки, hue). Семантика — зачем (роль).
+//
+// Суффиксы палитры (после hue: cyan / orange / …):
+//   pure    полный неон. Чернила: текст, иконка, жёсткая рамка, заливка бара.
+//   glow    тот же hue ~60% alpha. Ореол / focus ring. Не заливка и не рамка.
+//   border  ~40–50% alpha. Контур этого hue в покое.
+//   fill    ~10–15% alpha. Прозрачная подложка: pressed, selected, кнопка, alert.
+//
+// Доп. шаги только у cyan — это системный хром, не статус:
+//   border-muted  ~25%. Волосок по умолчанию, «ещё не интерактив».
+//   fill-subtle   тише fill. Бейдж, чип.
+//   fill-ghost    ещё тише. Лёгкий hover-wash.
+//
+// Слова семантики:
+//   bg              страница, один на приложение. Не фон карточки и не поле.
+//   surface         плоскость панели / карточки в покое.
+//   sunken          вдавлено относительно surface: сайдбар, футер.
+//   raised          на ступень выше: приглушённая панель, disabled-колодец.
+//   elevated        поверх всего: дропдаун, тост, alert.
+//   control         колодец поля. Сейчас = surface, роль другая — тему можно развести.
+//   muted           тише сосед. Disabled-колодец, бледный текст.
+//                   Не ореол: ореол это glow.
+//   border          рамка хрома в покое (волосок).
+//   border-strong   рамка явно интерактивного хрома (toggle, панель select).
+//   border-active   рамка «сейчас в фокусе / выбрано», без привязки к intent.
+//   text            основной набор: значение в поле, заголовок контрола.
+//                   Не путать с $color-primary — тот про бренд, этот про читаемость.
+//   text-secondary  подписи, hint, иконка в слоте.
+//   text-muted      placeholder, disabled-текст.
+//   focus-ring      ореол клавиатурного фокуса у обычных контролов (= primary-glow).
+//
+// Intent — смысл, не hue. У каждого одна шкала:
+//   $color-danger         ink: текст, иконка, жёсткая рамка, заливка трека
+//   $color-danger-border  мягкий контур этого intent
+//   $color-danger-fill    подложка
+//   $color-danger-glow    ореол
+//
+// Какой intent брать:
+//   primary  система, пользовательский интерактив. Info-alert тоже сюда.
+//   info     алиас primary — чтобы в сервисе алертов писать info, не «primary».
+//   accent   второй бренд / hostile (CLU). Не статус и не alert.
+//   success  готово, здорово.
+//   warning  осторожно, ещё не сломано.
+//   danger   ошибка, разрушительное действие.
+
 // ─── 1. Palette (raw) ─────────────────────────────────────────────────────────
 // Only compose semantic tokens below. Do not use these in component .scss.
 
-// Canvas — depth of the grid, from void to hover
+// Canvas — глубина сетки, сзади вперёд
 $color-grid-void:        #00080f;   // farthest back: page
 $color-grid-deep:        #000d14;   // recessed: sidebar, footer
-$color-grid-surface:     #00101a;   // resting surface: cards, input, tracks
+$color-grid-surface:     #00101a;   // resting: cards, input well, tracks
 $color-grid-raised:      #001520;   // muted panels, non-editable controls
-$color-grid-elevated:    #001825;   // hover on cards / elevated chrome
+$color-grid-elevated:    #001825;   // overlay chrome: dropdown, toast
 
-// Cyan — primary system (users, interactive)
-$color-cyan-pure:        #00e5ff;   // fill of active control, strong border
-$color-cyan-glow:        rgba(0, 229, 255, 0.60); // focus ring, neon
-$color-cyan-border:      rgba(0, 229, 255, 0.40); // idle interactive border
-$color-cyan-border-muted:rgba(0, 229, 255, 0.25); // default hairline
-$color-cyan-fill:        rgba(0, 229, 255, 0.15); // pressed / selected fill
-$color-cyan-fill-subtle: rgba(0, 229, 255, 0.08); // badge, chip
-$color-cyan-fill-ghost:  rgba(0, 229, 255, 0.05); // hover wash
+// Cyan — primary system (users, interactive chrome)
+$color-cyan-pure:         #00e5ff;
+$color-cyan-glow:         rgba(0, 229, 255, 0.60);
+$color-cyan-border:       rgba(0, 229, 255, 0.40);
+$color-cyan-border-muted: rgba(0, 229, 255, 0.25);
+$color-cyan-fill:         rgba(0, 229, 255, 0.15);
+$color-cyan-fill-subtle:  rgba(0, 229, 255, 0.08);
+$color-cyan-fill-ghost:   rgba(0, 229, 255, 0.05);
 
-// Orange — accent / hostile (CLU)
-$color-orange-pure:      #ff6a00;
-$color-orange-border:    rgba(255, 106, 0, 0.50);
-$color-orange-fill:      rgba(255, 106, 0, 0.15);
-$color-orange-fill-subtle:rgba(255, 106, 0, 0.08);
+// Orange — accent / hostile (CLU), not a status
+$color-orange-pure:   #ff6a00;
+$color-orange-glow:   rgba(255, 106, 0, 0.60);
+$color-orange-border: rgba(255, 106, 0, 0.50);
+$color-orange-fill:   rgba(255, 106, 0, 0.15);
 
 // Green — success
-$color-green-pure:       #00e676;
-$color-green-border:     rgba(0, 230, 118, 0.50);
-$color-green-fill:       rgba(0, 230, 118, 0.12);
+$color-green-pure:   #00e676;
+$color-green-glow:   rgba(0, 230, 118, 0.60);
+$color-green-border: rgba(0, 230, 118, 0.50);
+$color-green-fill:   rgba(0, 230, 118, 0.12);
 
 // Amber — warning
-$color-amber-pure:       #ffab00;
-$color-amber-border:     rgba(255, 171, 0, 0.50);
-$color-amber-fill:       rgba(255, 171, 0, 0.10);
+$color-amber-pure:   #ffab00;
+$color-amber-glow:   rgba(255, 171, 0, 0.60);
+$color-amber-border: rgba(255, 171, 0, 0.50);
+$color-amber-fill:   rgba(255, 171, 0, 0.10);
 
 // Red — danger
-$color-red-pure:         #ff1744;
-$color-red-border:       rgba(255, 23, 68, 0.50);
-$color-red-fill:         rgba(255, 23, 68, 0.10);
+$color-red-pure:   #ff1744;
+$color-red-glow:   rgba(255, 23, 68, 0.60);
+$color-red-border: rgba(255, 23, 68, 0.50);
+$color-red-fill:   rgba(255, 23, 68, 0.10);
 
-// Violet — special / classification
-$color-violet-pure:      #7c4dff;
-$color-violet-border:    rgba(124, 77, 255, 0.50);
-$color-violet-fill:      rgba(124, 77, 255, 0.12);
+// Violet — special / classification (palette only until a semantic role exists)
+$color-violet-pure:   #7c4dff;
+$color-violet-glow:   rgba(124, 77, 255, 0.60);
+$color-violet-border: rgba(124, 77, 255, 0.50);
+$color-violet-fill:   rgba(124, 77, 255, 0.12);
 
-// Text on dark grid
-$color-text-bright:      #a8f0ff;   // primary copy, input value
-$color-text-dim:         #4a9ab5;   // labels, captions
-$color-text-faint:       rgba(168, 240, 255, 0.30); // placeholder, disabled text
+// Ink on the dark grid (look, not role)
+$color-ink-bright: #a8f0ff;
+$color-ink-dim:    #4a9ab5;
+$color-ink-faint:  rgba(168, 240, 255, 0.30);
 
 // ─── 2. Semantic (use in components) ──────────────────────────────────────────
 // Map roles, not hues. If the theme shifts, only this block changes.
 
-// Page / panels
-$color-bg:                 $color-grid-void;
-$color-surface:            $color-grid-surface;
-$color-surface-raised:     $color-grid-raised;
-$color-surface-elevated:   $color-grid-elevated;
+// Depth — page → overlay
+$color-bg:               $color-grid-void;      // page only
+$color-surface-sunken:   $color-grid-deep;      // sidebar, footer
+$color-surface:          $color-grid-surface;   // card, panel at rest
+$color-surface-raised:   $color-grid-raised;    // quieter panel
+$color-surface-elevated: $color-grid-elevated;  // dropdown, toast, alert
 
-// Form controls (input, slider track, toggle track)
-$color-control:            $color-grid-surface;
-$color-control-muted:      $color-grid-raised; // readonly + disabled; dim text/opacity separately
+// Form well — same paint as surface today; dim text/opacity separately
+$color-control:       $color-grid-surface;
+$color-control-muted: $color-grid-raised; // readonly + disabled well
 
-// Borders
-$color-border:             $color-cyan-border-muted; // default rest
-$color-border-strong:      $color-cyan-border;       // idle interactive
-$color-border-active:      $color-cyan-pure;         // focus / selected
+// Chrome outlines (not intent — use $color-danger etc. for error/status)
+$color-border:        $color-cyan-border-muted; // rest
+$color-border-strong: $color-cyan-border;       // idle interactive
+$color-border-active: $color-cyan-pure;         // focus / selected outline
 
-// Intent — neon (text/border) / muted (soft border, glow) / fill (background only)
-$color-primary:            $color-cyan-pure;
-$color-primary-muted:      $color-cyan-border;
-$color-primary-fill:       $color-cyan-fill;
-$color-accent:             $color-orange-pure;
-$color-accent-muted:       $color-orange-border;
-$color-accent-fill:        $color-orange-fill;
-$color-success:            $color-green-pure;
-$color-success-muted:      $color-green-border;
-$color-success-fill:       $color-green-fill;
-$color-warning:            $color-amber-pure;
-$color-warning-muted:      $color-amber-border;
-$color-warning-fill:       $color-amber-fill;
-$color-danger:             $color-red-pure;
-$color-danger-muted:       $color-red-border;
-$color-danger-fill:        $color-red-fill;
+// Intent — ink / border / fill / glow. Same four words on every intent.
+$color-primary:        $color-cyan-pure;
+$color-primary-border: $color-cyan-border;
+$color-primary-fill:   $color-cyan-fill;
+$color-primary-glow:   $color-cyan-glow;
 
-// Text roles
-$color-text-primary:       $color-text-bright;
-$color-text-secondary:     $color-text-dim;
-$color-text-muted:         $color-text-faint;
+$color-accent:        $color-orange-pure;
+$color-accent-border: $color-orange-border;
+$color-accent-fill:   $color-orange-fill;
+$color-accent-glow:   $color-orange-glow;
 
-// Focus
-$color-focus-ring:         $color-cyan-glow;
+$color-success:        $color-green-pure;
+$color-success-border: $color-green-border;
+$color-success-fill:   $color-green-fill;
+$color-success-glow:   $color-green-glow;
+
+$color-warning:        $color-amber-pure;
+$color-warning-border: $color-amber-border;
+$color-warning-fill:   $color-amber-fill;
+$color-warning-glow:   $color-amber-glow;
+
+$color-danger:        $color-red-pure;
+$color-danger-border: $color-red-border;
+$color-danger-fill:   $color-red-fill;
+$color-danger-glow:   $color-red-glow;
+
+// Alert service: info is primary, not a sixth hue
+$color-info:        $color-primary;
+$color-info-border: $color-primary-border;
+$color-info-fill:   $color-primary-fill;
+$color-info-glow:   $color-primary-glow;
+
+// Type — readability roles. $color-text ≠ $color-primary.
+$color-text:           $color-ink-bright; // value, body
+$color-text-secondary: $color-ink-dim;    // label, hint, slot icon
+$color-text-muted:     $color-ink-faint;  // placeholder, disabled text
+
+// Keyboard focus on default controls
+$color-focus-ring: $color-primary-glow;
 
 // ─── 3. Size (rem, 1rem = 16px) ───────────────────────────────────────────────
 // Hairlines stay px so 1px borders do not fatten with font zoom.
@@ -132,11 +201,3 @@ $duration-normal: 0.2s;
 $easing-out: ease;
 
 $opacity-disabled: 0.5;
-
-// Glow presets (box-shadow)
-$glow-cyan-sm:   0 0 $glow-size-sm $color-cyan-pure;
-$glow-cyan-md:   0 0 $glow-size-md $color-cyan-pure, 0 0 30px rgba(0, 229, 255, 0.40);
-$glow-cyan-text: 0 0 8px $color-cyan-pure, 0 0 20px $color-cyan-pure;
-$glow-orange-md: 0 0 $glow-size-md $color-orange-pure, 0 0 30px rgba(255, 106, 0, 0.40);
-$glow-red-md:    0 0 $glow-size-md $color-red-pure, 0 0 30px rgba(255, 23, 68, 0.40);
-$glow-green-md:  0 0 $glow-size-md $color-green-pure, 0 0 30px rgba(0, 230, 118, 0.40);

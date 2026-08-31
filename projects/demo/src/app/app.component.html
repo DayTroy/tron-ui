@@ -39,10 +39,14 @@
       [options]="sectors"
       tronErrors
     />
+
+    <tron-button (click)="notifyInfo()">Info</tron-button>
+    <tron-button (click)="notifySuccess()">Success</tron-button>
+    <tron-button (click)="notifyWarning()">Warning</tron-button>
+    <tron-button variant="danger" (click)="notifyDanger()">Danger</tron-button>
 </form>
 
-
-
+<tron-alert-outlet />
 
 <!-- <tron-progress
   [value]="23"

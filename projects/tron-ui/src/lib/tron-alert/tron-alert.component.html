@@ -1,0 +1,44 @@
+<div class="tron-alert"
+  [class.tron-alert--info]="$type() === 'info'"
+  [class.tron-alert--success]="$type() === 'success'"
+  [class.tron-alert--warning]="$type() === 'warning'"
+  [class.tron-alert--danger]="$type() === 'danger'">
+  <div class="tron-alert__head">
+    <span class="tron-alert__icon" aria-hidden="true">
+      @switch ($type()) {
+        @case ('success') {
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M5 8.2l2.1 2.1L11.2 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        }
+        @case ('warning') {
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 2.5L14.5 13.5H1.5L8 2.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M8 6.75v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="8" cy="11.5" r="0.7" fill="currentColor"/>
+          </svg>
+        }
+        @case ('danger') {
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M6 6l4 4M10 6l-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        }
+        @default {
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M8 7.25v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="8" cy="5.25" r="0.7" fill="currentColor"/>
+          </svg>
+        }
+      }
+    </span>
+    <span class="tron-alert__label">{{ $label() }}</span>
+    <button class="tron-alert__close" type="button" aria-label="Dismiss" (click)="dismiss()">×</button>
+  </div>
+  <div class="tron-alert__title">{{ $title() }}</div>
+  @if ($message()) {
+    <div class="tron-alert__message">{{ $message() }}</div>
+  }
+</div>

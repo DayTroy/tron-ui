@@ -5,10 +5,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { TronButtonComponent } from '../../../tron-ui/src/lib/tron-button/tron-button.component';
 import { TronSelectComponent } from '../../../tron-ui/src/lib/tron-select/tron-select.component';
+import { TronAlertOutletComponent } from '../../../tron-ui/src/lib/tron-alert/tron-alert-outlet.component';
+import { TronAlertService } from '../../../tron-ui/src/lib/tron-alert/tron-alert.service';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronSelectComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
+  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -17,6 +19,7 @@ export class AppComponent implements OnInit {
   name$ = signal('John');
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly alerts = inject(TronAlertService);
 
   readonly sectors = [
     { value: 'core', label: 'Sector 1 - Core' },
@@ -72,6 +75,34 @@ export class AppComponent implements OnInit {
   enable() {
     this.form.controls.id.enable();
     this.form.controls.sector.enable();
+  }
+
+  notifyInfo(): void {
+    this.alerts.info(
+      'Network Sync Complete',
+      'Grid connection established on port 2048. All sectors responding normally.'
+    );
+  }
+
+  notifySuccess(): void {
+    this.alerts.success(
+      'User Program Recognized',
+      'Identity verified. Welcome to the Grid. System resources allocated successfully.'
+    );
+  }
+
+  notifyWarning(): void {
+    this.alerts.warning(
+      'Sector 12 Anomaly Detected',
+      'Unusual data patterns observed in grid sector 12. MCP monitoring activated.'
+    );
+  }
+
+  notifyDanger(): void {
+    this.alerts.danger(
+      'FATAL: Memory Corruption',
+      'Critical system failure in partition 0x3E8. Emergency derezzification protocol engaged.'
+    );
   }
 
   derezz() {

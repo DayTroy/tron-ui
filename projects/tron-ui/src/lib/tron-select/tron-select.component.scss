@@ -66,7 +66,7 @@
 
     &:hover,
     &:focus-visible {
-      @include tron-glow($color-danger, $color-danger-muted, $glow-size-sm);
+      @include tron-glow($color-danger, $color-danger-glow, $glow-size-sm);
     }
   }
 
@@ -98,7 +98,7 @@
     font-family: $font-secondary;
     font-size: $font-size-md;
     line-height: $line-height-tight;
-    color: $color-text-primary;
+    color: $color-text;
 
     &--placeholder {
       color: $color-text-muted;
@@ -132,7 +132,7 @@
     font-family: $font-secondary;
     font-size: $font-size-md;
     line-height: $line-height-tight;
-    color: $color-text-primary;
+    color: $color-text;
     cursor: pointer;
 
     &--highlighted,

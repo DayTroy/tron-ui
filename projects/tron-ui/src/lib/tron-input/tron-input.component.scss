@@ -65,7 +65,7 @@
     &:hover,
     &:focus-within {
       outline: none;
-      @include tron-glow($color-danger, $color-danger-muted, $glow-size-sm);
+      @include tron-glow($color-danger, $color-danger-glow, $glow-size-sm);
     }
   }
 
@@ -80,7 +80,7 @@
     appearance: none;
     line-height: $line-height-tight;
     font: inherit;
-    color: $color-text-primary;
+    color: $color-text;
     font-family: $font-secondary;
     font-size: $font-size-md;
 
