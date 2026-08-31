@@ -30,7 +30,18 @@
     <tron-button variant="ghost" (click)="disable()">Disable</tron-button>
     <tron-button [disabled]="true">Wait</tron-button>
     <tron-button variant="danger" (click)="derezz()">Derezz</tron-button>
+
+    <tron-select
+      label="Sector"
+      placeholder="Choose sector"
+      hint="Grid sector assignment"
+      formControlName="sector"
+      [options]="sectors"
+      tronErrors
+    />
 </form>
+
+
 
 
 <!-- <tron-progress

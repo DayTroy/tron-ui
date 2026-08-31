@@ -1,0 +1,160 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+:host {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.tron-select {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  width: 100%;
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .tron-select__control {
+      background-color: $color-control-muted;
+      cursor: not-allowed;
+
+      &:hover,
+      &:focus-visible {
+        box-shadow: none;
+        border-color: $color-border;
+      }
+    }
+
+    .tron-select__value,
+    .tron-select__chevron {
+      color: $color-text-muted;
+    }
+  }
+
+  &__label {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+  }
+
+  &__control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $space-2;
+    width: 100%;
+    margin: 0;
+    padding: $space-3;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+    background-color: $color-control;
+    border: $border-width solid $color-border;
+    transition: box-shadow $duration-normal $easing-out, border-color $duration-normal $easing-out;
+
+    &:focus-visible {
+      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+    }
+  }
+
+  &--error &__control {
+    border-color: $color-danger;
+
+    &:hover,
+    &:focus-visible {
+      @include tron-glow($color-danger, $color-danger-muted, $glow-size-sm);
+    }
+  }
+
+  &--open &__control {
+    @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+  }
+
+  &--open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__field {
+    position: relative;
+  }
+
+  &__prefix {
+    display: inline-flex;
+    align-items: center;
+    color: $color-text-secondary;
+
+    &:not(:has(*)) {
+      display: none;
+    }
+  }
+
+  &__value {
+    flex: 1;
+    min-width: 0;
+    font-family: $font-secondary;
+    font-size: $font-size-md;
+    line-height: $line-height-tight;
+    color: $color-text-primary;
+
+    &--placeholder {
+      color: $color-text-muted;
+    }
+  }
+
+  &__chevron {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: $color-text-secondary;
+    transition: transform $duration-fast $easing-out;
+  }
+
+  &__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 12rem;
+    overflow-y: auto;
+    background-color: $color-surface-elevated;
+    border: $border-width solid $color-border-strong;
+  }
+
+  &__option {
+    padding: $space-3;
+    font-family: $font-secondary;
+    font-size: $font-size-md;
+    line-height: $line-height-tight;
+    color: $color-text-primary;
+    cursor: pointer;
+
+    &--highlighted,
+    &:hover {
+      background-color: $color-primary-fill;
+    }
+
+    &--selected {
+      background-color: $color-primary-fill;
+      color: $color-primary;
+    }
+
+    &--disabled {
+      opacity: $opacity-disabled;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__hint {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}

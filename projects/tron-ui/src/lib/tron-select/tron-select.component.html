@@ -1,0 +1,64 @@
+<div
+  class="tron-select"
+  [class.tron-select--disabled]="$isDisabled()"
+  [class.tron-select--error]="$isInvalid()"
+  [class.tron-select--open]="$isOpen()"
+  (focusout)="onFocusOut($event)"
+>
+  @if ($label()) {
+    <label class="tron-select__label" [for]="fieldId">{{ $label() }}</label>
+  }
+
+  <div class="tron-select__field">
+    <button
+      class="tron-select__control"
+      type="button"
+      role="combobox"
+      [id]="fieldId"
+      [disabled]="$isDisabled()"
+      [attr.aria-invalid]="$isInvalid()"
+      [attr.aria-expanded]="$isOpen()"
+      [attr.aria-haspopup]="'listbox'"
+      [attr.aria-controls]="listboxId"
+      [attr.aria-activedescendant]="$activeDescendant()"
+      (click)="toggle()"
+      (keydown)="onKeydown($event)"
+    >
+      <span class="tron-select__prefix"><ng-content select="[tronPrefix]" /></span>
+
+      <span
+        class="tron-select__value"
+        [class.tron-select__value--placeholder]="!$display()"
+      >{{ $display() || $placeholder() }}</span>
+
+      <span class="tron-select__chevron" aria-hidden="true">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    @if ($isOpen()) {
+      <ul class="tron-select__panel" role="listbox" [id]="listboxId">
+        @for (option of $options(); track option.value; let i = $index) {
+          <li
+            class="tron-select__option"
+            role="option"
+            [id]="optionId(i)"
+            [class.tron-select__option--selected]="option.value === $value()"
+            [class.tron-select__option--highlighted]="i === $highlightedIndex()"
+            [class.tron-select__option--disabled]="option.disabled"
+            [attr.aria-selected]="option.value === $value()"
+            [attr.aria-disabled]="option.disabled || null"
+            (mousedown)="select(option, $event)"
+            (mouseenter)="highlight(i)"
+          >{{ option.label }}</li>
+        }
+      </ul>
+    }
+  </div>
+
+  @if ($hint()) {
+    <div class="tron-select__hint">{{ $hint() }}</div>
+  }
+</div>

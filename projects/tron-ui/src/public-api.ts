@@ -11,3 +11,4 @@ export * from './lib/tron-toggle/tron-toggle.component';
 export * from './lib/tron-stepper/tron-stepper.component';
 export * from './lib/tron-progress/tron-progress.component';
 export * from './lib/tron-slider/tron-slider.component';
+export * from './lib/tron-select/tron-select.component';

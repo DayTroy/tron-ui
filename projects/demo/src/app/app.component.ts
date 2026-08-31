@@ -4,10 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { TronButtonComponent } from '../../../tron-ui/src/lib/tron-button/tron-button.component';
+import { TronSelectComponent } from '../../../tron-ui/src/lib/tron-select/tron-select.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
+  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronSelectComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -16,6 +17,14 @@ export class AppComponent implements OnInit {
   name$ = signal('John');
 
   private readonly destroyRef = inject(DestroyRef);
+
+  readonly sectors = [
+    { value: 'core', label: 'Sector 1 - Core' },
+    { value: 'archive', label: 'Sector 2 - Archive' },
+    { value: 'transit', label: 'Sector 3 - Transit', disabled: true },
+    { value: 'outlands', label: 'Sector 4 - Outlands' },
+  ];
+
 
   readonly data = [
     {
@@ -37,10 +46,11 @@ export class AppComponent implements OnInit {
   readonly form = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.email, Validators.minLength(30)]),
     openField: new FormControl(false),
-    condition: new FormControl(0)
-  })
+    condition: new FormControl(0),
+    sector: new FormControl<string | null>(null, Validators.required),
+  });
 
-  get idFormCtrl() { return this.form.controls.id; }
+  get idFormCtrl() { return this.form.controls.id; };
 
   constructor() {}
 
@@ -56,10 +66,12 @@ export class AppComponent implements OnInit {
 
   disable() {
     this.form.controls.id.disable();
+    this.form.controls.sector.disable();  
   }
 
   enable() {
     this.form.controls.id.enable();
+    this.form.controls.sector.enable();
   }
 
   derezz() {
