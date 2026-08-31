@@ -14,7 +14,7 @@ const DEFAULT_ERRORS: Record<string, string> = {
 
 @Directive({
   selector: '[tronErrors]',
-  standalone: true,
+  standalone: true
 })
 export class TronErrorsDirective extends Destroyable implements OnInit {
   private readonly viewContainerRef = inject(ViewContainerRef);
