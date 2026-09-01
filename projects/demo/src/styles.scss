@@ -1,6 +1,14 @@
 @use '../../tron-ui/src/lib/styles/theme';
 @use 'tokens' as *;
 
+@font-face {
+  font-family: 'Share Tech Mono';
+  src: url('/fonts/ShareTechMonoRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background-color: $color-bg;
 }
