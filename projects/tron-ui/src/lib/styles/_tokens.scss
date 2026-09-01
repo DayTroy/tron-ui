@@ -121,10 +121,11 @@ $color-border-strong: $color-cyan-border;       // idle interactive
 $color-border-active: $color-cyan-pure;         // focus / selected outline
 
 // Intent — ink / border / fill / glow. Same four words on every intent.
-$color-primary:        $color-cyan-pure;
-$color-primary-border: $color-cyan-border;
-$color-primary-fill:   $color-cyan-fill;
-$color-primary-glow:   $color-cyan-glow;
+$color-primary:              $color-cyan-pure;
+$color-primary-border:       $color-cyan-border;
+$color-primary-fill:         $color-cyan-fill;
+$color-primary-fill-subtle:  $color-cyan-fill-subtle; // chip / badge well
+$color-primary-glow:         $color-cyan-glow;
 
 $color-accent:        $color-orange-pure;
 $color-accent-border: $color-orange-border;

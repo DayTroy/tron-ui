@@ -1,0 +1,98 @@
+@use '../styles/tokens' as *;
+
+:host {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.tron-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  max-width: 100%;
+  padding: $space-1 $space-3;
+  font-family: $font-secondary;
+  font-size: $font-size-xs;
+  line-height: $line-height-tight;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $color-primary;
+  background-color: $color-primary-fill-subtle;
+  border: $border-width solid $color-primary-border;
+  --tron-chip-glow: #{$color-primary-glow};
+
+  &--success {
+    color: $color-success;
+    background-color: $color-success-fill;
+    border-color: $color-success-border;
+    --tron-chip-glow: #{$color-success-glow};
+  }
+
+  &--warning {
+    color: $color-warning;
+    background-color: $color-warning-fill;
+    border-color: $color-warning-border;
+    --tron-chip-glow: #{$color-warning-glow};
+  }
+
+  &--danger {
+    color: $color-danger;
+    background-color: $color-danger-fill;
+    border-color: $color-danger-border;
+    --tron-chip-glow: #{$color-danger-glow};
+  }
+
+  &--accent {
+    color: $color-accent;
+    background-color: $color-accent-fill;
+    border-color: $color-accent-border;
+    --tron-chip-glow: #{$color-accent-glow};
+  }
+
+  &--disabled {
+    opacity: $opacity-disabled;
+    pointer-events: none;
+  }
+
+  &__dot {
+    position: relative;
+    flex-shrink: 0;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: $radius-full;
+    background-color: currentColor;
+    box-shadow: 0 0 $glow-size-sm var(--tron-chip-glow);
+
+    &--pulse::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: currentColor;
+      animation: tron-chip-pulse 1.8s $easing-out infinite;
+    }
+  }
+
+  &--disabled &__dot--pulse::after {
+    animation: none;
+  }
+}
+
+@keyframes tron-chip-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tron-chip__dot--pulse::after {
+    animation: none;
+  }
+}

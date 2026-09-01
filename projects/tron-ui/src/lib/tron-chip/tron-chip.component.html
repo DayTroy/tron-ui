@@ -1,0 +1,17 @@
+<span
+  class="tron-chip"
+  [class.tron-chip--success]="$variant() === 'success'"
+  [class.tron-chip--warning]="$variant() === 'warning'"
+  [class.tron-chip--danger]="$variant() === 'danger'"
+  [class.tron-chip--accent]="$variant() === 'accent'"
+  [class.tron-chip--disabled]="$disabled()"
+>
+  @if ($type()) {
+    <span
+      class="tron-chip__dot"
+      [class.tron-chip__dot--pulse]="$type() === 'pulse'"
+      aria-hidden="true"
+    ></span>
+  }
+  <ng-content />
+</span>

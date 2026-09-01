@@ -1,0 +1,7 @@
+@use 'tokens' as *;
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}

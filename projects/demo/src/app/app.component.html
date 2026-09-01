@@ -21,6 +21,22 @@
 
     <tron-checkbox formControlName="alerts">Оповещения грида</tron-checkbox>
 
+    <div class="chip-row">
+      <tron-chip>Core</tron-chip>
+      <tron-chip variant="success">Stable</tron-chip>
+      <tron-chip variant="warning">Anomaly</tron-chip>
+      <tron-chip variant="danger">Derezzed</tron-chip>
+      <tron-chip variant="accent">CLU</tron-chip>
+      <tron-chip [disabled]="true">Offline</tron-chip>
+    </div>
+
+    <div class="chip-row">
+      <tron-chip type="pulse">Online</tron-chip>
+      <tron-chip variant="success" type="pulse">Active</tron-chip>
+      <tron-chip variant="warning" type="dot">Standby</tron-chip>
+      <tron-chip variant="danger" type="pulse">Critical</tron-chip>
+    </div>
+
     <tron-slider
       formControlName="condition"
       [min]="0"
