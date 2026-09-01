@@ -1,5 +1,5 @@
 import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { TronStepperComponent, TronToggleComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective } from '../../../tron-ui/src/public-api';
+import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective } from '../../../tron-ui/src/public-api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { TronAlertService } from '../../../tron-ui/src/lib/tron-alert/tron-alert
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
+  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronCheckboxComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
     openField: new FormControl(false),
     condition: new FormControl(0),
     sector: new FormControl<string | null>(null, Validators.required),
+    alerts: new FormControl(false),
   });
 
   get idFormCtrl() { return this.form.controls.id; };
@@ -69,12 +70,14 @@ export class AppComponent implements OnInit {
 
   disable() {
     this.form.controls.id.disable();
-    this.form.controls.sector.disable();  
+    this.form.controls.sector.disable();
+    this.form.controls.alerts.disable();  
   }
 
   enable() {
     this.form.controls.id.enable();
     this.form.controls.sector.enable();
+    this.form.controls.alerts.enable();
   }
 
   notifyInfo(): void {

@@ -1,0 +1,28 @@
+<label
+  class="tron-checkbox"
+  [class.tron-checkbox--disabled]="$isDisabled()"
+  [class.tron-checkbox--checked]="$checked()"
+>
+  <input
+    class="tron-checkbox__native"
+    type="checkbox"
+    [checked]="$checked()"
+    [disabled]="$isDisabled()"
+    (change)="onNativeChange($event)"
+    (blur)="onBlur()"
+  />
+
+  <span class="tron-checkbox__box" aria-hidden="true">
+    <svg class="tron-checkbox__check" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline
+        points="1.5 6 4.5 9 10.5 3"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+      />
+    </svg>
+  </span>
+
+  <span class="tron-checkbox__label"><ng-content /></span>
+</label>
