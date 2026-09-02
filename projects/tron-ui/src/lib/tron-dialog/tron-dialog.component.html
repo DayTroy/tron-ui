@@ -1,0 +1,38 @@
+<ng-template #panel>
+  <div
+    class="tron-dialog"
+    cdkTrapFocus 
+    cdkTrapFocusAutoCapture
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="titleId"
+  >
+    <span class="tron-dialog__corner tron-dialog__corner--tl" aria-hidden="true"></span>
+    <span class="tron-dialog__corner tron-dialog__corner--tr" aria-hidden="true"></span>
+    <span class="tron-dialog__corner tron-dialog__corner--bl" aria-hidden="true"></span>
+    <span class="tron-dialog__corner tron-dialog__corner--br" aria-hidden="true"></span>
+
+    <div class="tron-dialog__head">
+      <div class="tron-dialog__heading">
+        <span class="tron-dialog__title" [id]="titleId">{{ $title() }}</span>
+        @if ($subtitle()) {
+          <span class="tron-dialog__subtitle">{{ $subtitle() }}</span>
+        }
+      </div>
+      <button
+        class="tron-dialog__close"
+        type="button"
+        aria-label="Close"
+        (click)="$open.set(false)"
+      >×</button>
+    </div>
+
+    <div class="tron-dialog__body">
+      <ng-content />
+    </div>
+
+    <div class="tron-dialog__actions">
+      <ng-content select="[tronActions]" />
+    </div>
+  </div>
+</ng-template>

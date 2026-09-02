@@ -1,5 +1,5 @@
 import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective } from '../../../tron-ui/src/public-api';
+import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogComponent } from '../../../tron-ui/src/public-api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -10,13 +10,14 @@ import { TronAlertService } from '../../../tron-ui/src/lib/tron-alert/tron-alert
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
+  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   isDisabled$ = signal(false);
   name$ = signal('John');
+  dialogOpen = signal(false);
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TronAlertService);

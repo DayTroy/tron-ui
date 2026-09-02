@@ -1,7 +1,14 @@
+@use 'tokens' as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import '@angular/cdk/overlay-prebuilt.css';
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.tron-dialog-backdrop {
+  background: color-mix(in srgb, #{$color-bg} 78%, transparent);
 }
