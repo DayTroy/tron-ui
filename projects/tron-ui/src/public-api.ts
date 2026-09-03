@@ -18,3 +18,4 @@ export * from './lib/tron-alert/tron-alert.component';
 export * from './lib/tron-alert/tron-alert-outlet.component';
 export * from './lib/tron-alert/tron-alert.service';
 export * from './lib/tron-dialog/tron-dialog.service';
+export * from './lib/tron-drawer/tron-drawer.service';

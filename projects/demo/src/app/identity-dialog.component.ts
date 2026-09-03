@@ -6,6 +6,11 @@ import { TronButtonComponent } from '../../../tron-ui/src/lib/tron-button/tron-b
   selector: 'app-identity-dialog',
   standalone: true,
   imports: [TronButtonComponent, TronInputComponent],
+  styles: `
+    :host {
+      display: contents;
+    }
+  `,
   template: `
     <p>Grid access for sector 7-G requires elevated clearance. Provide your identity disc credentials to proceed.</p>
 

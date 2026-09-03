@@ -1,23 +1,24 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { type TronDialogContent } from './tron-dialog.service';
+import { type TronDrawerContent, type TronDrawerPosition } from './tron-drawer.service';
 
 let nextId = 0;
 
 @Component({
-  selector: 'tron-dialog',
+  selector: 'tron-drawer',
   imports: [CdkTrapFocus, NgComponentOutlet, NgTemplateOutlet],
-  templateUrl: './tron-dialog.component.html',
-  styleUrl: './tron-dialog.component.scss',
+  templateUrl: './tron-drawer.component.html',
+  styleUrl: './tron-drawer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true
 })
-export class TronDialogComponent {
+export class TronDrawerComponent {
   readonly $title = input.required<string>({ alias: 'title' });
   readonly $subtitle = input('', { alias: 'subtitle' });
-  readonly $content = input.required<TronDialogContent>({ alias: 'content' });
+  readonly $position = input<TronDrawerPosition>('end', { alias: 'position' });
+  readonly $content = input.required<TronDrawerContent>({ alias: 'content' });
 
   protected readonly $template = computed(() => {
     const content = this.$content();
@@ -29,7 +30,7 @@ export class TronDialogComponent {
     return content instanceof TemplateRef ? null : content;
   });
 
-  protected readonly titleId = `tron-dialog-title-${nextId++}`;
+  protected readonly titleId = `tron-drawer-title-${nextId++}`;
 
   close = () => {};
 }

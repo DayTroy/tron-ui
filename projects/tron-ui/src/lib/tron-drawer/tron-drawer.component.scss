@@ -1,31 +1,38 @@
 @use '../styles/tokens' as *;
 @use '../styles/mixins' as *;
 
-:host {
+tron-drawer {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.tron-dialog {
+.tron-drawer {
+  --tron-drawer-pad-x: #{$space-4};
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: $space-4;
-  width: 32rem;
-  max-width: calc(100vw - #{$space-5});
-  margin: 0 auto;
-  --tron-dialog-pad-x: #{$space-4};
-  padding: $space-5 var(--tron-dialog-pad-x);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   background-color: $color-surface;
-  border: $border-width solid $color-primary-border;
   color: $color-text;
+
+  &--start {
+    border-right: $border-width solid $color-primary-border;
+  }
+
+  &--end {
+    border-left: $border-width solid $color-primary-border;
+  }
 
   &__head {
     display: flex;
+    flex-shrink: 0;
     align-items: flex-start;
     justify-content: space-between;
     gap: $space-3;
-    margin-inline: calc(-1 * var(--tron-dialog-pad-x));
-    padding: 0 var(--tron-dialog-pad-x) $space-4;
+    padding: $space-5 var(--tron-drawer-pad-x) $space-4;
     border-bottom: $border-width solid $color-border;
   }
 
@@ -34,42 +41,6 @@
     flex-direction: column;
     gap: $space-1;
     min-width: 0;
-  }
-
-  &__corner {
-    position: absolute;
-    width: $space-3;
-    height: $space-3;
-    border-color: $color-primary;
-    pointer-events: none;
-
-    &--tl {
-      top: -1px;
-      left: -1px;
-      border-top: $border-width-thick solid;
-      border-left: $border-width-thick solid;
-    }
-
-    &--tr {
-      top: -1px;
-      right: -1px;
-      border-top: $border-width-thick solid;
-      border-right: $border-width-thick solid;
-    }
-
-    &--bl {
-      bottom: -1px;
-      left: -1px;
-      border-bottom: $border-width-thick solid;
-      border-left: $border-width-thick solid;
-    }
-
-    &--br {
-      bottom: -1px;
-      right: -1px;
-      border-bottom: $border-width-thick solid;
-      border-right: $border-width-thick solid;
-    }
   }
 
   &__title {
@@ -91,8 +62,12 @@
 
   &__body {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: $space-4;
+    min-height: 0;
+    overflow: auto;
+    padding: $space-4 var(--tron-drawer-pad-x) $space-5;
     font-family: $font-secondary;
     font-size: $font-size-sm;
     line-height: $line-height-normal;
@@ -108,8 +83,8 @@
     justify-content: flex-end;
     align-items: center;
     gap: $space-2;
-    margin-inline: calc(-1 * var(--tron-dialog-pad-x));
-    padding: $space-4 var(--tron-dialog-pad-x) 0;
+    margin-inline: calc(-1 * var(--tron-drawer-pad-x));
+    padding: $space-4 var(--tron-drawer-pad-x) 0;
     border-top: $border-width solid $color-border;
   }
 

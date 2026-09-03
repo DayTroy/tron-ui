@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit, signal, TemplateRef, viewChild } from '@angular/core';
-import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogService } from '../../../tron-ui/src/public-api';
+import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogService, TronDrawerService } from '../../../tron-ui/src/public-api';
 import { IdentityDialogComponent } from './identity-dialog.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +19,9 @@ export class AppComponent implements OnInit {
   isDisabled$ = signal(false);
   name$ = signal('John');
   readonly dialog = inject(TronDialogService);
+  readonly drawer = inject(TronDrawerService);
   private readonly identityTpl = viewChild.required<TemplateRef<unknown>>('identity');
+  private readonly sectorLogTpl = viewChild.required<TemplateRef<unknown>>('sectorLog');
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TronAlertService);
@@ -126,6 +128,14 @@ export class AppComponent implements OnInit {
     this.dialog.show(IdentityDialogComponent, {
       title: 'Identity verification',
       subtitle: 'Component · clearance required',
+    });
+  }
+
+  openSectorLog(): void {
+    this.drawer.show(this.sectorLogTpl(), {
+      title: 'Sector log',
+      subtitle: 'Live feed · 7-G',
+      position: 'start'
     });
   }
 }

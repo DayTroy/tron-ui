@@ -60,6 +60,7 @@
 
     <tron-button (click)="openIdentity()">Authenticate</tron-button>
     <tron-button (click)="openIdentityComponent()">Disc check</tron-button>
+    <tron-button (click)="openSectorLog()">Sector log</tron-button>
     <tron-button (click)="notifyInfo()">Info</tron-button>
     <tron-button (click)="notifySuccess()">Success</tron-button>
     <tron-button (click)="notifyWarning()">Warning</tron-button>
@@ -98,6 +99,17 @@
       </ng-container>
       Authenticate
     </tron-button>
+  </div>
+</ng-template>
+
+<ng-template #sectorLog>
+  <p>Incoming packets from sector 7-G. MCP is watching this channel.</p>
+  <p>04:12:08 · handshake accepted · disc signature matched</p>
+  <p>04:12:11 · routing table sync · 2048 nodes</p>
+  <p>04:12:14 · anomaly ignored · below threshold</p>
+
+  <div class="tron-drawer__actions">
+    <tron-button variant="ghost" (click)="drawer.hide()">Close</tron-button>
   </div>
 </ng-template>
 
