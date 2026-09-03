@@ -1,6 +1,6 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { type TronDrawerContent, type TronDrawerPosition } from './tron-drawer.service';
 
 let nextId = 0;
@@ -31,6 +31,11 @@ export class TronDrawerComponent {
   });
 
   protected readonly titleId = `tron-drawer-title-${nextId++}`;
+  readonly $leaving = signal(false);
 
   close = () => {};
+
+  leave(): void {
+    this.$leaving.set(true);
+  }
 }

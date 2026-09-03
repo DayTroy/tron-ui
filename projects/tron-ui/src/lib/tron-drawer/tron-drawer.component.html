@@ -2,6 +2,7 @@
   class="tron-drawer"
   [class.tron-drawer--start]="$position() === 'start'"
   [class.tron-drawer--end]="$position() === 'end'"
+  [class.tron-drawer--leave]="$leaving()"
   cdkTrapFocus
   cdkTrapFocusAutoCapture
   role="dialog"

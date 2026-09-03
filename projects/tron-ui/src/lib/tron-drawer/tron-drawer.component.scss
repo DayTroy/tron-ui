@@ -1,6 +1,44 @@
 @use '../styles/tokens' as *;
 @use '../styles/mixins' as *;
 
+@keyframes drawer-in-end {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes drawer-out-end {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+@keyframes drawer-in-start {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes drawer-out-start {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes drawer-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawer-backdrop-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.tron-drawer-backdrop {
+  animation: drawer-backdrop-in $duration-normal $easing-out;
+
+  &--leave {
+    animation: drawer-backdrop-out $duration-normal $easing-out forwards;
+  }
+}
+
 tron-drawer {
   display: block;
   width: 100%;
@@ -20,10 +58,20 @@ tron-drawer {
 
   &--start {
     border-right: $border-width solid $color-primary-border;
+    animation: drawer-in-start $duration-normal $easing-out;
   }
 
   &--end {
     border-left: $border-width solid $color-primary-border;
+    animation: drawer-in-end $duration-normal $easing-out;
+  }
+
+  &--leave#{&}--start {
+    animation: drawer-out-start $duration-normal $easing-out forwards;
+  }
+
+  &--leave#{&}--end {
+    animation: drawer-out-end $duration-normal $easing-out forwards;
   }
 
   &__head {

@@ -1,6 +1,6 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { inject, Injectable, TemplateRef } from '@angular/core';
+import { ComponentRef, inject, Injectable, TemplateRef } from '@angular/core';
 import { TronDrawerComponent } from './tron-drawer.component';
 
 export type TronDrawerContent<T = unknown> = TemplateRef<T> | ComponentType<T>;
@@ -20,15 +20,20 @@ export class TronDrawerRef {
   }
 }
 
+const LEAVE_MS = 200;
+
 @Injectable({
   providedIn: 'root'
 })
 export class TronDrawerService {
   private readonly overlay = inject(Overlay);
   private overlayRef: OverlayRef | null = null;
+  private host: ComponentRef<TronDrawerComponent> | null = null;
+  private closing = false;
+  private leaveTimer: ReturnType<typeof setTimeout> | null = null;
 
   show(content: TronDrawerContent, config: TronDrawerConfig): TronDrawerRef {
-    this.hide();
+    this.disposeNow();
 
     const position = config.position ?? 'end';
     const global = this.overlay.position().global().top();
@@ -45,12 +50,12 @@ export class TronDrawerService {
       disposeOnNavigation: true,
     });
 
-    const host = this.overlayRef.attach(new ComponentPortal(TronDrawerComponent));
-    host.setInput('title', config.title);
-    host.setInput('subtitle', config.subtitle ?? '');
-    host.setInput('position', position);
-    host.setInput('content', content);
-    host.instance.close = () => this.hide();
+    this.host = this.overlayRef.attach(new ComponentPortal(TronDrawerComponent));
+    this.host.setInput('title', config.title);
+    this.host.setInput('subtitle', config.subtitle ?? '');
+    this.host.setInput('position', position);
+    this.host.setInput('content', content);
+    this.host.instance.close = () => this.hide();
 
     this.overlayRef.backdropClick().subscribe(() => this.hide());
 
@@ -58,7 +63,29 @@ export class TronDrawerService {
   }
 
   hide(): void {
+    if (!this.overlayRef || this.closing) return;
+
+    this.closing = true;
+    this.host?.instance.leave();
+    this.overlayRef.backdropElement?.classList.add('tron-drawer-backdrop--leave');
+
+    const panel = this.host?.location.nativeElement.querySelector('.tron-drawer');
+    panel?.addEventListener('animationend', (event: AnimationEvent) => {
+      if (event.target === panel) this.disposeNow();
+    }, { once: true });
+
+    this.leaveTimer = setTimeout(() => this.disposeNow(), LEAVE_MS + 50);
+  }
+
+  private disposeNow(): void {
+    if (this.leaveTimer) {
+      clearTimeout(this.leaveTimer);
+      this.leaveTimer = null;
+    }
+
     this.overlayRef?.dispose();
     this.overlayRef = null;
+    this.host = null;
+    this.closing = false;
   }
 }
