@@ -47,7 +47,7 @@
     <tron-button (click)="enable()">Enable</tron-button>
     <tron-button variant="ghost" (click)="disable()">Disable</tron-button>
     <tron-button [disabled]="true">Wait</tron-button>
-    <tron-button variant="danger" (click)="derezz()">Derezz</tron-button>
+    <!-- <tron-button variant="danger" (click)="derezz()">Derezz</tron-button> -->
 
     <tron-select
       label="Sector"
@@ -58,18 +58,15 @@
       tronErrors
     />
 
-    <tron-button (click)="dialogOpen.set(true)">Authenticate</tron-button>
+    <tron-button (click)="openIdentity()">Authenticate</tron-button>
+    <tron-button (click)="openIdentityComponent()">Disc check</tron-button>
     <tron-button (click)="notifyInfo()">Info</tron-button>
     <tron-button (click)="notifySuccess()">Success</tron-button>
     <tron-button (click)="notifyWarning()">Warning</tron-button>
     <tron-button variant="danger" (click)="notifyDanger()">Danger</tron-button>
 </form>
 
-<tron-dialog
-  [(open)]="dialogOpen"
-  title="Identity verification"
-  subtitle="System prompt · clearance required"
->
+<ng-template #identity>
   <p>Grid access for sector 7-G requires elevated clearance. Provide your identity disc credentials to proceed.</p>
 
   <tron-input label="Program ID" placeholder="Enter identifier...">
@@ -90,9 +87,9 @@
     </ng-container>
   </tron-input>
 
-  <ng-container ngProjectAs="[tronActions]">
-    <tron-button variant="ghost" (click)="dialogOpen.set(false)">Cancel</tron-button>
-    <tron-button (click)="dialogOpen.set(false)">
+  <div class="tron-dialog__actions">
+    <tron-button variant="ghost" (click)="dialog.hide()">Cancel</tron-button>
+    <tron-button (click)="dialog.hide()">
       <ng-container ngProjectAs="[tronPrefix]">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
           <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
@@ -101,8 +98,8 @@
       </ng-container>
       Authenticate
     </tron-button>
-  </ng-container>
-</tron-dialog>
+  </div>
+</ng-template>
 
 <tron-alert-outlet />
 

@@ -2,7 +2,7 @@
 @use '../styles/mixins' as *;
 
 :host {
-  display: none;
+  display: block;
 }
 
 .tron-dialog {
@@ -100,22 +100,6 @@
 
     > p {
       margin: 0;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: $space-2;
-    margin-inline: calc(-1 * var(--tron-dialog-pad-x));
-    padding: $space-4 var(--tron-dialog-pad-x) 0;
-    border-top: $border-width solid $color-border;
-
-    &:not(:has(*)) {
-      display: none;
-      padding: 0;
-      border: 0;
     }
   }
 

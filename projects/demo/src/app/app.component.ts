@@ -1,5 +1,6 @@
-import { Component, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogComponent } from '../../../tron-ui/src/public-api';
+import { Component, DestroyRef, inject, OnInit, signal, TemplateRef, viewChild } from '@angular/core';
+import { TronStepperComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogService } from '../../../tron-ui/src/public-api';
+import { IdentityDialogComponent } from './identity-dialog.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -10,14 +11,15 @@ import { TronAlertService } from '../../../tron-ui/src/lib/tron-alert/tron-alert
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective, TronDialogComponent],
+  imports: [CommonModule, ReactiveFormsModule, TronButtonComponent, TronToggleComponent, TronCheckboxComponent, TronChipComponent, TronSelectComponent, TronAlertOutletComponent, TronStepperComponent, TronProgressComponent, TronSliderComponent, TronInputComponent, TronErrorsDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   isDisabled$ = signal(false);
   name$ = signal('John');
-  dialogOpen = signal(false);
+  readonly dialog = inject(TronDialogService);
+  private readonly identityTpl = viewChild.required<TemplateRef<unknown>>('identity');
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TronAlertService);
@@ -111,5 +113,19 @@ export class AppComponent implements OnInit {
 
   derezz() {
     this.form.reset();
+  }
+
+  openIdentity(): void {
+    this.dialog.show(this.identityTpl(), {
+      title: 'Identity verification',
+      subtitle: 'System prompt · clearance required',
+    });
+  }
+
+  openIdentityComponent(): void {
+    this.dialog.show(IdentityDialogComponent, {
+      title: 'Identity verification',
+      subtitle: 'Component · clearance required',
+    });
   }
 }

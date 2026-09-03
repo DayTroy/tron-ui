@@ -12,3 +12,13 @@
 .tron-dialog-backdrop {
   background: color-mix(in srgb, #{$color-bg} 78%, transparent);
 }
+
+.tron-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $space-2;
+  margin-inline: calc(-1 * var(--tron-dialog-pad-x, #{$space-4}));
+  padding: $space-4 var(--tron-dialog-pad-x, #{$space-4}) 0;
+  border-top: $border-width solid $color-border;
+}
