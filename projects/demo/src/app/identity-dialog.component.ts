@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TronDialogService, TronInputComponent } from '../../../tron-ui/src/public-api';
-import { TronButtonComponent } from '../../../tron-ui/src/lib/tron-button/tron-button.component';
+import { TronButtonComponent, TronDialogService, TronInputComponent } from '../../../tron-ui/src/public-api';
 
 @Component({
   selector: 'app-identity-dialog',

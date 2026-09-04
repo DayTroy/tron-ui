@@ -9,6 +9,64 @@
   font-display: swap;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background-color: $color-bg;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  max-width: 48rem;
+}
+
+.catalog__head h1 {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: $font-size-lg;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  color: $color-primary;
+  text-shadow: 0 0 $glow-size-md $color-primary-glow;
+}
+
+.catalog__head p {
+  margin: $space-2 0 0;
+  font-family: $font-secondary;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.catalog__block {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.catalog__block h2 {
+  margin: 0;
+  font-family: $font-secondary;
+  font-size: $font-size-xs;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+}
+
+.catalog__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+}
+
+.catalog__stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
 }

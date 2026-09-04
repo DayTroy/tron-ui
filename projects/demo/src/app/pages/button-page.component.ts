@@ -1,0 +1,42 @@
+import { Component } from '@angular/core';
+import { TronButtonComponent } from '../../../../tron-ui/src/public-api';
+
+@Component({
+  selector: 'app-button-page',
+  standalone: true,
+  imports: [TronButtonComponent],
+  template: `
+    <section class="catalog">
+      <header class="catalog__head">
+        <h1>Button</h1>
+        <p>Primary, ghost, danger. Sizes sm / md.</p>
+      </header>
+
+      <div class="catalog__block">
+        <h2>Variants</h2>
+        <div class="catalog__row">
+          <tron-button>Primary</tron-button>
+          <tron-button variant="ghost">Ghost</tron-button>
+          <tron-button variant="danger">Danger</tron-button>
+        </div>
+      </div>
+
+      <div class="catalog__block">
+        <h2>Sizes</h2>
+        <div class="catalog__row">
+          <tron-button size="sm">Small</tron-button>
+          <tron-button>Medium</tron-button>
+        </div>
+      </div>
+
+      <div class="catalog__block">
+        <h2>Disabled</h2>
+        <div class="catalog__row">
+          <tron-button [disabled]="true">Wait</tron-button>
+          <tron-button variant="ghost" [disabled]="true">Ghost</tron-button>
+        </div>
+      </div>
+    </section>
+  `,
+})
+export class ButtonPageComponent {}

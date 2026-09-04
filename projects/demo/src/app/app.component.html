@@ -1,126 +1,24 @@
-<form [formGroup]="form">
-  <tron-input 
-    label="User Identifier"
-    placeholder="Enter value"
-    formControlName="id"
-    [readonly]="isDisabled$()"
-    tronErrors>
-    <ng-container ngProjectAs="[tronPrefix]">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.0754 12.2412V11.0753C11.0754 9.78758 10.0315 8.74365 8.74372 8.74365H5.24622C3.95847 8.74365 2.91455 9.78758 2.91455 11.0753V12.2412" stroke="#4A9AB5" stroke-width="1.16583" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M4.66357 4.0802C4.66357 5.36708 5.70836 6.41187 6.99524 6.41187C8.28212 6.41187 9.32691 5.36708 9.32691 4.0802C9.32691 2.79332 8.28212 1.74854 6.99524 1.74854C5.70836 1.74854 4.66357 2.79332 4.66357 4.0802V4.0802" stroke="#4A9AB5" stroke-width="1.16583" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </ng-container>
-    </tron-input>
+<div class="shell">
+  <aside class="shell__nav">
+    <a class="shell__brand" routerLink="/">TRON UI</a>
 
-    <tron-toggle
-      label="Control is disabled?"
-      formControlName="openField"
-      [(value)]="isDisabled$"
-    />
+    @for (group of nav; track group.label) {
+      <div class="shell__group">
+        <span class="shell__group-label">{{ group.label }}</span>
+        @for (item of group.items; track item.path) {
+          <a
+            class="shell__link"
+            [routerLink]="item.path"
+            routerLinkActive="is-active"
+          >{{ item.label }}</a>
+        }
+      </div>
+    }
+  </aside>
 
-    <tron-checkbox formControlName="alerts">Оповещения грида</tron-checkbox>
-
-    <div class="chip-row">
-      <tron-chip>Core</tron-chip>
-      <tron-chip variant="success">Stable</tron-chip>
-      <tron-chip variant="warning">Anomaly</tron-chip>
-      <tron-chip variant="danger">Derezzed</tron-chip>
-      <tron-chip variant="accent">CLU</tron-chip>
-      <tron-chip [disabled]="true">Offline</tron-chip>
-    </div>
-
-    <div class="chip-row">
-      <tron-chip type="pulse">Online</tron-chip>
-      <tron-chip variant="success" type="pulse">Active</tron-chip>
-      <tron-chip variant="warning" type="dot">Standby</tron-chip>
-      <tron-chip variant="danger" type="pulse">Critical</tron-chip>
-    </div>
-
-    <tron-slider
-      formControlName="condition"
-      [min]="0"
-      [max]="100"
-      [step]="10"
-    ></tron-slider>
-
-    <tron-button (click)="enable()">Enable</tron-button>
-    <tron-button variant="ghost" (click)="disable()">Disable</tron-button>
-    <tron-button [disabled]="true">Wait</tron-button>
-    <!-- <tron-button variant="danger" (click)="derezz()">Derezz</tron-button> -->
-
-    <tron-select
-      label="Sector"
-      placeholder="Choose sector"
-      hint="Grid sector assignment"
-      formControlName="sector"
-      [options]="sectors"
-      tronErrors
-    />
-
-    <tron-button (click)="openIdentity()">Authenticate</tron-button>
-    <tron-button (click)="openIdentityComponent()">Disc check</tron-button>
-    <tron-button (click)="openSectorLog()">Sector log</tron-button>
-    <tron-button (click)="notifyInfo()">Info</tron-button>
-    <tron-button (click)="notifySuccess()">Success</tron-button>
-    <tron-button (click)="notifyWarning()">Warning</tron-button>
-    <tron-button variant="danger" (click)="notifyDanger()">Danger</tron-button>
-</form>
-
-<ng-template #identity>
-  <p>Grid access for sector 7-G requires elevated clearance. Provide your identity disc credentials to proceed.</p>
-
-  <tron-input label="Program ID" placeholder="Enter identifier...">
-    <ng-container ngProjectAs="[tronPrefix]">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.0754 12.2412V11.0753C11.0754 9.78758 10.0315 8.74365 8.74372 8.74365H5.24622C3.95847 8.74365 2.91455 9.78758 2.91455 11.0753V12.2412" stroke="#4A9AB5" stroke-width="1.16583" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M4.66357 4.0802C4.66357 5.36708 5.70836 6.41187 6.99524 6.41187C8.28212 6.41187 9.32691 5.36708 9.32691 4.0802C9.32691 2.79332 8.28212 1.74854 6.99524 1.74854C5.70836 1.74854 4.66357 2.79332 4.66357 4.0802V4.0802" stroke="#4A9AB5" stroke-width="1.16583" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </ng-container>
-  </tron-input>
-
-  <tron-input label="Access code" type="password" placeholder="••••••••">
-    <ng-container ngProjectAs="[tronPrefix]">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="6.2" width="8" height="5.8" stroke="#4A9AB5" stroke-width="1.16583"/>
-        <path d="M4.75 6.2V4.6a2.25 2.25 0 0 1 4.5 0v1.6" stroke="#4A9AB5" stroke-width="1.16583" stroke-linecap="round"/>
-      </svg>
-    </ng-container>
-  </tron-input>
-
-  <div class="tron-dialog__actions">
-    <tron-button variant="ghost" (click)="dialog.hide()">Cancel</tron-button>
-    <tron-button (click)="dialog.hide()">
-      <ng-container ngProjectAs="[tronPrefix]">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M5 8.2l2.1 2.1L11.2 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </ng-container>
-      Authenticate
-    </tron-button>
-  </div>
-</ng-template>
-
-<ng-template #sectorLog>
-  <p>Incoming packets from sector 7-G. MCP is watching this channel.</p>
-  <p>04:12:08 · handshake accepted · disc signature matched</p>
-  <p>04:12:11 · routing table sync · 2048 nodes</p>
-  <p>04:12:14 · anomaly ignored · below threshold</p>
-
-  <div class="tron-drawer__actions">
-    <tron-button variant="ghost" (click)="drawer.hide()">Close</tron-button>
-  </div>
-</ng-template>
+  <main class="shell__main">
+    <router-outlet />
+  </main>
+</div>
 
 <tron-alert-outlet />
-
-<!-- <tron-progress
-  [value]="23"
-  label="Memory Allocation"
-  ></tron-progress> -->
-
-  <!-- <tron-stepper
-  [data]="data">
-
-  </tron-stepper> -->
