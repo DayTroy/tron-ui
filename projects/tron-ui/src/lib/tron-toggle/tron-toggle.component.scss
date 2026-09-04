@@ -18,14 +18,12 @@
   width: 2.5rem;
   height: 1.25rem;
   padding: $space-1 * 0.5;
-
   background: $color-control;
   border: $border-width solid $color-border-strong;
   cursor: pointer;
   transition: border-color $duration-normal $easing-out, box-shadow $duration-normal $easing-out;
 
-  &:focus-visible {
-    outline: none;
+  &.tron-toggle__track--checked {
     @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
   }
 
@@ -36,7 +34,7 @@
 
 .tron-toggle__thumb {
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 2px;
   display: inline-flex;
   align-items: center;
@@ -46,9 +44,9 @@
   color: $color-bg;
   background: $color-focus-ring;
   transition:
-    transform $duration-normal $easing-out,
-    background $duration-normal $easing-out,
-    box-shadow $duration-normal $easing-out;
+    transform $duration-slow $easing-out,
+    background $duration-slow $easing-out,
+    box-shadow $duration-slow $easing-out;
 
   &--on {
     transform: translateX(1.375rem);

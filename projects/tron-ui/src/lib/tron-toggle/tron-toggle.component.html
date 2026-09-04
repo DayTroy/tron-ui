@@ -1,6 +1,7 @@
 <label class="tron-toggle" [class.tron-toggle--disabled]="$isDisabled()">
   <button
     class="tron-toggle__track"
+    [class.tron-toggle__track--checked]="$value()"
     type="button"
     role="switch"
     [attr.aria-checked]="$value()"

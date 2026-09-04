@@ -3,11 +3,11 @@ import {
   Component,
   ElementRef,
   computed,
-  effect,
   input,
   signal,
   viewChild
 } from '@angular/core';
+import { Subject, finalize, fromEvent, merge, startWith, switchMap, takeUntil } from 'rxjs';
 import { TronControl } from '../core/tron-control';
 
 @Component({
@@ -25,6 +25,11 @@ export class TronSliderComponent extends TronControl<number> {
 
   readonly $isDragging = signal(false);
   readonly $track = viewChild.required<ElementRef<HTMLDivElement>>('track');
+  readonly $thumb = viewChild.required<ElementRef<HTMLDivElement>>('thumb');
+
+  private readonly pointerDown$ = new Subject<PointerEvent>();
+  private savedCursor = '';
+  private savedUserSelect = '';
 
   readonly $percent = computed(() => {
     const min = this.$min();
@@ -39,35 +44,89 @@ export class TronSliderComponent extends TronControl<number> {
   constructor() {
     super();
 
-    effect((onCleanup) => {
-      if (!this.$isDragging()) return;
-
-      const onMouseMove = (e: MouseEvent) => this.emitValue(this.calculateValueFromEvent(e));
-      const onMouseUp = () => this.$isDragging.set(false);
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-
-      onCleanup(() => {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      });
-    });
+    this.pointerDown$
+      .pipe(
+        switchMap((start) => this.drag(start)),
+        takeUntil(this.destroyed$))
+      .subscribe((event) => this.emitValue(this.calculateValueFromEvent(event)));
   }
 
-  onTrackMouseDown(event: MouseEvent): void {
+  onPointerDown(event: PointerEvent): void {
+    if (this.$isDisabled() || event.button !== 0) return;
+
+    event.preventDefault();
+    this.pointerDown$.next(event);
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
     if (this.$isDisabled()) return;
 
-    this.$isDragging.set(true);
-    this.emitValue(this.calculateValueFromEvent(event));
+    const step = this.$step();
+    const value = this.$value() ?? this.$min();
+    let next: number | null = null;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        next = value - step;
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        next = value + step;
+        break;
+      case 'Home':
+        next = this.$min();
+        break;
+      case 'End':
+        next = this.$max();
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
     this.onTouched();
+    this.emitValue(this.clamp(next));
   }
 
   override writeValue(value: number | null): void {
     super.writeValue(this.clamp(value ?? this.$min()));
   }
 
-  private calculateValueFromEvent(event: MouseEvent): number {
+  private drag(start: PointerEvent) {
+    this.$isDragging.set(true);
+    this.lockPage();
+    this.onTouched();
+    this.$thumb().nativeElement.focus({ preventScroll: true });
+
+    return fromEvent<PointerEvent>(document, 'pointermove').pipe(
+      startWith(start),
+      takeUntil(
+        merge(
+          fromEvent(document, 'pointerup'),
+          fromEvent(document, 'pointercancel')
+        )
+      ),
+      finalize(() => {
+        this.$isDragging.set(false);
+        this.unlockPage();
+      })
+    );
+  }
+
+  private lockPage(): void {
+    this.savedCursor = document.body.style.cursor;
+    this.savedUserSelect = document.body.style.userSelect;
+    document.body.style.cursor = 'ew-resize';
+    document.body.style.userSelect = 'none';
+  }
+
+  private unlockPage(): void {
+    document.body.style.cursor = this.savedCursor;
+    document.body.style.userSelect = this.savedUserSelect;
+  }
+
+  private calculateValueFromEvent(event: PointerEvent): number {
     const rect = this.$track().nativeElement.getBoundingClientRect();
 
     const rawRatio = (event.clientX - rect.left) / rect.width;

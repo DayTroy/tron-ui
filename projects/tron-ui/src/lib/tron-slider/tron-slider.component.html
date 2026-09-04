@@ -2,22 +2,22 @@
   <div
     class="tron-slider__track"
     #track
-    role="slider"
-    [attr.tabindex]="$isDisabled() ? -1 : 0"
-    [attr.aria-disabled]="$isDisabled()"
-    [attr.aria-valuenow]="$value() ?? $min()"
-    [attr.aria-valuemin]="$min()"
-    [attr.aria-valuemax]="$max()"
-    (mousedown)="onTrackMouseDown($event)"
+    (pointerdown)="onPointerDown($event)"
   >
     <div class="tron-slider__fill" [style.width.%]="$percent()"></div>
 
     <div
+      #thumb
       class="tron-slider__thumb"
       [class.tron-slider__thumb--dragging]="$isDragging()"
       [style.left.%]="$percent()"
+      role="slider"
+      [attr.tabindex]="$isDisabled() ? -1 : 0"
+      [attr.aria-disabled]="$isDisabled()"
+      [attr.aria-valuenow]="$value() ?? $min()"
+      [attr.aria-valuemin]="$min()"
+      [attr.aria-valuemax]="$max()"
+      (keydown)="onKeyDown($event)"
     ></div>
   </div>
-
-  <div class="tron-slider__value">{{ $value() ?? $min() }}</div>
 </div>

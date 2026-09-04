@@ -1,11 +1,16 @@
 <section class="catalog">
   <header class="catalog__head">
     <h1>Slider</h1>
-    <p>Range with min, max, step.</p>
+    <p>Range with min, max, optional step.</p>
   </header>
 
   <div class="catalog__block">
-    <h2>Condition</h2>
+    <h2>Step</h2>
     <tron-slider [formControl]="condition" [min]="0" [max]="100" [step]="10" />
+  </div>
+
+  <div class="catalog__block">
+    <h2>Continuous</h2>
+    <tron-slider [formControl]="level" [min]="0" [max]="100" />
   </div>
 </section>

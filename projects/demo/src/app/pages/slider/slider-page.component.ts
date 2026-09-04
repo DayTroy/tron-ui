@@ -10,4 +10,5 @@ import { TronSliderComponent } from '../../../../../tron-ui/src/public-api';
 })
 export class SliderPageComponent {
   readonly condition = new FormControl(40);
+  readonly level = new FormControl(40);
 }

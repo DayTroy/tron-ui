@@ -1,71 +1,85 @@
 @use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
 
 .tron-slider {
   display: flex;
   align-items: center;
   gap: $space-3;
   width: 100%;
-}
+  min-height: $space-4;
+  user-select: none;
 
-.tron-slider__track {
-  position: relative;
-  flex: 1;
-  height: $space-1;
+  &__track {
+    position: relative;
+    flex: 1;
+    height: $space-1;
 
-  background: $color-control;
-  border: $border-width solid $color-border;
-  border-radius: $radius-full;
-  cursor: pointer;
+    background: $color-control;
+    border: $border-width solid $color-border;
+    cursor: ew-resize;
+    touch-action: none;
 
-  .tron-slider--disabled & {
-    cursor: default;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -$space-2 0;
+    }
+
+    .tron-slider--disabled & {
+      cursor: default;
+      pointer-events: none;
+      opacity: $opacity-disabled;
+    }
+  }
+
+  &__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    background: $color-primary;
     pointer-events: none;
-    opacity: 0.5;
   }
 
-  &:focus-visible {
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: $space-4;
+    height: $space-4;
+
+    background: $color-control;
+    border: $border-width-thick solid $color-primary;
+    border-radius: 50%;
+    box-shadow: 0 0 $glow-size-sm $color-focus-ring;
+
+    transform: translate(-50%, -50%);
     outline: none;
-    @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+    transition: box-shadow $duration-fast $easing-out;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: $space-1;
+      height: $space-1;
+
+      background: $color-primary;
+      border-radius: 50%;
+      box-shadow: 0 0 $glow-size-sm $color-focus-ring;
+
+      transform: translate(-50%, -50%);
+    }
+
+    &:focus,
+    &--dragging {
+      box-shadow: 0 0 $glow-size-md $color-focus-ring;
+
+      &::after {
+        box-shadow: 0 0 $glow-size-md $color-focus-ring;
+      }
+    }
   }
-}
-
-.tron-slider__fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-
-  background: $color-primary;
-  border-radius: $radius-full;
-  pointer-events: none;
-}
-
-.tron-slider__thumb {
-  position: absolute;
-  top: 50%;
-  width: $space-4;
-  height: $space-4;
-
-  background: $color-primary;
-  border: $border-width-thick solid $color-text;
-  border-radius: 50%;
-  box-shadow: 0 0 $glow-size-sm $color-focus-ring;
-
-  transform: translate(-50%, -50%);
-  transition: box-shadow $duration-fast $easing-out;
-  cursor: grab;
-
-  &--dragging {
-    cursor: grabbing;
-    box-shadow: 0 0 $glow-size-md $color-focus-ring;
-  }
-}
-
-.tron-slider__value {
-  min-width: 3ch;
-  text-align: right;
-  font-size: $font-size-sm;
-  font-family: $font-secondary;
-  color: $color-text;
 }
