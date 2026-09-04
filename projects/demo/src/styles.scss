@@ -70,3 +70,26 @@ body {
   flex-direction: column;
   gap: $space-4;
 }
+
+.catalog__meter {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.catalog__meter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-2;
+  font-family: $font-secondary;
+  font-size: $font-size-xs;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+}
+
+.catalog__meter-value {
+  font-family: $font-primary;
+  color: $color-primary;
+}

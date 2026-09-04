@@ -1,15 +1,42 @@
 <section class="catalog">
   <header class="catalog__head">
     <h1>Progress</h1>
-    <p>Value against max, optional label.</p>
+    <p>Value against max. Label and percent live outside.</p>
   </header>
 
   <div class="catalog__block">
     <h2>Allocation</h2>
     <div class="catalog__stack">
-      <tron-progress [value]="23" label="Memory Allocation" />
-      <tron-progress [value]="68" label="Grid sync" />
-      <tron-progress [value]="94" label="Identity disc" />
+      <div class="catalog__meter">
+        <div class="catalog__meter-head">
+          <span>Memory allocation</span>
+          <span class="catalog__meter-value">23%</span>
+        </div>
+        <tron-progress [value]="23" />
+      </div>
+      <div class="catalog__meter">
+        <div class="catalog__meter-head">
+          <span>Grid sync</span>
+          <span class="catalog__meter-value">68%</span>
+        </div>
+        <tron-progress [value]="68" />
+      </div>
+      <div class="catalog__meter">
+        <div class="catalog__meter-head">
+          <span>Identity disc</span>
+          <span class="catalog__meter-value">94%</span>
+        </div>
+        <tron-progress [value]="94" />
+      </div>
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Intent</h2>
+    <div class="catalog__stack">
+      <tron-progress [value]="40" type="success" />
+      <tron-progress [value]="40" type="warning" />
+      <tron-progress [value]="40" type="danger" />
     </div>
   </div>
 </section>

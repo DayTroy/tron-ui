@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, model, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+
+export type TronProgressType = 'primary' | 'success' | 'warning' | 'danger';
 
 @Component({
   selector: 'tron-progress',
@@ -9,19 +11,13 @@ import { ChangeDetectionStrategy, Component, computed, input, model, signal } fr
   standalone: true
 })
 export class TronProgressComponent {
-  readonly $label = input<string>('', { alias: 'label' });
-  readonly $type = input<'primary' |  'success' | 'warning' | 'error'>('primary', { alias: 'type' });
+  readonly $type = input<TronProgressType>('primary', { alias: 'type' });
   readonly $value = input<number>(0, { alias: 'value' });
-  readonly $max = input<number>(100, { alias: 'max'});
+  readonly $max = input<number>(100, { alias: 'max' });
 
-  readonly $percent = computed(() => 
-    Math.min(100, Math.max(0, Math.floor(this.$value() / this.$max() * 100)))
-  );
-  
-  readonly $status = computed<'danger' | 'warning' | 'success'>(() => {
-    const percent = this.$percent();
-    if (percent < 30) return 'danger';
-    if (percent < 70) return 'warning';
-    return 'success';
+  readonly $percent = computed(() => {
+    const max = this.$max();
+    if (max <= 0) return 0;
+    return Math.min(100, Math.max(0, (this.$value() / max) * 100));
   });
 }

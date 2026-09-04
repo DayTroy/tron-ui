@@ -1,9 +1,9 @@
-<div class="tron-progress" [attr.data-status]="$status()">
-  <div class="tron-progress__header">
-    <div class="tron-progress__label">{{ $label() }}</div>
-
-    <div class="tron-progress__percent">{{ $percent() }}%</div>
-  </div>
+<div
+  class="tron-progress"
+  [class.tron-progress--success]="$type() === 'success'"
+  [class.tron-progress--warning]="$type() === 'warning'"
+  [class.tron-progress--danger]="$type() === 'danger'"
+>
   <div
     class="tron-progress__track"
     role="progressbar"
@@ -11,9 +11,6 @@
     [attr.aria-valuemin]="0"
     [attr.aria-valuemax]="$max()"
   >
-    <div
-      class="tron-progress__fill"
-      [style.width.%]="$percent()"
-    ></div>
+    <div class="tron-progress__fill" [style.width.%]="$percent()"></div>
   </div>
 </div>

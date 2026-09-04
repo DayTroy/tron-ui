@@ -1,56 +1,58 @@
 @use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+
+:host {
+  display: block;
+}
 
 .tron-progress {
-  display: flex;
-  flex-direction: column;
-  gap: $space-1;
+  --tron-progress-ink: #{$color-primary};
+  --tron-progress-glow: #{$color-primary-glow};
+
   width: 100%;
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  &--success {
+    --tron-progress-ink: #{$color-success};
+    --tron-progress-glow: #{$color-success-glow};
   }
 
-  &__label {
-    font-size: $font-size-xs;
-    color: $color-text-secondary;
-    font-family: $font-secondary;
-    text-transform: uppercase;
+  &--warning {
+    --tron-progress-ink: #{$color-warning};
+    --tron-progress-glow: #{$color-warning-glow};
+  }
+
+  &--danger {
+    --tron-progress-ink: #{$color-danger};
+    --tron-progress-glow: #{$color-danger-glow};
   }
 
   &__track {
     width: 100%;
     height: $space-2;
-
-    background: $color-surface;
-    border: $border-width solid $color-border;
     overflow: hidden;
+
+    background: $color-control;
+    border: $border-width solid $color-border;
   }
 
   &__fill {
+    position: relative;
     height: 100%;
-    transition: width 0.3s $easing-out, background $duration-normal $easing-out;
-    background: $color-primary;
-  }
+    background: var(--tron-progress-ink);
+    box-shadow: 0 0 $glow-size-sm var(--tron-progress-glow);
+    transition:
+      width $duration-slow $easing-out,
+      background $duration-normal $easing-out,
+      box-shadow $duration-normal $easing-out;
 
-  &__percent {
-    color: $color-primary;
-    font-family: $font-primary;
-    font-size: $font-size-sm;
-  }
-
-  &[data-status='success'] .tron-progress__fill {
-    background: $color-success;
-  }
-
-  &[data-status='warning'] .tron-progress__fill {
-    background: $color-warning;
-  }
-
-  &[data-status='danger'] .tron-progress__fill {
-    background: $color-danger;
-    box-shadow: none;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $border-width-thick;
+      height: 100%;
+      background: $color-text;
+      box-shadow: 0 0 $glow-size-sm var(--tron-progress-glow);
+    }
   }
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input, model } from '@angular/core'
 
 export interface TronStepItem {
   name: string;
+  description?: string;
 }
 
 @Component({

@@ -1,25 +1,45 @@
 <div class="tron-stepper">
   @for (item of $data(); track item.name; let i = $index; let isLast = $last) {
-    <div class="tron-stepper__item">
+    <div
+      class="tron-stepper__item"
+      [class.tron-stepper__item--active]="$currentStep() === i"
+      [class.tron-stepper__item--completed]="$currentStep() > i"
+    >
       <button
         class="tron-stepper__btn"
-        [class.tron-stepper__btn--active]="$currentStep() === i"
-        [class.tron-stepper__btn--completed]="$currentStep() > i"
         type="button"
         [attr.aria-current]="$currentStep() === i ? 'step' : null"
+        [attr.aria-label]="item.name"
         (click)="setStep(i)"
       >
-        {{ i + 1 }}
+        @if ($currentStep() > i) {
+          <svg class="tron-stepper__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <polyline
+              points="1.5 6 4.5 9 10.5 3"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            />
+          </svg>
+        } @else {
+          {{ i + 1 }}
+        }
       </button>
 
-      <div class="tron-stepper__title">{{ item.name }}</div>
-    </div>
+      <div class="tron-stepper__copy">
+        <div class="tron-stepper__title">{{ item.name }}</div>
+        @if (item.description) {
+          <div class="tron-stepper__desc">{{ item.description }}</div>
+        }
+      </div>
 
-    @if (!isLast) {
-      <div
-        class="tron-stepper__connector"
-        [class.tron-stepper__connector--active]="$currentStep() > i"
-      ></div>
-    }
+      @if (!isLast) {
+        <div
+          class="tron-stepper__connector"
+          [class.tron-stepper__connector--active]="$currentStep() > i"
+        ></div>
+      }
+    </div>
   }
 </div>

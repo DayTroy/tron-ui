@@ -1,63 +1,169 @@
 @use '../styles/tokens' as *;
 @use '../styles/mixins' as *;
 
+$node-size: $space-6;
+$line-gap: $space-2;
+$stack-gap: $space-5;
+
+:host {
+  display: block;
+  container-type: inline-size;
+}
+
 .tron-stepper {
   display: flex;
-  align-items: center;
-  padding: $space-2 $space-3;
+  width: 100%;
 
   &__item {
+    position: relative;
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     gap: $space-2;
-  }
-
-  &__title {
-    color: $color-primary;
-    font-family: $font-secondary;
-    font-size: $font-size-sm;
+    min-width: 0;
   }
 
   &__btn {
-    font-family: $font-primary;
+    position: relative;
+    z-index: 1;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    width: $node-size;
+    height: $node-size;
+    padding: 0;
 
-    padding: $space-2;
+    font-family: $font-primary;
+    font-size: $font-size-sm;
     line-height: 1;
-
-    background: transparent;
-    border: $border-width-thick solid $color-primary-border;
-    color: $color-primary;
+    color: $color-text-muted;
+    background: $color-control;
+    border: $border-width solid $color-border;
     cursor: pointer;
+    transition:
+      border-color $duration-normal $easing-out,
+      box-shadow $duration-normal $easing-out,
+      color $duration-normal $easing-out;
 
-    &:disabled {
-      color: $color-text-muted;
-      border-color: $color-border;
-      box-shadow: none;
-      cursor: not-allowed;
+    .tron-stepper__item--active &,
+    .tron-stepper__item--completed & {
+      color: $color-primary;
+      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
 
-    &:active:not(:disabled) {
-      background: $color-primary-fill;
-    }
-
-    &--completed {
-      background: $color-primary-fill;
-      border-color: $color-border;
+    &:focus-visible {
+      outline: none;
+      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
   }
 
+  &__check {
+    display: block;
+    width: $space-3;
+    height: $space-3;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-1;
+    padding: 0 $space-1;
+    text-align: center;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-xs;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+
+  &__item--active &__title,
+  &__item--completed &__title {
+    color: $color-primary;
+  }
+
+  &__desc {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+  }
+
+  &__item--active &__desc,
+  &__item--completed &__desc {
+    color: $color-text-secondary;
+  }
+
   &__connector {
-    width: 100%;
+    position: absolute;
+    top: calc(#{$node-size} / 2 - #{$border-width-thick} / 2);
+    left: calc(50% + #{$node-size} / 2 + #{$line-gap});
+    right: calc(-50% + #{$node-size} / 2 + #{$line-gap});
     height: $border-width-thick;
     background-color: $color-border;
-    margin-bottom: $space-6;
 
-    &--active {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
       background-color: $color-primary;
+      box-shadow: 0 0 $glow-size-sm $color-focus-ring;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform $duration-slow $easing-out;
     }
+
+    &--active::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@container (max-width: #{$breakpoint-sm}) {
+  .tron-stepper {
+    flex-direction: column;
+    gap: $stack-gap;
+
+    &__item {
+      flex: none;
+      flex-direction: row;
+      align-items: flex-start;
+      width: 100%;
+      gap: $space-3;
+    }
+
+    &__copy {
+      align-items: flex-start;
+      padding: $space-1 0 0;
+      text-align: left;
+    }
+
+    &__connector {
+      top: calc(#{$node-size} + #{$line-gap});
+      bottom: calc(-#{$stack-gap} + #{$line-gap});
+      left: calc(#{$node-size} / 2 - #{$border-width-thick} / 2);
+      right: auto;
+      width: $border-width-thick;
+      height: auto;
+
+      &::after {
+        transform: scaleY(0);
+        transform-origin: top center;
+      }
+
+      &--active::after {
+        transform: scaleY(1);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tron-stepper__connector::after {
+    transition: none;
   }
 }

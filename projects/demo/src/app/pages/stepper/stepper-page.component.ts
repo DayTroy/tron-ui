@@ -8,11 +8,11 @@ import { TronStepperComponent } from '../../../../../tron-ui/src/public-api';
   templateUrl: './stepper-page.component.html',
 })
 export class StepperPageComponent {
-  readonly current$ = signal(0);
+  readonly current$ = signal(2);
   readonly steps = [
-    { name: 'IDENTITY' },
-    { name: 'ACCESS' },
-    { name: 'LOAD' },
-    { name: 'INITIALIZATION' },
+    { name: 'Identity scan', description: 'Biometric verification' },
+    { name: 'Grid access', description: 'Sector authorization' },
+    { name: 'Program load', description: 'Memory allocation' },
+    { name: 'Initialization', description: 'Boot sequence complete' },
   ];
 }
