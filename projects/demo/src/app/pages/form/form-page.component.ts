@@ -8,7 +8,7 @@ import {
   TronSelectComponent,
   TronSliderComponent,
   TronToggleComponent,
-} from '../../../../tron-ui/src/public-api';
+} from '../../../../../tron-ui/src/public-api';
 
 @Component({
   selector: 'app-form-page',
@@ -23,42 +23,7 @@ import {
     TronSliderComponent,
     TronToggleComponent,
   ],
-  template: `
-    <section class="catalog">
-      <header class="catalog__head">
-        <h1>Form</h1>
-        <p>Controls together: enable, disable, validation.</p>
-      </header>
-
-      <form class="catalog__stack" [formGroup]="form">
-        <tron-input
-          label="User Identifier"
-          placeholder="Enter value"
-          formControlName="id"
-          [readonly]="readonly$()"
-          tronErrors
-        />
-
-        <tron-toggle label="Control is readonly?" formControlName="openField" [(value)]="readonly$" />
-        <tron-checkbox formControlName="alerts">Оповещения грида</tron-checkbox>
-        <tron-slider formControlName="condition" [min]="0" [max]="100" [step]="10" />
-
-        <tron-select
-          label="Sector"
-          placeholder="Choose sector"
-          hint="Grid sector assignment"
-          formControlName="sector"
-          [options]="sectors"
-          tronErrors
-        />
-
-        <div class="catalog__row">
-          <tron-button (click)="enable()">Enable</tron-button>
-          <tron-button variant="ghost" (click)="disable()">Disable</tron-button>
-        </div>
-      </form>
-    </section>
-  `,
+  templateUrl: './form-page.component.html',
 })
 export class FormPageComponent {
   readonly readonly$ = signal(false);

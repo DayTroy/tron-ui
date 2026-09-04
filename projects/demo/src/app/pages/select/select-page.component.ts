@@ -1,31 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TronErrorsDirective, TronSelectComponent } from '../../../../tron-ui/src/public-api';
+import { TronErrorsDirective, TronSelectComponent } from '../../../../../tron-ui/src/public-api';
 
 @Component({
   selector: 'app-select-page',
   standalone: true,
   imports: [ReactiveFormsModule, TronSelectComponent, TronErrorsDirective],
-  template: `
-    <section class="catalog">
-      <header class="catalog__head">
-        <h1>Select</h1>
-        <p>Single value, disabled option, required error.</p>
-      </header>
-
-      <div class="catalog__block">
-        <h2>Field</h2>
-        <tron-select
-          label="Sector"
-          placeholder="Choose sector"
-          hint="Grid sector assignment"
-          [formControl]="sector"
-          [options]="sectors"
-          tronErrors
-        />
-      </div>
-    </section>
-  `,
+  templateUrl: './select-page.component.html',
 })
 export class SelectPageComponent {
   readonly sector = new FormControl<string | null>(null, Validators.required);

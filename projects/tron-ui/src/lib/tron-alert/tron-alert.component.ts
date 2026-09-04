@@ -4,7 +4,7 @@ const LABELS = {
   info: 'INFO',
   success: 'SUCCESS',
   warning: 'WARNING',
-  danger: 'SYSTEM ERROR',
+  danger: 'ERROR',
 }
 
 @Component({

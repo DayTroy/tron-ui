@@ -8,7 +8,14 @@
     [disabled]="$isDisabled()"
     (click)="toggle()"
   >
-    <div class="tron-toggle__thumb" [class.tron-toggle__thumb--on]="$value()"></div>
+    <div class="tron-toggle__thumb" [class.tron-toggle__thumb--on]="$value()">
+      <span class="tron-toggle__thumb-icon" [class.tron-toggle__thumb-icon--hidden]="$value()">
+        <ng-content select="[tronThumbOff]" />
+      </span>
+      <span class="tron-toggle__thumb-icon" [class.tron-toggle__thumb-icon--hidden]="!$value()">
+        <ng-content select="[tronThumbOn]" />
+      </span>
+    </div>
   </button>
 
   @if ($label()) {

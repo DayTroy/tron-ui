@@ -1,0 +1,16 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Alert</h1>
+    <p>Toast stack via TronAlertService. Outlet lives on the shell.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Types</h2>
+    <div class="catalog__row">
+      <tron-button (click)="notifyInfo()">Info</tron-button>
+      <tron-button (click)="notifySuccess()">Success</tron-button>
+      <tron-button (click)="notifyWarning()">Warning</tron-button>
+      <tron-button variant="danger" (click)="notifyDanger()">Danger</tron-button>
+    </div>
+  </div>
+</section>

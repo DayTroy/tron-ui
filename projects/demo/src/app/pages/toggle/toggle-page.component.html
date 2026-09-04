@@ -1,0 +1,36 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Toggle</h1>
+    <p>Boolean control with label.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>States</h2>
+    <div class="catalog__stack">
+      <tron-toggle label="Grid uplink" [(value)]="on$" />
+      <tron-toggle label="Disabled" [disabled]="true" />
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Day / Night</h2>
+    <tron-toggle [label]="light$() ? 'Day' : 'Night'" [(value)]="light$">
+      <svg tronThumbOff viewBox="0 0 12 12" width="8" height="8" aria-hidden="true">
+        <path
+          d="M9.15 1.85A4.55 4.55 0 1 0 9.15 10.15 3.35 3.35 0 0 1 9.15 1.85z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg tronThumbOn viewBox="0 0 12 12" width="8" height="8" aria-hidden="true">
+        <circle cx="6" cy="6" r="2.1" fill="currentColor" />
+        <path
+          d="M6 1v1.6M6 9.4V11M1 6h1.6M9.4 6H11M2.5 2.5l1.1 1.1M8.4 8.4l1.1 1.1M2.5 9.5l1.1-1.1M8.4 3.6l1.1-1.1"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.2"
+          stroke-linecap="square"
+        />
+      </svg>
+    </tron-toggle>
+  </div>
+</section>

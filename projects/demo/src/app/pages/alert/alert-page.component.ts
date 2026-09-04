@@ -1,28 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { TronAlertService, TronButtonComponent } from '../../../../tron-ui/src/public-api';
+import { TronAlertService, TronButtonComponent } from '../../../../../tron-ui/src/public-api';
 
 @Component({
   selector: 'app-alert-page',
   standalone: true,
   imports: [TronButtonComponent],
-  template: `
-    <section class="catalog">
-      <header class="catalog__head">
-        <h1>Alert</h1>
-        <p>Toast stack via TronAlertService. Outlet lives on the shell.</p>
-      </header>
-
-      <div class="catalog__block">
-        <h2>Types</h2>
-        <div class="catalog__row">
-          <tron-button (click)="notifyInfo()">Info</tron-button>
-          <tron-button (click)="notifySuccess()">Success</tron-button>
-          <tron-button (click)="notifyWarning()">Warning</tron-button>
-          <tron-button variant="danger" (click)="notifyDanger()">Danger</tron-button>
-        </div>
-      </div>
-    </section>
-  `,
+  templateUrl: './alert-page.component.html',
 })
 export class AlertPageComponent {
   private readonly alerts = inject(TronAlertService);
