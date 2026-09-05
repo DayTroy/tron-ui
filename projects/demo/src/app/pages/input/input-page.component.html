@@ -25,4 +25,15 @@
       <tron-input label="Access code" type="password" placeholder="••••••••" />
     </div>
   </div>
+
+  <div class="catalog__block">
+    <h2>Custom validator</h2>
+    <tron-input
+      label="Disc signature"
+      placeholder="TRON-0000"
+      hint="Validator carries its own message"
+      [formControl]="disc"
+      tronErrors
+    />
+  </div>
 </section>

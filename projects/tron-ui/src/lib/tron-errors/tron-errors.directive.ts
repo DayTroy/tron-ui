@@ -19,7 +19,7 @@ const DEFAULT_ERRORS: Record<string, string> = {
 export class TronErrorsDirective extends Destroyable implements OnInit {
   private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly ngControl = inject(NgControl, { optional: true, self: true });
-  private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
 
   private componentRef: ComponentRef<TronErrorComponent> | null = null;
   private errors: string[] = [];
@@ -30,8 +30,17 @@ export class TronErrorsDirective extends Destroyable implements OnInit {
 
   ngOnInit(): void {
     this.componentRef = this.viewContainerRef.createComponent(TronErrorComponent);
-    this.host.nativeElement.insertAdjacentElement('afterend', this.componentRef.location.nativeElement);
+    this.mountTarget().appendChild(this.componentRef.location.nativeElement);
     this.initSubscriptions();
+  }
+
+  /**
+   * Errors live in the field's own column, so the consumer's layout gap wraps the whole field.
+   * A field marks that column with `data-tron-field` and orders its hint around the errors.
+   */
+  private mountTarget(): HTMLElement {
+    const host = this.host.nativeElement;
+    return host.querySelector<HTMLElement>('[data-tron-field]') ?? host;
   }
 
   private initSubscriptions(): void {
@@ -46,16 +55,37 @@ export class TronErrorsDirective extends Destroyable implements OnInit {
   }
 
   updateErrorsMessage(): void {
-    this.errors = [];
-    const control = this.ngControl?.control;
-
-    if (control && !control.disabled && control.invalid && (control.dirty || control.touched) && control.errors) {
-      for (const key of Object.keys(control.errors)) {
-        this.errors.push(DEFAULT_ERRORS[key]);
-      }
-    }
+    this.errors = this.collectMessages();
 
     if (!this.componentRef) return;
     this.componentRef.instance.errors = this.errors;
+  }
+
+  private collectMessages(): string[] {
+    const control = this.ngControl?.control;
+    const isVisible = control && !control.disabled && control.invalid && (control.dirty || control.touched);
+
+    if (!isVisible || !control.errors) return [];
+
+    const messages: string[] = [];
+
+    for (const [key, value] of Object.entries(control.errors)) {
+      const message = this.resolveMessage(key, value);
+      if (message) messages.push(message);
+    }
+
+    return messages;
+  }
+
+  /** Validator may carry its own text: `{ key: 'text' }` or `{ key: { message: 'text' } }`. */
+  private resolveMessage(key: string, value: unknown): string | null {
+    if (typeof value === 'string') return value || null;
+
+    if (value && typeof value === 'object' && 'message' in value) {
+      const message = (value as { message?: unknown }).message;
+      if (typeof message === 'string' && message) return message;
+    }
+
+    return DEFAULT_ERRORS[key] ?? null;
   }
 }

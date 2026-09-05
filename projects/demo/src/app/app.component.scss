@@ -35,11 +35,59 @@
   text-shadow: 0 0 $glow-size-md $color-primary-glow;
 }
 
+.shell__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  background-color: $color-surface-sunken;
+  border-bottom: $border-width solid $color-border;
+
+  .shell__brand {
+    margin-bottom: 0;
+  }
+}
+
+.shell__burger {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  color: $color-primary;
+  background: none;
+  border: $border-width solid $color-border-strong;
+  cursor: pointer;
+
+  svg {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 $glow-size-sm $color-primary-glow;
+  }
+}
+
+.shell__groups {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
 .shell__group {
   display: flex;
   flex-direction: column;
   gap: $space-1;
-  margin-bottom: $space-4;
 }
 
 .shell__group-label {
@@ -71,4 +119,22 @@
   flex: 1;
   min-width: 0;
   padding: $space-6;
+}
+
+@media (max-width: #{$breakpoint-sm}) {
+  .shell {
+    flex-direction: column;
+  }
+
+  .shell__nav {
+    display: none;
+  }
+
+  .shell__topbar {
+    display: flex;
+  }
+
+  .shell__main {
+    padding: $space-4;
+  }
 }

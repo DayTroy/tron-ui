@@ -153,6 +153,7 @@
   }
 
   &__hint {
+    order: 1; // below the errors mounted into this column
     font-family: $font-secondary;
     font-size: $font-size-xs;
     color: $color-text-secondary;

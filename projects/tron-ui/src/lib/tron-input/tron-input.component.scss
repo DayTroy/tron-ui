@@ -96,9 +96,15 @@
     text-transform: uppercase;
   }
 
+  &__hint {
+    order: 1; // below the errors mounted into this column
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+
   &__prefix:not(:has(*)),
-  &__suffix:not(:has(*)),
-  &__hint:empty {
+  &__suffix:not(:has(*)) {
     display: none;
   }
 }

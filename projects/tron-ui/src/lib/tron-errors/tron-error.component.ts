@@ -6,6 +6,9 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   styleUrl: './tron-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  host: {
+    '[hidden]': '!errorList().length',
+  },
 })
 export class TronErrorComponent {
   private readonly $errors = signal<string[]>([]);

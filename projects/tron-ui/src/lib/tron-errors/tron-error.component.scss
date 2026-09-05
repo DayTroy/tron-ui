@@ -1,8 +1,15 @@
 @use '../styles/tokens' as *;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
   width: 100%;
+}
+
+// Keeps an errorless field from paying for the column gap.
+:host([hidden]) {
+  display: none;
 }
 
 .tron-error {
@@ -10,8 +17,4 @@
   color: $color-danger;
   font-family: $font-secondary;
   font-size: $font-size-xs;
-
-  &--first {
-    margin-top: $space-2;
-  }
 }
