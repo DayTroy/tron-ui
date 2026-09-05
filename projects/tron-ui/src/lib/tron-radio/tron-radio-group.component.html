@@ -1,0 +1,22 @@
+<div
+  class="tron-radio-group"
+  data-tron-field
+  role="radiogroup"
+  [attr.aria-labelledby]="$label() ? labelId : null"
+  [attr.aria-invalid]="$isInvalid()"
+  [class.tron-radio-group--disabled]="$isDisabled()"
+  [class.tron-radio-group--error]="$isInvalid()"
+  [class.tron-radio-group--horizontal]="$orientation() === 'horizontal'"
+>
+  @if ($label()) {
+    <span class="tron-radio-group__label" [id]="labelId">{{ $label() }}</span>
+  }
+
+  <div class="tron-radio-group__options">
+    <ng-content />
+  </div>
+
+  @if ($hint()) {
+    <div class="tron-radio-group__hint">{{ $hint() }}</div>
+  }
+</div>

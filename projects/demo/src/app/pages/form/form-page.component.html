@@ -26,6 +26,20 @@
       tronErrors
     />
 
+    <tron-radio-group label="Clearance level" formControlName="clearance" tronErrors>
+      <tron-radio [value]="'user'">User</tron-radio>
+      <tron-radio [value]="'admin'">Admin</tron-radio>
+    </tron-radio-group>
+
+    <tron-textarea
+      label="Mission brief"
+      placeholder="At least 20 characters"
+      [rows]="4"
+      [maxlength]="180"
+      formControlName="brief"
+      tronErrors
+    />
+
     <div class="catalog__row">
       <tron-button (click)="enable()">Enable</tron-button>
       <tron-button variant="ghost" (click)="disable()">Disable</tron-button>

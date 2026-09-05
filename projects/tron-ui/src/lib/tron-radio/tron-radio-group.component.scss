@@ -1,0 +1,60 @@
+@use '../styles/tokens' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tron-radio-group {
+  // Read by tron-radio: custom properties cross the encapsulation boundary, selectors do not.
+  --tron-radio-border: #{$color-border-strong};
+  --tron-radio-ink: #{$color-primary};
+  --tron-radio-fill: #{$color-primary-fill};
+  --tron-radio-glow: #{$color-focus-ring};
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+
+  &--error {
+    --tron-radio-border: #{$color-danger-border};
+    --tron-radio-ink: #{$color-danger};
+    --tron-radio-fill: #{$color-danger-fill};
+    --tron-radio-glow: #{$color-danger-glow};
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &__label {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+  }
+
+  &--error &__label {
+    color: $color-danger;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
+  &--horizontal &__options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $space-4;
+  }
+
+  &__hint {
+    order: 1; // below the errors mounted into this column
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}

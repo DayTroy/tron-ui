@@ -1,0 +1,36 @@
+<div class="tron-textarea"
+  data-tron-field
+  [class.tron-textarea--disabled]="$isDisabled()"
+  [class.tron-textarea--readonly]="$readonly()"
+  [class.tron-textarea--error]="$isInvalid()">
+  @if ($label()) {
+    <label class="tron-textarea__label" [for]="fieldId">{{ $label() }}</label>
+  }
+
+  <div class="tron-textarea__control">
+    <textarea
+      class="tron-textarea__field"
+      [id]="fieldId"
+      [rows]="$rows()"
+      [readonly]="$readonly()"
+      [disabled]="$isDisabled()"
+      [value]="$value()"
+      [placeholder]="$placeholder()"
+      [style.resize]="$resize()"
+      [attr.maxlength]="$maxlength()"
+      [attr.aria-invalid]="$isInvalid()"
+      (input)="onInputChange($any($event.target).value)"
+      (blur)="onBlur()"
+    ></textarea>
+  </div>
+
+  @if ($hasFooter()) {
+    <div class="tron-textarea__footer">
+      <span class="tron-textarea__hint">{{ $hint() }}</span>
+
+      @if ($maxlength() !== null) {
+        <span class="tron-textarea__counter">{{ $counter() }}</span>
+      }
+    </div>
+  }
+</div>

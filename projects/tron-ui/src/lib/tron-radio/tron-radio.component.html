@@ -1,0 +1,19 @@
+<label
+  class="tron-radio"
+  [class.tron-radio--disabled]="$isDisabled()"
+  [class.tron-radio--checked]="$checked()"
+>
+  <input
+    class="tron-radio__native"
+    type="radio"
+    [name]="name"
+    [checked]="$checked()"
+    [disabled]="$isDisabled()"
+    (change)="onNativeChange()"
+    (blur)="onBlur()"
+  />
+
+  <span class="tron-radio__mark" aria-hidden="true"></span>
+
+  <span class="tron-radio__label"><ng-content /></span>
+</label>

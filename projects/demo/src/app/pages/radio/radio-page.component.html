@@ -1,0 +1,45 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Radio</h1>
+    <p>One of many. The group holds the value, arrow keys move between options.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Vertical</h2>
+    <tron-radio-group label="Disc version" hint="Group owns the value" [formControl]="disc">
+      <tron-radio [value]="'legacy'">Legacy build</tron-radio>
+      <tron-radio [value]="'current'">Current build</tron-radio>
+      <tron-radio [value]="'experimental'" [disabled]="true">Experimental (locked)</tron-radio>
+    </tron-radio-group>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Horizontal</h2>
+    <tron-radio-group label="Light cycle speed" orientation="horizontal" [formControl]="speed">
+      <tron-radio [value]="'slow'">Slow</tron-radio>
+      <tron-radio [value]="'fast'">Fast</tron-radio>
+      <tron-radio [value]="'overdrive'">Overdrive</tron-radio>
+    </tron-radio-group>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Validation</h2>
+    <tron-radio-group
+      label="Clearance level"
+      hint="Required, pick one"
+      [formControl]="clearance"
+      tronErrors
+    >
+      <tron-radio [value]="'user'">User</tron-radio>
+      <tron-radio [value]="'admin'">Admin</tron-radio>
+    </tron-radio-group>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Disabled group</h2>
+    <tron-radio-group label="Sector" [disabled]="true" [value]="'core'">
+      <tron-radio [value]="'core'">Core</tron-radio>
+      <tron-radio [value]="'outlands'">Outlands</tron-radio>
+    </tron-radio-group>
+  </div>
+</section>

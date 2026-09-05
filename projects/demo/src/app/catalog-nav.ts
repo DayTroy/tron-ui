@@ -14,9 +14,11 @@ export const CATALOG_NAV: CatalogNavGroup[] = [
     items: [
       { path: '/button', label: 'Button' },
       { path: '/input', label: 'Input' },
+      { path: '/textarea', label: 'Textarea' },
       { path: '/select', label: 'Select' },
       { path: '/toggle', label: 'Toggle' },
       { path: '/checkbox', label: 'Checkbox' },
+      { path: '/radio', label: 'Radio' },
       { path: '/slider', label: 'Slider' },
     ],
   },

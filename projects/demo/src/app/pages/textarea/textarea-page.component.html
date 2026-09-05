@@ -1,0 +1,51 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Textarea</h1>
+    <p>Multiline value. Rows, optional counter, same hint and error slots as input.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Basic</h2>
+    <tron-textarea
+      label="Grid log"
+      placeholder="Describe the anomaly"
+      hint="Plain multiline entry"
+      [formControl]="log"
+    />
+  </div>
+
+  <div class="catalog__block">
+    <h2>Counter</h2>
+    <tron-textarea
+      label="Mission brief"
+      placeholder="At least 20 characters"
+      hint="Counter sits next to the hint"
+      [rows]="6"
+      [maxlength]="180"
+      [formControl]="brief"
+      tronErrors
+    />
+  </div>
+
+  <div class="catalog__block">
+    <h2>States</h2>
+    <div class="catalog__stack">
+      <tron-textarea
+        label="Transcript"
+        [readonly]="readonly$()"
+        [rows]="3"
+        [resize]="'none'"
+        hint="Readonly, resize disabled"
+        [formControl]="transcript"
+      />
+
+      <tron-textarea
+        label="Archived entry"
+        placeholder="Unavailable"
+        hint="Disabled"
+        [rows]="3"
+        [disabled]="true"
+      />
+    </div>
+  </div>
+</section>

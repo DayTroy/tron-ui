@@ -1,0 +1,109 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tron-textarea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  &--readonly &__control {
+    background-color: $color-control-muted;
+
+    &:focus-within {
+      box-shadow: none;
+      border-color: $color-border;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .tron-textarea__control {
+      background-color: $color-control-muted;
+      cursor: not-allowed;
+
+      &:focus-within {
+        box-shadow: none;
+        border-color: $color-border;
+      }
+    }
+
+    .tron-textarea__field {
+      color: $color-text-muted;
+      cursor: not-allowed;
+    }
+  }
+
+  &__control {
+    display: flex;
+    padding: $space-3;
+    background-color: $color-control;
+    border: $border-width solid $color-border;
+    transition: box-shadow $duration-normal $easing-out, border-color $duration-normal $easing-out;
+
+    &:focus-within {
+      outline: none;
+      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+    }
+  }
+
+  &--error &__control {
+    border-color: $color-danger;
+
+    &:hover,
+    &:focus-within {
+      outline: none;
+      @include tron-glow($color-danger, $color-danger-glow, $glow-size-sm);
+    }
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    appearance: none;
+    line-height: $line-height-normal;
+    font: inherit;
+    color: $color-text;
+    font-family: $font-secondary;
+    font-size: $font-size-md;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+  }
+
+  &__label {
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+  }
+
+  &__footer {
+    order: 1; // below the errors mounted into this column
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $space-2;
+    font-family: $font-secondary;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+
+  &__counter {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+}
