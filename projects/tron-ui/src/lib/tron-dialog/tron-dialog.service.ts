@@ -31,7 +31,10 @@ export class TronDialogService {
     this.overlayRef = this.overlay.create({
       hasBackdrop: true,
       backdropClass: 'tron-dialog-backdrop',
-      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      panelClass: 'tron-dialog-pane',
+      width: '100%',
+      height: '100%',
+      positionStrategy: this.overlay.position().global().top().left(),
       scrollStrategy: this.overlay.scrollStrategies.block(),
       disposeOnNavigation: true,
     });

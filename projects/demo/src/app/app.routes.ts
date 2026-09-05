@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AlertPageComponent } from './pages/alert/alert-page.component';
+import { ToastPageComponent } from './pages/toast/toast-page.component';
 import { ButtonPageComponent } from './pages/button/button-page.component';
 import { CheckboxPageComponent } from './pages/checkbox/checkbox-page.component';
 import { ChipPageComponent } from './pages/chip/chip-page.component';
@@ -26,6 +26,7 @@ export const routes: Routes = [
   { path: 'stepper', component: StepperPageComponent },
   { path: 'dialog', component: DialogPageComponent },
   { path: 'drawer', component: DrawerPageComponent },
-  { path: 'alert', component: AlertPageComponent },
+  { path: 'toast', component: ToastPageComponent },
+  { path: 'alert', redirectTo: 'toast' },
   { path: 'form', component: FormPageComponent },
 ];

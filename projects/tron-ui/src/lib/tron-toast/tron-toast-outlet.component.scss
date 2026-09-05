@@ -1,0 +1,25 @@
+@use '../styles/tokens' as *;
+
+:host {
+  position: fixed;
+  right: $space-5;
+  bottom: $space-5;
+  z-index: 10;
+  max-width: min(24rem, calc(100vw - #{$space-5} * 2));
+  pointer-events: none;
+}
+
+.tron-toast-outlet {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+@media (max-width: #{$breakpoint-sm}) {
+  :host {
+    right: $space-3;
+    left: $space-3;
+    bottom: calc(#{$space-3} + env(safe-area-inset-bottom, 0px));
+    max-width: none;
+  }
+}

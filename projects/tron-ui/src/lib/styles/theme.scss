@@ -8,8 +8,3 @@
 *::after {
   box-sizing: border-box;
 }
-
-.tron-dialog-backdrop,
-.tron-drawer-backdrop {
-  background: color-mix(in srgb, #{$color-bg} 78%, transparent);
-}

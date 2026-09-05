@@ -33,7 +33,7 @@ export const CATALOG_NAV: CatalogNavGroup[] = [
     items: [
       { path: '/dialog', label: 'Dialog' },
       { path: '/drawer', label: 'Drawer' },
-      { path: '/alert', label: 'Alert' },
+      { path: '/toast', label: 'Toast' },
     ],
   },
   {

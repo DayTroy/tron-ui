@@ -36,16 +36,14 @@ export class TronDrawerService {
     this.disposeNow();
 
     const position = config.position ?? 'end';
-    const global = this.overlay.position().global().top();
 
     this.overlayRef = this.overlay.create({
       hasBackdrop: true,
       backdropClass: 'tron-drawer-backdrop',
-      panelClass: 'tron-drawer-pane',
-      width: '26rem',
+      panelClass: ['tron-drawer-pane', `tron-drawer-pane--${position}`],
+      width: '100%',
       height: '100%',
-      maxWidth: '100vw',
-      positionStrategy: position === 'start' ? global.left() : global.right(),
+      positionStrategy: this.overlay.position().global().top().left(),
       scrollStrategy: this.overlay.scrollStrategies.block(),
       disposeOnNavigation: true,
     });

@@ -1,0 +1,10 @@
+<div class="tron-toast-outlet">
+  @for (toast of toasts.$items(); track toast.id) {
+    <tron-toast
+      [type]="toast.type"
+      [title]="toast.title"
+      [message]="toast.message"
+      (dismissed)="toasts.dismiss(toast.id)"
+    />
+  }
+</div>

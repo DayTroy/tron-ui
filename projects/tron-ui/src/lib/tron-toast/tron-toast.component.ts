@@ -5,22 +5,22 @@ const LABELS = {
   success: 'SUCCESS',
   warning: 'WARNING',
   danger: 'ERROR',
-}
+};
 
 @Component({
-  selector: 'tron-alert',
+  selector: 'tron-toast',
   imports: [],
-  templateUrl: './tron-alert.component.html',
-  styleUrl: './tron-alert.component.scss',
+  templateUrl: './tron-toast.component.html',
+  styleUrl: './tron-toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class TronAlertComponent {
+export class TronToastComponent {
   readonly $type = input<'info' | 'success' | 'warning' | 'danger'>('info', { alias: 'type' });
   readonly $title = input.required<string>({ alias: 'title' });
   readonly $message = input<string>('', { alias: 'message' });
-  readonly $dismissed = output();
-  
+  readonly $dismissed = output({ alias: 'dismissed' });
+
   readonly $label = computed(() => LABELS[this.$type()]);
 
   dismiss(): void {

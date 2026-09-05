@@ -1,10 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 
-export type TronAlertType = 'info' | 'success' | 'warning' | 'danger';
+export type TronToastType = 'info' | 'success' | 'warning' | 'danger';
 
-export interface TronAlertItem {
+export interface TronToastItem {
   id: string;
-  type: TronAlertType;
+  type: TronToastType;
   title: string;
   message: string;
 }
@@ -12,14 +12,14 @@ export interface TronAlertItem {
 @Injectable({
   providedIn: 'root'
 })
-export class TronAlertService {
-  readonly $items = signal<TronAlertItem[]>([]);
+export class TronToastService {
+  readonly $items = signal<TronToastItem[]>([]);
 
   private readonly timers = new Map<string, ReturnType<typeof setTimeout>>();
 
-  show(title: string, type: TronAlertType = 'info', message = '', duration = 4000): string {
+  show(title: string, type: TronToastType = 'info', message = '', duration = 4000): string {
     const id = crypto.randomUUID();
-    const item: TronAlertItem = { id, type, title, message };
+    const item: TronToastItem = { id, type, title, message };
     const items = this.$items();
 
     if (items.length >= 3) {

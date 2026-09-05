@@ -28,8 +28,6 @@ export class TronSliderComponent extends TronControl<number> {
   readonly $thumb = viewChild.required<ElementRef<HTMLDivElement>>('thumb');
 
   private readonly pointerDown$ = new Subject<PointerEvent>();
-  private savedCursor = '';
-  private savedUserSelect = '';
 
   readonly $percent = computed(() => {
     const min = this.$min();
@@ -95,7 +93,6 @@ export class TronSliderComponent extends TronControl<number> {
 
   private drag(start: PointerEvent) {
     this.$isDragging.set(true);
-    this.lockPage();
     this.onTouched();
     this.$thumb().nativeElement.focus({ preventScroll: true });
 
@@ -107,23 +104,8 @@ export class TronSliderComponent extends TronControl<number> {
           fromEvent(document, 'pointercancel')
         )
       ),
-      finalize(() => {
-        this.$isDragging.set(false);
-        this.unlockPage();
-      })
+      finalize(() => this.$isDragging.set(false))
     );
-  }
-
-  private lockPage(): void {
-    this.savedCursor = document.body.style.cursor;
-    this.savedUserSelect = document.body.style.userSelect;
-    document.body.style.cursor = 'ew-resize';
-    document.body.style.userSelect = 'none';
-  }
-
-  private unlockPage(): void {
-    document.body.style.cursor = this.savedCursor;
-    document.body.style.userSelect = this.savedUserSelect;
   }
 
   private calculateValueFromEvent(event: PointerEvent): number {

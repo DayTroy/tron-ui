@@ -32,6 +32,7 @@
 }
 
 .tron-drawer-backdrop {
+  background: color-mix(in srgb, #{$color-bg} 78%, transparent);
   animation: drawer-backdrop-in $duration-normal $easing-out;
 
   &--leave {
@@ -39,10 +40,26 @@
   }
 }
 
+.tron-drawer-pane.cdk-overlay-pane {
+  display: flex;
+  align-items: stretch;
+  pointer-events: none;
+}
+
+.tron-drawer-pane--start {
+  justify-content: flex-start;
+}
+
+.tron-drawer-pane--end {
+  justify-content: flex-end;
+}
+
 tron-drawer {
   display: block;
-  width: 100%;
+  width: 26rem;
+  max-width: 80vw;
   height: 100%;
+  pointer-events: auto;
 }
 
 .tron-drawer {

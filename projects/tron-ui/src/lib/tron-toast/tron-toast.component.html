@@ -1,10 +1,12 @@
-<div class="tron-alert"
-  [class.tron-alert--info]="$type() === 'info'"
-  [class.tron-alert--success]="$type() === 'success'"
-  [class.tron-alert--warning]="$type() === 'warning'"
-  [class.tron-alert--danger]="$type() === 'danger'">
-  <div class="tron-alert__head">
-    <span class="tron-alert__icon" aria-hidden="true">
+<div
+  class="tron-toast"
+  [class.tron-toast--info]="$type() === 'info'"
+  [class.tron-toast--success]="$type() === 'success'"
+  [class.tron-toast--warning]="$type() === 'warning'"
+  [class.tron-toast--danger]="$type() === 'danger'"
+>
+  <div class="tron-toast__head">
+    <span class="tron-toast__icon" aria-hidden="true">
       @switch ($type()) {
         @case ('success') {
           <svg viewBox="0 0 16 16" fill="none">
@@ -34,11 +36,11 @@
         }
       }
     </span>
-    <span class="tron-alert__label">{{ $label() }}</span>
-    <button class="tron-alert__close" type="button" aria-label="Dismiss" (click)="dismiss()">×</button>
+    <span class="tron-toast__label">{{ $label() }}</span>
+    <button class="tron-toast__close" type="button" aria-label="Dismiss" (click)="dismiss()">×</button>
   </div>
-  <div class="tron-alert__title">{{ $title() }}</div>
+  <div class="tron-toast__title">{{ $title() }}</div>
   @if ($message()) {
-    <div class="tron-alert__message">{{ $message() }}</div>
+    <div class="tron-toast__message">{{ $message() }}</div>
   }
 </div>

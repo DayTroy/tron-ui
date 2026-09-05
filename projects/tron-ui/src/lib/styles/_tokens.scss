@@ -8,7 +8,7 @@
 //   pure    полный неон. Чернила: текст, иконка, жёсткая рамка, заливка бара.
 //   glow    тот же hue ~60% alpha. Ореол / focus ring. Не заливка и не рамка.
 //   border  ~40–50% alpha. Контур этого hue в покое.
-//   fill    ~10–15% alpha. Прозрачная подложка: pressed, selected, кнопка, alert.
+//   fill    ~10–15% alpha. Прозрачная подложка: pressed, selected, кнопка, toast.
 //
 // Доп. шаги только у cyan — это системный хром, не статус:
 //   border-muted  ~25%. Волосок по умолчанию, «ещё не интерактив».
@@ -20,7 +20,7 @@
 //   surface         плоскость панели / карточки в покое.
 //   sunken          вдавлено относительно surface: сайдбар, футер.
 //   raised          на ступень выше: приглушённая панель, disabled-колодец.
-//   elevated        поверх всего: дропдаун, тост, alert.
+//   elevated        поверх всего: дропдаун, тост.
 //   control         колодец поля. Сейчас = surface, роль другая — тему можно развести.
 //   muted           тише сосед. Disabled-колодец, бледный текст.
 //                   Не ореол: ореол это glow.
@@ -40,8 +40,8 @@
 //   $color-danger-glow    ореол
 //
 // Какой intent брать:
-//   primary  система, пользовательский интерактив. Info-alert тоже сюда.
-//   info     алиас primary — чтобы в сервисе алертов писать info, не «primary».
+//   primary  система, пользовательский интерактив. Info-toast тоже сюда.
+//   info     алиас primary — чтобы в сервисе тостов писать info, не «primary».
 //   accent   второй бренд / hostile (CLU). Не статус и не alert.
 //   success  готово, здорово.
 //   warning  осторожно, ещё не сломано.
@@ -109,7 +109,7 @@ $color-bg:               $color-grid-void;      // page only
 $color-surface-sunken:   $color-grid-deep;      // sidebar, footer
 $color-surface:          $color-grid-surface;   // card, panel at rest
 $color-surface-raised:   $color-grid-raised;    // quieter panel
-$color-surface-elevated: $color-grid-elevated;  // dropdown, toast, alert
+$color-surface-elevated: $color-grid-elevated;  // dropdown, toast
 
 // Form well — same paint as surface today; dim text/opacity separately
 $color-control:       $color-grid-surface;
@@ -147,7 +147,7 @@ $color-danger-border: $color-red-border;
 $color-danger-fill:   $color-red-fill;
 $color-danger-glow:   $color-red-glow;
 
-// Alert service: info is primary, not a sixth hue
+// Toast service: info is primary, not a sixth hue
 $color-info:        $color-primary;
 $color-info-border: $color-primary-border;
 $color-info-fill:   $color-primary-fill;

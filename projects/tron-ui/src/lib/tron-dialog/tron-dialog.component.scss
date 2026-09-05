@@ -1,31 +1,49 @@
 @use '../styles/tokens' as *;
 @use '../styles/mixins' as *;
 
-:host {
+@keyframes dialog-in-bottom {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+tron-dialog {
   display: block;
+  max-width: 100%;
+  pointer-events: auto;
+}
+
+.tron-dialog-backdrop {
+  background: color-mix(in srgb, #{$color-bg} 78%, transparent);
+}
+
+.tron-dialog-pane.cdk-overlay-pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .tron-dialog {
+  --tron-dialog-pad-x: #{$space-4};
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+  box-sizing: border-box;
   width: 32rem;
   max-width: calc(100vw - #{$space-5});
+  max-height: calc(100vh - #{$space-6});
   margin: 0 auto;
-  --tron-dialog-pad-x: #{$space-4};
-  padding: $space-5 var(--tron-dialog-pad-x);
   background-color: $color-surface;
   border: $border-width solid $color-primary-border;
   color: $color-text;
 
   &__head {
     display: flex;
+    flex-shrink: 0;
     align-items: flex-start;
     justify-content: space-between;
     gap: $space-3;
-    margin-inline: calc(-1 * var(--tron-dialog-pad-x));
-    padding: 0 var(--tron-dialog-pad-x) $space-4;
+    padding: $space-5 var(--tron-dialog-pad-x) $space-4;
     border-bottom: $border-width solid $color-border;
   }
 
@@ -91,8 +109,12 @@
 
   &__body {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: $space-4;
+    min-height: 0;
+    overflow: auto;
+    padding: $space-4 var(--tron-dialog-pad-x) $space-5;
     font-family: $font-secondary;
     font-size: $font-size-sm;
     line-height: $line-height-normal;
@@ -134,6 +156,36 @@
       outline: none;
       color: $color-danger;
       @include tron-glow($color-danger, $color-danger-glow);
+    }
+  }
+}
+
+@media (max-width: #{$breakpoint-sm}) {
+  .tron-dialog-pane.cdk-overlay-pane {
+    align-items: flex-end;
+  }
+
+  tron-dialog {
+    width: 100%;
+  }
+
+  .tron-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: min(90dvh, 100%);
+    margin: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    animation: dialog-in-bottom $duration-normal $easing-out;
+
+    &__body {
+      padding-bottom: calc(#{$space-5} + env(safe-area-inset-bottom, 0px));
+    }
+
+    &__corner--bl,
+    &__corner--br {
+      display: none;
     }
   }
 }
