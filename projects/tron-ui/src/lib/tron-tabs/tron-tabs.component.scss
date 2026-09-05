@@ -1,0 +1,91 @@
+@use '../styles/tokens' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.tron-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  width: 100%;
+
+  &__bar {
+    display: flex;
+    flex-shrink: 0;
+    // Narrow screens scroll the strip instead of wrapping it into a second row.
+    overflow-x: auto;
+    border-bottom: $border-width solid $color-border;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__tab {
+    position: relative;
+    flex-shrink: 0;
+    padding: $space-3 $space-4;
+    background: none;
+    border: none;
+    font-family: $font-primary;
+    font-size: $font-size-xs;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    color: $color-text-secondary;
+    cursor: pointer;
+    transition:
+      color $duration-normal $easing-out,
+      background-color $duration-normal $easing-out;
+
+    // Sits on top of the strip hairline, hence the negative offset.
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -$border-width;
+      left: 0;
+      height: $border-width-thick;
+      background: $color-primary;
+      box-shadow: 0 0 $glow-size-sm $color-focus-ring;
+      transform: scaleX(0);
+      transition: transform $duration-normal $easing-out;
+    }
+
+    &:hover:not(:disabled) {
+      color: $color-primary;
+    }
+
+    &:focus-visible {
+      outline: none;
+      color: $color-primary;
+      background-color: $color-primary-fill-subtle;
+    }
+
+    &:disabled {
+      color: $color-text-muted;
+      cursor: not-allowed;
+    }
+
+    &--active {
+      color: $color-primary;
+      text-shadow: 0 0 $glow-size-sm $color-primary-glow;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__panels {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tron-tabs__tab::after {
+    transition: none;
+  }
+}

@@ -23,6 +23,12 @@ export const CATALOG_NAV: CatalogNavGroup[] = [
     ],
   },
   {
+    label: 'Navigation',
+    items: [
+      { path: '/tabs', label: 'Tabs' },
+    ],
+  },
+  {
     label: 'Display',
     items: [
       { path: '/chip', label: 'Chip' },

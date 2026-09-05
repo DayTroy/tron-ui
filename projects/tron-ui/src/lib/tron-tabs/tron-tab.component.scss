@@ -1,0 +1,16 @@
+@use '../styles/tokens' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// The host sets display, so the UA rule for [hidden] needs help.
+:host([hidden]) {
+  display: none;
+}
+
+:host(:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 $glow-size-sm $color-focus-ring;
+}

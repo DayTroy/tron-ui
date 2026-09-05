@@ -1,0 +1,49 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Tabs</h1>
+    <p>Panels are markup, not data. Active index is a model, arrow keys move the strip.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Basic</h2>
+    <tron-tabs>
+      <tron-tab label="Overview">
+        <p>Identity disc holds the full record of a program: origin, tasks, memory.</p>
+      </tron-tab>
+
+      <tron-tab label="Diagnostics">
+        <div class="catalog__meter">
+          <div class="catalog__meter-head">
+            <span>Grid sync</span>
+            <span class="catalog__meter-value">68%</span>
+          </div>
+          <tron-progress [value]="68" />
+        </div>
+      </tron-tab>
+
+      <tron-tab label="Archive" [disabled]="true">
+        <p>Sector sealed.</p>
+      </tron-tab>
+    </tron-tabs>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Controlled</h2>
+    <p class="catalog__note">Active index: {{ active$() }}</p>
+
+    <tron-tabs [(activeIndex)]="active$">
+      <tron-tab label="Identity">
+        <tron-input
+          label="Callsign"
+          placeholder="Enter value"
+          hint="State survives a tab switch"
+          [formControl]="callsign"
+        />
+      </tron-tab>
+
+      <tron-tab label="Transit">
+        <p>Light cycle assigned to sector 3.</p>
+      </tron-tab>
+    </tron-tabs>
+  </div>
+</section>

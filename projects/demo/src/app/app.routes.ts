@@ -12,6 +12,7 @@ import { RadioPageComponent } from './pages/radio/radio-page.component';
 import { SelectPageComponent } from './pages/select/select-page.component';
 import { SliderPageComponent } from './pages/slider/slider-page.component';
 import { StepperPageComponent } from './pages/stepper/stepper-page.component';
+import { TabsPageComponent } from './pages/tabs/tabs-page.component';
 import { TextareaPageComponent } from './pages/textarea/textarea-page.component';
 import { TogglePageComponent } from './pages/toggle/toggle-page.component';
 
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'checkbox', component: CheckboxPageComponent },
   { path: 'radio', component: RadioPageComponent },
   { path: 'slider', component: SliderPageComponent },
+  { path: 'tabs', component: TabsPageComponent },
   { path: 'chip', component: ChipPageComponent },
   { path: 'progress', component: ProgressPageComponent },
   { path: 'stepper', component: StepperPageComponent },

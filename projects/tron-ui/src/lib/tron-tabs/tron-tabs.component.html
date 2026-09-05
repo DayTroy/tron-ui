@@ -1,0 +1,23 @@
+<div class="tron-tabs">
+  <div class="tron-tabs__bar" role="tablist" (keydown)="onKeydown($event)">
+    @for (tab of $tabs(); track tab; let i = $index) {
+      <button
+        #tabButton
+        class="tron-tabs__tab"
+        type="button"
+        role="tab"
+        [id]="tabId(i)"
+        [class.tron-tabs__tab--active]="$activeIndex() === i"
+        [disabled]="tab.$disabled()"
+        [attr.aria-selected]="$activeIndex() === i"
+        [attr.aria-controls]="panelId(i)"
+        [attr.tabindex]="$activeIndex() === i ? 0 : -1"
+        (click)="select(i)"
+      >{{ tab.$label() }}</button>
+    }
+  </div>
+
+  <div class="tron-tabs__panels">
+    <ng-content />
+  </div>
+</div>
