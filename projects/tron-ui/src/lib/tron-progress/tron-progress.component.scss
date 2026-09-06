@@ -1,7 +1,30 @@
 @use '../styles/tokens' as *;
 
+$sweep-width: 35%;
+
 :host {
   display: block;
+}
+
+// translateX is relative to the element's own width: 100 / 35 ≈ 285% crosses the track.
+@keyframes progress-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(285%);
+  }
+}
+
+@keyframes progress-breathe {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .tron-progress {
@@ -54,5 +77,20 @@
       background: $color-text;
       box-shadow: 0 0 $glow-size-sm var(--tron-progress-glow);
     }
+  }
+
+  &__fill--indeterminate {
+    width: $sweep-width;
+    transition: none;
+    animation: progress-sweep $duration-slow * 5 $easing-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  // A sweep across the screen is the motion to drop; the track still reads as busy.
+  .tron-progress__fill--indeterminate {
+    width: 100%;
+    transform: none;
+    animation: progress-breathe $duration-slow * 5 $easing-out infinite alternate;
   }
 }

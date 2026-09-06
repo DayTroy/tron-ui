@@ -1,0 +1,42 @@
+<div class="tron-loader" [class]="$classes()" aria-hidden="true">
+  @switch ($variant()) {
+    @case ('disc') {
+      <svg class="tron-loader__disc" viewBox="0 0 24 24">
+        <circle class="tron-loader__disc-ring" pathLength="100" cx="12" cy="12" r="11" />
+        <circle class="tron-loader__disc-inner" pathLength="100" cx="12" cy="12" r="7" />
+        <circle class="tron-loader__disc-core" cx="12" cy="12" r="2.5" />
+      </svg>
+    }
+
+    @case ('cycle') {
+      <svg class="tron-loader__cycle" viewBox="0 0 24 24">
+        <path
+          class="tron-loader__cycle-track"
+          pathLength="100"
+          d="M5 1H19L23 5V19L19 23H5L1 19V5Z"
+        />
+        <path
+          class="tron-loader__cycle-trail"
+          pathLength="100"
+          d="M5 1H19L23 5V19L19 23H5L1 19V5Z"
+        />
+      </svg>
+    }
+
+    @case ('bars') {
+      <span class="tron-loader__bars">
+        @for (bar of bars; track $index) {
+          <span class="tron-loader__bar"></span>
+        }
+      </span>
+    }
+
+    @default {
+      <span class="tron-loader__matrix">
+        @for (cell of cells; track $index) {
+          <span class="tron-loader__cell"></span>
+        }
+      </span>
+    }
+  }
+</div>

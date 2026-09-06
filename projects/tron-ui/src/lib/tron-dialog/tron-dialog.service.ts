@@ -1,6 +1,7 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { inject, Injectable, TemplateRef } from '@angular/core';
+import { TronOverlayService } from '../core/overlay';
 import { TronDialogComponent } from './tron-dialog.component';
 
 export type TronDialogContent<T = unknown> = TemplateRef<T> | ComponentType<T>;
@@ -22,21 +23,15 @@ export class TronDialogRef {
   providedIn: 'root'
 })
 export class TronDialogService {
-  private readonly overlay = inject(Overlay);
+  private readonly overlays = inject(TronOverlayService);
   private overlayRef: OverlayRef | null = null;
 
   show(content: TronDialogContent, config: TronDialogConfig): TronDialogRef {
     this.hide();
 
-    this.overlayRef = this.overlay.create({
-      hasBackdrop: true,
+    this.overlayRef = this.overlays.createFullscreen({
       backdropClass: 'tron-dialog-backdrop',
       panelClass: 'tron-dialog-pane',
-      width: '100%',
-      height: '100%',
-      positionStrategy: this.overlay.position().global().top().left(),
-      scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation: true,
     });
 
     const host = this.overlayRef.attach(new ComponentPortal(TronDialogComponent));

@@ -1,0 +1,19 @@
+<!-- inert, not just a veil: a cover hides controls from the eye but not from Tab. -->
+<div class="tron-loader-block__content" [attr.inert]="$loading() ? '' : null">
+  <ng-content />
+</div>
+
+@if ($loading()) {
+  <div class="tron-loader-block__veil">
+    <tron-loader
+      [variant]="$variant()"
+      [size]="$size()"
+      [type]="$type()"
+      [label]="$message() || 'Loading'"
+    />
+
+    @if ($message()) {
+      <p class="tron-loader-block__message">{{ $message() }}</p>
+    }
+  </div>
+}

@@ -7,6 +7,7 @@ import { DialogPageComponent } from './pages/dialog/dialog-page.component';
 import { DrawerPageComponent } from './pages/drawer/drawer-page.component';
 import { FormPageComponent } from './pages/form/form-page.component';
 import { InputPageComponent } from './pages/input/input-page.component';
+import { LoaderPageComponent } from './pages/loader/loader-page.component';
 import { ProgressPageComponent } from './pages/progress/progress-page.component';
 import { RadioPageComponent } from './pages/radio/radio-page.component';
 import { SelectPageComponent } from './pages/select/select-page.component';
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'tabs', component: TabsPageComponent },
   { path: 'chip', component: ChipPageComponent },
   { path: 'progress', component: ProgressPageComponent },
+  { path: 'loader', component: LoaderPageComponent },
   { path: 'stepper', component: StepperPageComponent },
   { path: 'dialog', component: DialogPageComponent },
   { path: 'drawer', component: DrawerPageComponent },

@@ -1,0 +1,29 @@
+@use '../styles/tokens' as *;
+
+.tron-loader-backdrop {
+  background: color-mix(in srgb, #{$color-bg} 78%, transparent);
+}
+
+.tron-loader-pane.cdk-overlay-pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Blocking by design: the backdrop swallows clicks, the panel adds nothing to catch.
+  pointer-events: none;
+}
+
+.tron-loader-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+}
+
+.tron-loader-overlay__message {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: $font-size-md;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  color: $color-text;
+}

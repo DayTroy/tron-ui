@@ -1,0 +1,12 @@
+<div class="tron-loader-overlay">
+  <tron-loader
+    size="xl"
+    [variant]="$variant()"
+    [type]="$type()"
+    [label]="$message() || 'Loading'"
+  />
+
+  @if ($message()) {
+    <p class="tron-loader-overlay__message">{{ $message() }}</p>
+  }
+</div>

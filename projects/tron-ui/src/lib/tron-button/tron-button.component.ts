@@ -1,7 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { TronControl } from '../core/tron-control';
-
-let nextId = 0;
 
 @Component({
   selector: 'tron-button',

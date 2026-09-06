@@ -7,10 +7,14 @@
   <div
     class="tron-progress__track"
     role="progressbar"
-    [attr.aria-valuenow]="$value()"
+    [attr.aria-valuenow]="$indeterminate() ? null : $value()"
     [attr.aria-valuemin]="0"
     [attr.aria-valuemax]="$max()"
   >
-    <div class="tron-progress__fill" [style.width.%]="$percent()"></div>
+    @if ($indeterminate()) {
+      <div class="tron-progress__fill tron-progress__fill--indeterminate"></div>
+    } @else {
+      <div class="tron-progress__fill" [style.width.%]="$percent()"></div>
+    }
   </div>
 </div>

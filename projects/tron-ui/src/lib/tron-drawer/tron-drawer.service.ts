@@ -1,6 +1,7 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import { ComponentRef, inject, Injectable, TemplateRef } from '@angular/core';
+import { TronOverlayService } from '../core/overlay';
 import { TronDrawerComponent } from './tron-drawer.component';
 
 export type TronDrawerContent<T = unknown> = TemplateRef<T> | ComponentType<T>;
@@ -26,7 +27,7 @@ const LEAVE_MS = 200;
   providedIn: 'root'
 })
 export class TronDrawerService {
-  private readonly overlay = inject(Overlay);
+  private readonly overlays = inject(TronOverlayService);
   private overlayRef: OverlayRef | null = null;
   private host: ComponentRef<TronDrawerComponent> | null = null;
   private closing = false;
@@ -37,15 +38,9 @@ export class TronDrawerService {
 
     const position = config.position ?? 'end';
 
-    this.overlayRef = this.overlay.create({
-      hasBackdrop: true,
+    this.overlayRef = this.overlays.createFullscreen({
       backdropClass: 'tron-drawer-backdrop',
       panelClass: ['tron-drawer-pane', `tron-drawer-pane--${position}`],
-      width: '100%',
-      height: '100%',
-      positionStrategy: this.overlay.position().global().top().left(),
-      scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation: true,
     });
 
     this.host = this.overlayRef.attach(new ComponentPortal(TronDrawerComponent));

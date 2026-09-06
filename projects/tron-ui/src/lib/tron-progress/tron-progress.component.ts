@@ -14,6 +14,7 @@ export class TronProgressComponent {
   readonly $type = input<TronProgressType>('primary', { alias: 'type' });
   readonly $value = input<number>(0, { alias: 'value' });
   readonly $max = input<number>(100, { alias: 'max' });
+  readonly $indeterminate = input<boolean>(false, { alias: 'indeterminate' });
 
   readonly $percent = computed(() => {
     const max = this.$max();

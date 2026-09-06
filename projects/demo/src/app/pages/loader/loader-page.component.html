@@ -1,0 +1,90 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Loader</h1>
+    <p>Indeterminate activity. Progress is for known amounts, this is for unknown ones.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Variants</h2>
+    <div class="catalog__row">
+      <tron-loader variant="disc" size="lg" label="Reading disc" />
+      <tron-loader variant="cycle" size="lg" label="Riding the grid" />
+      <tron-loader variant="matrix" size="lg" label="Scanning sector" />
+      <tron-loader variant="bars" size="lg" label="Decoding stream" />
+    </div>
+    <p class="catalog__note">Disc, cycle, matrix, bars.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Sizes</h2>
+    <div class="catalog__row">
+      <tron-loader variant="disc" size="sm" />
+      <tron-loader variant="disc" size="md" />
+      <tron-loader variant="disc" size="lg" />
+      <tron-loader variant="disc" size="xl" />
+      <tron-loader variant="cycle" size="sm" />
+      <tron-loader variant="cycle" size="md" />
+      <tron-loader variant="cycle" size="lg" />
+      <tron-loader variant="cycle" size="xl" />
+      <tron-loader variant="matrix" size="sm" />
+      <tron-loader variant="matrix" size="md" />
+      <tron-loader variant="matrix" size="lg" />
+      <tron-loader variant="matrix" size="xl" />
+      <tron-loader variant="bars" size="sm" />
+      <tron-loader variant="bars" size="md" />
+      <tron-loader variant="bars" size="lg" />
+      <tron-loader variant="bars" size="xl" />
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Intent</h2>
+    <div class="catalog__row">
+      <tron-loader variant="disc" type="primary" />
+      <tron-loader variant="disc" type="accent" />
+      <tron-loader variant="disc" type="success" />
+      <tron-loader variant="disc" type="warning" />
+      <tron-loader variant="disc" type="danger" />
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Global</h2>
+    <div class="catalog__row">
+      <tron-button (click)="blockFor(2000)">Block for 2s</tron-button>
+      <tron-button variant="ghost" (click)="blockTwice()">Two parallel tasks</tron-button>
+    </div>
+    <p class="catalog__note">
+      Service counts tasks: with two in flight the overlay stays until the slower one ends.
+      Active: {{ isActive() }}
+    </p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Block</h2>
+    <tron-loader-block [loading]="panelBusy()" message="Loading sector">
+      <div class="catalog__stack">
+        <tron-input label="Callsign" placeholder="Enter value" [formControl]="callsign" />
+        <p>Content stays in place and becomes inert while the veil is up.</p>
+      </div>
+    </tron-loader-block>
+
+    <div class="catalog__row">
+      <tron-button (click)="busyPanel()">Load this panel</tron-button>
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Inline</h2>
+    <div class="catalog__stack">
+      <p><tron-loader variant="bars" size="sm" /> Resolving identity disc…</p>
+
+      <div class="catalog__row">
+        <tron-button [disabled]="true">
+          <tron-loader variant="matrix" size="sm" label="Submitting" />
+        </tron-button>
+        <span class="catalog__note">Small size lines up with text and button content.</span>
+      </div>
+    </div>
+  </div>
+</section>
