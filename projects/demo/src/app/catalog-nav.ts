@@ -31,6 +31,7 @@ export const CATALOG_NAV: CatalogNavGroup[] = [
   {
     label: 'Display',
     items: [
+      { path: '/avatar', label: 'Avatar' },
       { path: '/chip', label: 'Chip' },
       { path: '/progress', label: 'Progress' },
       { path: '/loader', label: 'Loader' },

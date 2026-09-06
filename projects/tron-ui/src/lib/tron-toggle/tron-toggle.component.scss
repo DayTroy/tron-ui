@@ -27,6 +27,14 @@
     @include glow($color-primary, $color-focus-ring, $glow-size-sm);
   }
 
+  // Дорожка — это кнопка, поэтому фокус видно только на ней. Ореол берётся шире
+  // включённого состояния: с одинаковым не отличить фокус от включения. Правило
+  // стоит после --checked, чтобы у включённой под фокусом победил широкий.
+  &:focus-visible {
+    outline: none;
+    @include glow($color-primary, $color-focus-ring, $glow-size-md);
+  }
+
   &:disabled {
     cursor: not-allowed;
   }

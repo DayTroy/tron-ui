@@ -86,6 +86,23 @@ body {
   gap: $space-2;
 }
 
+// Подпись под элементом — приём страницы, а не компонента: аватар не знает,
+// чем его подписать, и в списке подпись обычно стоит справа, а не снизу.
+.catalog__figure {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+}
+
+.catalog__caption {
+  font-family: $font-secondary;
+  font-size: $font-size-xs;
+  letter-spacing: $font-tracking;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+}
+
 .catalog__stack {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,16 @@
+<div class="tron-avatar" [class]="$classes()">
+  @if ($hasImage()) {
+    <!-- alt пустой намеренно: доступное имя даёт хост, иначе имя прозвучит дважды. -->
+    <img class="tron-avatar__image" [src]="$src()" alt="" (error)="onImageError()" />
+  } @else if ($glyphs()) {
+    <span class="tron-avatar__initials">{{ $glyphs() }}</span>
+  }
+
+  @if ($status(); as status) {
+    <span
+      class="tron-avatar__status"
+      [class]="'tron-avatar__status--' + status"
+      aria-hidden="true"
+    ></span>
+  }
+</div>

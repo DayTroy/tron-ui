@@ -46,6 +46,8 @@
 //   success  готово, здорово.
 //   warning  осторожно, ещё не сломано.
 //   danger   ошибка, разрушительное действие.
+//   special  классификация, а не состояние: происхождение сущности (ISO).
+//            В один ряд с success / warning / danger не встаёт — он не статус.
 
 // ─── 1. Palette (raw) ─────────────────────────────────────────────────────────
 // Only compose semantic tokens below. Do not use these in component .scss.
@@ -90,7 +92,7 @@ $color-red-glow:   rgba(255, 23, 68, 0.60);
 $color-red-border: rgba(255, 23, 68, 0.50);
 $color-red-fill:   rgba(255, 23, 68, 0.10);
 
-// Violet — special / classification (palette only until a semantic role exists)
+// Violet — special / classification
 $color-violet-pure:   #7c4dff;
 $color-violet-glow:   rgba(124, 77, 255, 0.60);
 $color-violet-border: rgba(124, 77, 255, 0.50);
@@ -147,6 +149,12 @@ $color-danger-border: $color-red-border;
 $color-danger-fill:   $color-red-fill;
 $color-danger-glow:   $color-red-glow;
 
+// Метка происхождения: аватар ISO, классификация сущности. Не состояние.
+$color-special:        $color-violet-pure;
+$color-special-border: $color-violet-border;
+$color-special-fill:   $color-violet-fill;
+$color-special-glow:   $color-violet-glow;
+
 // Toast service: info is primary, not a sixth hue
 $color-info:        $color-primary;
 $color-info-border: $color-primary-border;
@@ -193,8 +201,8 @@ $breakpoint-xl: 80rem;  // 1280px — широкий десктоп
 // ─── 4. Type ──────────────────────────────────────────────────────────────────
 // Второе имя в стеке — подстановка для кириллицы: ни у Orbitron, ни у Share Tech
 // Mono её нет, а подстановка в CSS идёт по каждому глифу отдельно.
-$font-primary:   'Orbitron', 'Montserrat', sans-serif;        // display, percent, stepper
-$font-secondary: 'Share Tech Mono', 'Roboto Mono', monospace; // fields, labels, hints
+$font-primary:   'Orbitron', sans-serif;        // display, percent, stepper
+$font-secondary: 'Share Tech Mono',  monospace; // fields, labels, hints
 
 $font-size-xs: 0.75rem;   // 12px — hint, error, progress label
 $font-size-sm: 0.875rem;  // 14px — toggle/slider value

@@ -125,10 +125,28 @@
     line-height: 1;
   }
 
-  &--info &__close:hover { color: $color-info; }
-  &--success &__close:hover { color: $color-success; }
-  &--warning &__close:hover { color: $color-warning; }
-  &--danger &__close:hover { color: $color-danger; }
+  // Фокус повторяет тонировку наведения и добавляет ореол: одного цвета мало,
+  // клавиатурному пользователю нужна заметная форма. Оттенок ореола берётся из
+  // intent-токенов, поэтому он совпадает с типом тоста.
+  &__close:focus-visible {
+    outline: none;
+  }
+
+  &--info &__close:hover,
+  &--info &__close:focus-visible { color: $color-info; }
+  &--info &__close:focus-visible { box-shadow: 0 0 $glow-size-sm $color-info-glow; }
+
+  &--success &__close:hover,
+  &--success &__close:focus-visible { color: $color-success; }
+  &--success &__close:focus-visible { box-shadow: 0 0 $glow-size-sm $color-success-glow; }
+
+  &--warning &__close:hover,
+  &--warning &__close:focus-visible { color: $color-warning; }
+  &--warning &__close:focus-visible { box-shadow: 0 0 $glow-size-sm $color-warning-glow; }
+
+  &--danger &__close:hover,
+  &--danger &__close:focus-visible { color: $color-danger; }
+  &--danger &__close:focus-visible { box-shadow: 0 0 $glow-size-sm $color-danger-glow; }
 }
 
 // Прокатывающаяся вбок шторка clip-path уходит, проявление остаётся.

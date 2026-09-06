@@ -1,0 +1,126 @@
+@use 'tokens' as *;
+
+:host {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.tron-avatar {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--tron-avatar-size);
+  height: var(--tron-avatar-size);
+  font-family: $font-primary;
+  font-size: var(--tron-avatar-glyph);
+  line-height: 1;
+  letter-spacing: $font-tracking;
+  text-transform: uppercase;
+  user-select: none;
+  color: $color-primary;
+  background-color: $color-primary-fill-subtle;
+  // Рамка того же цвета, что инициалы, поэтому её держит currentColor:
+  // модификатору типа остаётся сменить color, подложку и ореол.
+  border: $border-width-thick solid currentColor;
+  box-shadow: 0 0 $glow-size-sm var(--tron-avatar-glow);
+  --tron-avatar-glow: #{$color-primary-glow};
+
+  &--accent {
+    color: $color-accent;
+    background-color: $color-accent-fill;
+    --tron-avatar-glow: #{$color-accent-glow};
+  }
+
+  &--success {
+    color: $color-success;
+    background-color: $color-success-fill;
+    --tron-avatar-glow: #{$color-success-glow};
+  }
+
+  &--warning {
+    color: $color-warning;
+    background-color: $color-warning-fill;
+    --tron-avatar-glow: #{$color-warning-glow};
+  }
+
+  &--danger {
+    color: $color-danger;
+    background-color: $color-danger-fill;
+    --tron-avatar-glow: #{$color-danger-glow};
+  }
+
+  &--special {
+    color: $color-special;
+    background-color: $color-special-fill;
+    --tron-avatar-glow: #{$color-special-glow};
+  }
+
+  &--sm {
+    --tron-avatar-size: #{$space-6};
+    --tron-avatar-glyph: #{$font-size-xs};
+    --tron-avatar-status-size: 0.375rem;
+  }
+
+  // 40px: в шкале отступов такого шага нет, она про промежутки, а не про размеры
+  // элементов. Для аватара это основной кегль — между списком и профилем.
+  &--md {
+    --tron-avatar-size: 2.5rem;
+    --tron-avatar-glyph: #{$font-size-sm};
+    --tron-avatar-status-size: 0.5rem;
+  }
+
+  &--lg {
+    --tron-avatar-size: #{$space-7};
+    --tron-avatar-glyph: #{$font-size-md};
+    --tron-avatar-status-size: 0.625rem;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__initials {
+    // Разрядка вешает пустоту и после последней буквы, из-за неё пара съезжает
+    // вправо на половину шага. Отрицательный отступ возвращает её в центр.
+    margin-right: -$font-tracking;
+  }
+
+  &__status {
+    position: absolute;
+    // Смещения считаются от padding box, а он уже внутри рамки. Минус ставит
+    // бейдж поверх рамки, а не рядом с ней: угол читается одним знаком.
+    right: -$border-width;
+    bottom: -$border-width;
+    width: var(--tron-avatar-status-size);
+    height: var(--tron-avatar-status-size);
+    background-color: var(--tron-avatar-status-ink);
+    box-shadow: 0 0 $glow-size-sm var(--tron-avatar-status-glow);
+
+    &--online {
+      --tron-avatar-status-ink: #{$color-success};
+      --tron-avatar-status-glow: #{$color-success-glow};
+    }
+
+    &--away {
+      --tron-avatar-status-ink: #{$color-warning};
+      --tron-avatar-status-glow: #{$color-warning-glow};
+    }
+
+    &--busy {
+      --tron-avatar-status-ink: #{$color-danger};
+      --tron-avatar-status-glow: #{$color-danger-glow};
+    }
+
+    // Оффлайн не светится: свечение в этой сетке означает «на связи», и зелёный
+    // с серым различались бы только оттенком. Гаснет — значит вышел.
+    &--offline {
+      --tron-avatar-status-ink: #{$color-text-secondary};
+      --tron-avatar-status-glow: transparent;
+    }
+  }
+}

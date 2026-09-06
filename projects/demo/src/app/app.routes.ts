@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ToastPageComponent } from './pages/toast/toast-page.component';
+import { AvatarPageComponent } from './pages/avatar/avatar-page.component';
 import { ButtonPageComponent } from './pages/button/button-page.component';
 import { CheckboxPageComponent } from './pages/checkbox/checkbox-page.component';
 import { ChipPageComponent } from './pages/chip/chip-page.component';
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'radio', component: RadioPageComponent },
   { path: 'slider', component: SliderPageComponent },
   { path: 'tabs', component: TabsPageComponent },
+  { path: 'avatar', component: AvatarPageComponent },
   { path: 'chip', component: ChipPageComponent },
   { path: 'progress', component: ProgressPageComponent },
   { path: 'loader', component: LoaderPageComponent },

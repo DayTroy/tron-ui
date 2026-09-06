@@ -1,0 +1,97 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Avatar</h1>
+    <p>Identity mark: initials, a photo, presence. The name under it belongs to the page.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Roster</h2>
+    <div class="catalog__row">
+      <span class="catalog__figure">
+        <tron-avatar name="Tron" status="online" />
+        <span class="catalog__caption">Tron</span>
+      </span>
+      <span class="catalog__figure">
+        <tron-avatar name="Clu" type="accent" status="busy" />
+        <span class="catalog__caption">Clu</span>
+      </span>
+      <span class="catalog__figure">
+        <tron-avatar name="Quorra" initials="QR" type="special" status="offline" />
+        <span class="catalog__caption">Quorra</span>
+      </span>
+      <span class="catalog__figure">
+        <tron-avatar name="Iso" type="success" status="online" />
+        <span class="catalog__caption">Iso</span>
+      </span>
+    </div>
+    <p class="catalog__note">Colour is the faction, the corner square is presence.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Type</h2>
+    <div class="catalog__row">
+      <tron-avatar name="Primary" />
+      <tron-avatar name="Accent" type="accent" />
+      <tron-avatar name="Success" type="success" />
+      <tron-avatar name="Warning" type="warning" />
+      <tron-avatar name="Danger" type="danger" />
+      <tron-avatar name="Special" type="special" />
+    </div>
+    <p class="catalog__note">Special is classification, not a state: it never lines up with the statuses.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Sizes</h2>
+    <div class="catalog__row">
+      <tron-avatar name="Sam Flynn" size="sm" />
+      <tron-avatar name="Sam Flynn" size="md" />
+      <tron-avatar name="Sam Flynn" size="lg" />
+    </div>
+    <p class="catalog__note">32, 40 and 48 pixels — list, row, profile.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Presence</h2>
+    <div class="catalog__row">
+      <tron-avatar name="Online" status="online" />
+      <tron-avatar name="Away" status="away" />
+      <tron-avatar name="Busy" status="busy" />
+      <tron-avatar name="Offline" status="offline" />
+    </div>
+    <p class="catalog__note">
+      Offline is the one that does not glow: in this grid light means presence, so grey next to
+      green would differ by hue alone. The status joins the accessible name.
+    </p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Photo</h2>
+    <div class="catalog__row">
+      <tron-avatar name="Kevin Flynn" src="/tron-logo.png" size="lg" status="online" />
+      <tron-avatar name="Kevin Flynn" src="/derezzed.png" size="lg" status="online" />
+    </div>
+    <p class="catalog__note">Second one points at nothing: a dead link falls back to the initials.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Initials</h2>
+    <div class="catalog__row">
+      <span class="catalog__figure">
+        <tron-avatar name="Alan Bradley" />
+        <span class="catalog__caption">Alan Bradley</span>
+      </span>
+      <span class="catalog__figure">
+        <tron-avatar name="Yori" />
+        <span class="catalog__caption">Yori</span>
+      </span>
+      <span class="catalog__figure">
+        <tron-avatar name="Quorra" initials="QR" type="special" />
+        <span class="catalog__caption">Quorra, forced</span>
+      </span>
+    </div>
+    <p class="catalog__note">
+      Two words give two first letters, one word gives its first two. A hand-picked abbreviation
+      wins over both — nobody can guess that Quorra is QR.
+    </p>
+  </div>
+</section>
