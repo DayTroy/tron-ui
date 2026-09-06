@@ -1,9 +1,14 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 @keyframes dialog-in-bottom {
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
+}
+
+@keyframes dialog-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 tron-dialog {
@@ -94,7 +99,7 @@ tron-dialog {
     font-family: $font-primary;
     font-size: $font-size-lg;
     line-height: $line-height-tight;
-    letter-spacing: 0.08rem;
+    letter-spacing: $font-tracking;
     text-transform: uppercase;
     color: $color-primary;
     text-shadow: 0 0 $glow-size-md $color-primary-glow;
@@ -155,12 +160,12 @@ tron-dialog {
     &:focus-visible {
       outline: none;
       color: $color-danger;
-      @include tron-glow($color-danger, $color-danger-glow);
+      @include glow($color-danger, $color-danger-glow);
     }
   }
 }
 
-@media (max-width: #{$breakpoint-sm}) {
+@include media-down($breakpoint-sm) {
   .tron-dialog-pane.cdk-overlay-pane {
     align-items: flex-end;
   }
@@ -186,6 +191,16 @@ tron-dialog {
     &__corner--bl,
     &__corner--br {
       display: none;
+    }
+  }
+}
+
+// Выезд снизу на всю высоту — самое крупное движение в ките. Само появление
+// остаётся, чтобы диалог не возникал без предупреждения.
+@include media-down($breakpoint-sm) {
+  @media (prefers-reduced-motion: reduce) {
+    .tron-dialog {
+      animation-name: dialog-fade-in;
     }
   }
 }

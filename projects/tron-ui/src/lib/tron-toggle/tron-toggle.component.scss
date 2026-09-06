@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 .tron-toggle {
   display: inline-flex;
@@ -24,7 +24,7 @@
   transition: border-color $duration-normal $easing-out, box-shadow $duration-normal $easing-out;
 
   &.tron-toggle__track--checked {
-    @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+    @include glow($color-primary, $color-focus-ring, $glow-size-sm);
   }
 
   &:disabled {

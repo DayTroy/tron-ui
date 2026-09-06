@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 :host {
   display: inline-flex;
@@ -36,7 +36,7 @@
 
   &:focus-visible + .tron-checkbox__box {
     outline: none;
-    @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+    @include glow($color-primary, $color-focus-ring, $glow-size-sm);
   }
 }
 

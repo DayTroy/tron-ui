@@ -1,4 +1,4 @@
-@use '../styles/tokens' as *;
+@use 'tokens' as *;
 
 .tron-loader-backdrop {
   background: color-mix(in srgb, #{$color-bg} 78%, transparent);
@@ -23,7 +23,7 @@
   margin: 0;
   font-family: $font-primary;
   font-size: $font-size-md;
-  letter-spacing: 0.12rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   color: $color-text;
 }

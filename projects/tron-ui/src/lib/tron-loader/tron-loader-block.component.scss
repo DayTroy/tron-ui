@@ -1,4 +1,4 @@
-@use '../styles/tokens' as *;
+@use 'tokens' as *;
 
 :host {
   // The veil is positioned against this element, so the host owns the containing block.
@@ -22,7 +22,7 @@
   margin: 0;
   font-family: $font-primary;
   font-size: $font-size-md;
-  letter-spacing: 0.12rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   color: $color-text;
 }

@@ -66,12 +66,12 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/tron-ui/src/lib/styles"
+                "projects/tron-ui/styles"
               ]
             },
             "styles": [
               "projects/demo/src/styles.scss",
-              "projects/tron-ui/src/lib/styles/theme.scss"
+              "projects/tron-ui/styles/theme.scss"
             ],
             "scripts": []
           },

@@ -1,4 +1,5 @@
-@use '../styles/tokens' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 :host {
   position: fixed;
@@ -15,7 +16,7 @@
   gap: $space-2;
 }
 
-@media (max-width: #{$breakpoint-sm}) {
+@include media-down($breakpoint-sm) {
   :host {
     right: $space-3;
     left: $space-3;

@@ -191,8 +191,10 @@ $breakpoint-lg: 64rem;  // 1024px — сайдбар + main
 $breakpoint-xl: 80rem;  // 1280px — широкий десктоп
 
 // ─── 4. Type ──────────────────────────────────────────────────────────────────
-$font-primary:   'Orbitron', sans-serif;      // display, percent, stepper
-$font-secondary: 'Share Tech Mono', sans-serif; // fields, labels, hints
+// Второе имя в стеке — подстановка для кириллицы: ни у Orbitron, ни у Share Tech
+// Mono её нет, а подстановка в CSS идёт по каждому глифу отдельно.
+$font-primary:   'Orbitron', 'Montserrat', sans-serif;        // display, percent, stepper
+$font-secondary: 'Share Tech Mono', 'Roboto Mono', monospace; // fields, labels, hints
 
 $font-size-xs: 0.75rem;   // 12px — hint, error, progress label
 $font-size-sm: 0.875rem;  // 14px — toggle/slider value
@@ -201,6 +203,10 @@ $font-size-lg: 1.125rem;  // 18px — titles
 
 $line-height-tight: 1.25;
 $line-height-normal: 1.5;
+
+// Caps без разрядки читается как монолит, поэтому разрядка нужна всему uppercase.
+// Единица em, а не rem: разрядка держит пропорцию к кеглю сама, без второго токена.
+$font-tracking: 0.1em;
 
 $font-weight-regular: 400;
 $font-weight-medium: 500;

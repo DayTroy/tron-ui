@@ -1,4 +1,4 @@
-@use '../styles/tokens' as *;
+@use 'tokens' as *;
 
 :host {
   display: inline-flex;
@@ -14,7 +14,7 @@
   font-family: $font-secondary;
   font-size: $font-size-xs;
   line-height: $line-height-tight;
-  letter-spacing: 0.08rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   white-space: nowrap;
   color: $color-primary;

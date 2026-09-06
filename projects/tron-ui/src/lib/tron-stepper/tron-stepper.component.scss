@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 $node-size: $space-6;
 $line-gap: $space-2;
@@ -50,12 +50,12 @@ $stack-gap: $space-5;
     .tron-stepper__item--active &,
     .tron-stepper__item--completed & {
       color: $color-primary;
-      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+      @include glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
 
     &:focus-visible {
       outline: none;
-      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+      @include glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
   }
 
@@ -77,7 +77,7 @@ $stack-gap: $space-5;
   &__title {
     font-family: $font-primary;
     font-size: $font-size-xs;
-    letter-spacing: 0.08rem;
+    letter-spacing: $font-tracking;
     text-transform: uppercase;
     color: $color-text-muted;
   }

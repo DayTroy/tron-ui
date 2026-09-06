@@ -21,6 +21,8 @@ export class TronInputComponent extends TronControl<string> {
   protected readonly fieldId = `tron-input-${nextId++}`;
 
   readonly $isInvalid = computed(() => {
+    // Статус контрола — не сигнал, поэтому пересчёт запускает чтение значения.
+    this.$value();
     if (this.$isDisabled()) return false;
     const control = this.ngControl;
     return !!(control?.invalid && (control.dirty || control.touched));

@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 :host {
   display: inline-block;
@@ -19,7 +19,7 @@
   font-family: $font-primary;
   font-size: $font-size-sm;
   line-height: $line-height-tight;
-  letter-spacing: 0.125rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
 
   color: $color-primary;
@@ -29,11 +29,18 @@
     box-shadow $duration-normal $easing-out,
     border-color $duration-normal $easing-out,
     background-color $duration-normal $easing-out,
-    color $duration-normal $easing-out;
+    color $duration-normal $easing-out,
+    transform $duration-fast $easing-out;
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    @include tron-glow($color-primary, $color-focus-ring);
+    @include glow($color-primary, $color-focus-ring);
+  }
+
+  // Press pushes the light inward: the outer halo collapses into the well.
+  &:active:not(:disabled) {
+    box-shadow: inset 0 0 $glow-size-md $color-focus-ring;
+    transform: translateY($border-width);
   }
 
   &--ghost {
@@ -47,6 +54,13 @@
       background-color: $color-primary-fill;
       border-color: $color-primary;
     }
+
+    &:active:not(:disabled) {
+      color: $color-primary;
+      background-color: $color-primary-fill;
+      border-color: $color-primary;
+      box-shadow: inset 0 0 $glow-size-md $color-focus-ring;
+    }
   }
 
   &--danger {
@@ -58,7 +72,11 @@
     &:focus-visible:not(:disabled) {
       color: $color-danger;
       background-color: $color-danger-fill;
-      @include tron-glow($color-danger, $color-danger-glow);
+      @include glow($color-danger, $color-danger-glow);
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: inset 0 0 $glow-size-md $color-danger-glow;
     }
   }
 

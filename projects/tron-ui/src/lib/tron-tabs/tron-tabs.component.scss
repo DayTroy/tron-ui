@@ -1,4 +1,4 @@
-@use '../styles/tokens' as *;
+@use 'tokens' as *;
 
 :host {
   display: block;
@@ -32,7 +32,7 @@
     border: none;
     font-family: $font-primary;
     font-size: $font-size-xs;
-    letter-spacing: 0.08rem;
+    letter-spacing: $font-tracking;
     text-transform: uppercase;
     color: $color-text-secondary;
     cursor: pointer;

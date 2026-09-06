@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 :host {
   display: block;
@@ -55,7 +55,7 @@
 
     &:focus-within {
       outline: none;
-      @include tron-glow($color-primary, $color-focus-ring, $glow-size-sm);
+      @include glow($color-primary, $color-focus-ring, $glow-size-sm);
     }
   }
 
@@ -65,7 +65,7 @@
     &:hover,
     &:focus-within {
       outline: none;
-      @include tron-glow($color-danger, $color-danger-glow, $glow-size-sm);
+      @include glow($color-danger, $color-danger-glow, $glow-size-sm);
     }
   }
 

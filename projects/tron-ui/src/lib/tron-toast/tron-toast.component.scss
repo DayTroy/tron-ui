@@ -1,5 +1,5 @@
-@use '../styles/tokens' as *;
-@use '../styles/mixins' as *;
+@use 'tokens' as *;
+@use 'mixins' as *;
 
 @keyframes tron-toast-in {
   from {
@@ -11,6 +11,11 @@
     opacity: 1;
     clip-path: inset(0 0 0 0);
   }
+}
+
+@keyframes tron-toast-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .tron-toast {
@@ -124,4 +129,11 @@
   &--success &__close:hover { color: $color-success; }
   &--warning &__close:hover { color: $color-warning; }
   &--danger &__close:hover { color: $color-danger; }
+}
+
+// Прокатывающаяся вбок шторка clip-path уходит, проявление остаётся.
+@media (prefers-reduced-motion: reduce) {
+  .tron-toast {
+    animation-name: tron-toast-fade-in;
+  }
 }

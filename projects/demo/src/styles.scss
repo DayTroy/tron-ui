@@ -1,9 +1,17 @@
-@use '../../tron-ui/src/lib/styles/theme';
+// theme.scss подключён отдельной строкой в angular.json, как это сделает потребитель.
 @use 'tokens' as *;
 
 @font-face {
   font-family: 'Share Tech Mono';
   src: url('/fonts/ShareTechMonoRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/fonts/Orbitron-Cyrillic.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -30,7 +38,7 @@ body {
   margin: 0;
   font-family: $font-primary;
   font-size: $font-size-lg;
-  letter-spacing: 0.12rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   color: $color-primary;
   text-shadow: 0 0 $glow-size-md $color-primary-glow;
@@ -53,7 +61,7 @@ body {
   margin: 0;
   font-family: $font-secondary;
   font-size: $font-size-xs;
-  letter-spacing: 0.08rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   color: $color-text-secondary;
 }
@@ -97,7 +105,7 @@ body {
   gap: $space-2;
   font-family: $font-secondary;
   font-size: $font-size-xs;
-  letter-spacing: 0.08rem;
+  letter-spacing: $font-tracking;
   text-transform: uppercase;
   color: $color-text-secondary;
 }
