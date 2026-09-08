@@ -28,10 +28,17 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/tron-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/tron-ui/karma.conf.js",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
-            ]
+            ],
+            "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/tron-ui/styles"
+              ]
+            }
           }
         }
       }
