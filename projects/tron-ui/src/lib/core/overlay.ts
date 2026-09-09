@@ -28,4 +28,20 @@ export class TronOverlayService {
       disposeOnNavigation: true,
     });
   }
+
+  /**
+   * Full-screen pane, no backdrop, no scroll lock. The host places itself in CSS.
+   * Clicks fall through until a child sets pointer-events. Survives navigation.
+   */
+  createChrome(options: { panelClass: string | string[] }): OverlayRef {
+    return this.overlay.create({
+      hasBackdrop: false,
+      panelClass: options.panelClass,
+      width: '100%',
+      height: '100%',
+      positionStrategy: this.overlay.position().global().top().left(),
+      scrollStrategy: this.overlay.scrollStrategies.noop(),
+      disposeOnNavigation: false,
+    });
+  }
 }

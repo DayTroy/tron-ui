@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject, TemplateRef, viewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { TronDrawerService, TronToastOutletComponent } from '../../../tron-ui/src/public-api';
+import { TronDrawerService } from '../../../tron-ui/src/public-api';
 import { CATALOG_NAV } from './catalog-nav';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgTemplateOutlet, TronToastOutletComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

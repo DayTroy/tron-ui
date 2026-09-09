@@ -26,7 +26,6 @@ export * from './lib/tron-loader/tron-loader.service';
 export * from './lib/tron-slider/tron-slider.component';
 export * from './lib/tron-select/tron-select.component';
 export * from './lib/tron-toast/tron-toast.component';
-export * from './lib/tron-toast/tron-toast-outlet.component';
 export * from './lib/tron-toast/tron-toast.service';
 export * from './lib/tron-dialog/tron-dialog.service';
 export * from './lib/tron-drawer/tron-drawer.service';

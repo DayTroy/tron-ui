@@ -44,7 +44,7 @@
   &__thumb {
     position: absolute;
     top: 50%;
-    z-index: 1;
+    z-index: $z-local;
     width: $space-4;
     height: $space-4;
 

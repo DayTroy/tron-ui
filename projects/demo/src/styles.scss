@@ -1,22 +1,6 @@
 // theme.scss подключён отдельной строкой в angular.json, как это сделает потребитель.
 @use 'tokens' as *;
 
-@font-face {
-  font-family: 'Share Tech Mono';
-  src: url('/fonts/ShareTechMonoRegular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Orbitron';
-  src: url('/fonts/Orbitron-Cyrillic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 html,
 body {
   height: 100%;
@@ -86,8 +70,6 @@ body {
   gap: $space-2;
 }
 
-// Подпись под элементом — приём страницы, а не компонента: аватар не знает,
-// чем его подписать, и в списке подпись обычно стоит справа, а не снизу.
 .catalog__figure {
   display: inline-flex;
   flex-direction: column;

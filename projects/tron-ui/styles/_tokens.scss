@@ -226,3 +226,11 @@ $duration-slow: 0.3s;
 $easing-out: ease;
 
 $opacity-disabled: 0.5;
+
+// ─── 6. Stack ─────────────────────────────────────────────────────────────────
+// Local — внутри виджета: панель select над полем, thumb над треком.
+// Overlay — CDK pane. 1000 как в overlay-prebuilt.css (dialog / drawer / loader).
+// Toast — выше модалки, иначе алерт прячется под dialog.
+$z-local: 1;
+$z-overlay: 1000;
+$z-toast: 1100;

@@ -1,4 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { inject, Injectable, signal } from '@angular/core';
+import { TronOverlayService } from '../core/overlay';
+import { TronToastOutletComponent } from './tron-toast-outlet.component';
 
 export type TronToastType = 'info' | 'success' | 'warning' | 'danger';
 
@@ -15,6 +19,8 @@ export interface TronToastItem {
 export class TronToastService {
   readonly $items = signal<TronToastItem[]>([]);
 
+  private readonly overlays = inject(TronOverlayService);
+  private overlayRef: OverlayRef | null = null;
   private readonly timers = new Map<string, ReturnType<typeof setTimeout>>();
 
   show(title: string, type: TronToastType = 'info', message = '', duration = 4000): string {
@@ -27,6 +33,7 @@ export class TronToastService {
     }
 
     this.$items.update((current) => [item, ...current]);
+    this.ensureHost();
 
     if (duration > 0) {
       const timer = setTimeout(() => this.dismiss(id), duration);
@@ -55,12 +62,30 @@ export class TronToastService {
   dismiss(id: string): void {
     this.clearTimer(id);
     this.$items.update((items) => items.filter((item) => item.id !== id));
+    this.teardownIfEmpty();
   }
 
   clear(): void {
     this.timers.forEach((timer) => clearTimeout(timer));
     this.timers.clear();
     this.$items.set([]);
+    this.teardownIfEmpty();
+  }
+
+  private ensureHost(): void {
+    if (this.overlayRef) return;
+
+    this.overlayRef = this.overlays.createChrome({
+      panelClass: 'tron-toast-pane',
+    });
+    this.overlayRef.attach(new ComponentPortal(TronToastOutletComponent));
+    this.overlayRef.detachments().subscribe(() => this.overlayRef = null);
+  }
+
+  private teardownIfEmpty(): void {
+    if (this.$items().length > 0) return;
+    this.overlayRef?.dispose();
+    this.overlayRef = null;
   }
 
   private clearTimer(id: string): void {

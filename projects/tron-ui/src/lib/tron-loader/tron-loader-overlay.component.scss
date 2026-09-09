@@ -10,6 +10,7 @@
   justify-content: center;
   // Blocking by design: the backdrop swallows clicks, the panel adds nothing to catch.
   pointer-events: none;
+  z-index: $z-overlay;
 }
 
 .tron-loader-overlay {

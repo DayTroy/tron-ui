@@ -54,6 +54,7 @@
   display: flex;
   align-items: stretch;
   pointer-events: none;
+  z-index: $z-overlay;
 }
 
 .tron-drawer-pane--start {

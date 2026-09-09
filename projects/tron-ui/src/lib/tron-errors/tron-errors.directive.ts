@@ -1,4 +1,4 @@
-import { afterNextRender, booleanAttribute, ComponentRef, Directive, ElementRef, HostListener, inject, Injector, input, OnInit, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Directive, ElementRef, inject, OnInit, ViewContainerRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { Destroyable } from '../core/destroyable';

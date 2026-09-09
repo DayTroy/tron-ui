@@ -1,23 +1,29 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-:host {
-  position: fixed;
-  right: $space-5;
-  bottom: $space-5;
-  z-index: 10;
-  max-width: min(24rem, calc(100vw - #{$space-5} * 2));
+.tron-toast-pane.cdk-overlay-pane {
+  pointer-events: none;
+  z-index: $z-toast;
+}
+
+tron-toast-outlet {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
 }
 
 .tron-toast-outlet {
+  position: absolute;
+  right: $space-5;
+  bottom: $space-5;
+  max-width: min(24rem, calc(100vw - #{$space-5} * 2));
   display: flex;
   flex-direction: column;
   gap: $space-2;
 }
 
 @include media-down($breakpoint-sm) {
-  :host {
+  .tron-toast-outlet {
     right: $space-3;
     left: $space-3;
     bottom: calc(#{$space-3} + env(safe-area-inset-bottom, 0px));
