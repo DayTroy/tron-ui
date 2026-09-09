@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { TronControl } from '../core/tron-control';
+import { TronIconComponent } from '../tron-icon/tron-icon.component';
 
 @Component({
   selector: 'tron-checkbox',
-  imports: [],
+  imports: [TronIconComponent],
   templateUrl: './tron-checkbox.component.html',
   styleUrl: './tron-checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

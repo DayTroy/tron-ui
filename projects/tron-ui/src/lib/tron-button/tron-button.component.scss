@@ -92,15 +92,4 @@
     cursor: not-allowed;
     box-shadow: none;
   }
-
-  &__prefix,
-  &__suffix {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  &__prefix:not(:has(*)),
-  &__suffix:not(:has(*)) {
-    display: none;
-  }
 }

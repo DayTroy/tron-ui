@@ -60,9 +60,7 @@ $stack-gap: $space-5;
   }
 
   &__check {
-    display: block;
-    width: $space-3;
-    height: $space-3;
+    --tron-icon-size: #{$space-3};
   }
 
   &__copy {

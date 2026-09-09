@@ -14,6 +14,7 @@ export * from './lib/tron-checkbox/tron-checkbox.component';
 export * from './lib/tron-radio/tron-radio-group.component';
 export * from './lib/tron-radio/tron-radio.component';
 export * from './lib/tron-chip/tron-chip.component';
+export * from './lib/tron-icon/tron-icon.component';
 export * from './lib/tron-avatar/tron-avatar.component';
 export * from './lib/tron-stepper/tron-stepper.component';
 export * from './lib/tron-tabs/tron-tabs.component';

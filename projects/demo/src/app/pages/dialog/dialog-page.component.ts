@@ -1,11 +1,11 @@
 import { Component, inject, TemplateRef, viewChild } from '@angular/core';
-import { TronButtonComponent, TronDialogService, TronInputComponent } from '../../../../../tron-ui/src/public-api';
+import { TronButtonComponent, TronDialogService, TronIconComponent, TronInputComponent } from '../../../../../tron-ui/src/public-api';
 import { IdentityDialogComponent } from '../../identity-dialog.component';
 
 @Component({
   selector: 'app-dialog-page',
   standalone: true,
-  imports: [TronButtonComponent, TronInputComponent],
+  imports: [TronButtonComponent, TronIconComponent, TronInputComponent],
   templateUrl: './dialog-page.component.html',
 })
 export class DialogPageComponent {

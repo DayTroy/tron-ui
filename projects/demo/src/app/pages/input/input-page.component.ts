@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { AbstractControl, FormControl, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { TronErrorsDirective, TronInputComponent, TronToggleComponent } from '../../../../../tron-ui/src/public-api';
+import { TronErrorsDirective, TronIconComponent, TronInputComponent, TronToggleComponent } from '../../../../../tron-ui/src/public-api';
 
 function discSignature(control: AbstractControl): ValidationErrors | null {
   const value = (control.value ?? '') as string;
@@ -12,7 +12,7 @@ function discSignature(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-input-page',
   standalone: true,
-  imports: [ReactiveFormsModule, TronInputComponent, TronToggleComponent, TronErrorsDirective],
+  imports: [ReactiveFormsModule, TronInputComponent, TronToggleComponent, TronErrorsDirective, TronIconComponent],
   templateUrl: './input-page.component.html',
 })
 export class InputPageComponent {

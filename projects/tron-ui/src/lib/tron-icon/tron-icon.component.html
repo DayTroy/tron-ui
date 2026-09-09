@@ -1,0 +1,21 @@
+<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+  @for (path of $icon().paths ?? []; track path.d) {
+    <path
+      [attr.d]="path.d"
+      stroke="currentColor"
+      stroke-width="1.2"
+      [attr.stroke-linecap]="path.cap ?? null"
+      [attr.stroke-linejoin]="path.join ?? null"
+    />
+  }
+  @for (circle of $icon().circles ?? []; track circle.cx + '-' + circle.cy + '-' + circle.r) {
+    <circle
+      [attr.cx]="circle.cx"
+      [attr.cy]="circle.cy"
+      [attr.r]="circle.r"
+      [attr.stroke]="circle.fill ? null : 'currentColor'"
+      [attr.stroke-width]="circle.fill ? null : 1.2"
+      [attr.fill]="circle.fill ? 'currentColor' : 'none'"
+    />
+  }
+</svg>

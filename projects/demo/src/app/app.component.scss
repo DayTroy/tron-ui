@@ -67,10 +67,8 @@
   border: $border-width solid $color-border-strong;
   cursor: pointer;
 
-  svg {
-    display: block;
-    width: 1rem;
-    height: 1rem;
+  tron-icon {
+    --tron-icon-size: 1rem;
   }
 
   &:hover,

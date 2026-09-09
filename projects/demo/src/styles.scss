@@ -85,6 +85,10 @@ body {
   color: $color-text-secondary;
 }
 
+.catalog__glyphs {
+  color: $color-primary;
+}
+
 .catalog__stack {
   display: flex;
   flex-direction: column;

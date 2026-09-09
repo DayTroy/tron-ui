@@ -1,13 +1,14 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, signal, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { TronIconComponent } from '../tron-icon/tron-icon.component';
 import { type TronDrawerContent, type TronDrawerPosition } from './tron-drawer.service';
 
 let nextId = 0;
 
 @Component({
   selector: 'tron-drawer',
-  imports: [CdkTrapFocus, NgComponentOutlet, NgTemplateOutlet],
+  imports: [CdkTrapFocus, NgComponentOutlet, NgTemplateOutlet, TronIconComponent],
   templateUrl: './tron-drawer.component.html',
   styleUrl: './tron-drawer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

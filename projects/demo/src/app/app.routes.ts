@@ -7,6 +7,7 @@ import { ChipPageComponent } from './pages/chip/chip-page.component';
 import { DialogPageComponent } from './pages/dialog/dialog-page.component';
 import { DrawerPageComponent } from './pages/drawer/drawer-page.component';
 import { FormPageComponent } from './pages/form/form-page.component';
+import { IconPageComponent } from './pages/icon/icon-page.component';
 import { InputPageComponent } from './pages/input/input-page.component';
 import { LoaderPageComponent } from './pages/loader/loader-page.component';
 import { ProgressPageComponent } from './pages/progress/progress-page.component';
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'tabs', component: TabsPageComponent },
   { path: 'avatar', component: AvatarPageComponent },
   { path: 'chip', component: ChipPageComponent },
+  { path: 'icon', component: IconPageComponent },
   { path: 'progress', component: ProgressPageComponent },
   { path: 'loader', component: LoaderPageComponent },
   { path: 'stepper', component: StepperPageComponent },

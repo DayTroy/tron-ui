@@ -204,6 +204,13 @@ $breakpoint-xl: 80rem;  // 1280px — широкий десктоп
 $font-primary:   'Orbitron', sans-serif;        // display, percent, stepper
 $font-secondary: 'Share Tech Mono',  monospace; // fields, labels, hints
 
+// Orbitron-Cyrillic, UPM 1000, sCapHeight 721. В файле hhea 750/-250: над
+// капителью 0.029em, под ней 0.25em — «B» сидит высоко, 1em-иконка кажется ниже.
+// CSS метрики не читает; @font-face override в theme.scss делит остаток поровну.
+$fm-capital-height: 0.721;
+$fm-ascent-override: (1 + $fm-capital-height) * 50%;
+$fm-descent-override: (1 - $fm-capital-height) * 50%;
+
 $font-size-xs: 0.75rem;   // 12px — hint, error, progress label
 $font-size-sm: 0.875rem;  // 14px — toggle/slider value
 $font-size-md: 1rem;      // 16px — input value (inherit from control)

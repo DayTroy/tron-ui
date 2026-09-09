@@ -103,6 +103,12 @@
     color: $color-text-secondary;
   }
 
+  &__prefix,
+  &__suffix {
+    display: inline-flex;
+    color: $color-text-secondary;
+  }
+
   &__prefix:not(:has(*)),
   &__suffix:not(:has(*)) {
     display: none;

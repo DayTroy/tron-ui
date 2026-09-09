@@ -7,7 +7,7 @@
   [type]="$type()"
   [disabled]="$disabled()"
 >
-  <span class="tron-button__prefix"><ng-content select="[tronPrefix]" /></span>
+  <ng-content select="[tronPrefix]" />
   <ng-content />
-  <span class="tron-button__suffix"><ng-content select="[tronSuffix]" /></span>
+  <ng-content select="[tronSuffix]" />
 </button>

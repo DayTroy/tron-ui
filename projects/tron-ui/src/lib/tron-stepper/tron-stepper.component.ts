@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { TronIconComponent } from '../tron-icon/tron-icon.component';
 
 export interface TronStepItem {
   name: string;
@@ -7,7 +8,7 @@ export interface TronStepItem {
 
 @Component({
   selector: 'tron-stepper',
-  imports: [],
+  imports: [TronIconComponent],
   templateUrl: './tron-stepper.component.html',
   styleUrl: './tron-stepper.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,28 @@
+@use 'tokens' as *;
+
+:host {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--tron-icon-size);
+  height: var(--tron-icon-size);
+  color: inherit;
+  --tron-icon-size: 1em;
+
+  &.tron-icon--sm {
+    --tron-icon-size: #{$font-size-xs};
+  }
+
+  &.tron-icon--md {
+    --tron-icon-size: #{$font-size-md};
+  }
+
+  &.tron-icon--lg {
+    --tron-icon-size: #{$font-size-lg};
+  }
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

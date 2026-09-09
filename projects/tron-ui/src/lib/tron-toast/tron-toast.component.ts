@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { TronIconComponent, type TronIconName } from '../tron-icon/tron-icon.component';
 
 const LABELS = {
   info: 'INFO',
@@ -7,9 +8,16 @@ const LABELS = {
   danger: 'ERROR',
 };
 
+const ICONS: Record<keyof typeof LABELS, TronIconName> = {
+  info: 'info',
+  success: 'success',
+  warning: 'warning',
+  danger: 'error',
+};
+
 @Component({
   selector: 'tron-toast',
-  imports: [],
+  imports: [TronIconComponent],
   templateUrl: './tron-toast.component.html',
   styleUrl: './tron-toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +30,7 @@ export class TronToastComponent {
   readonly $dismissed = output({ alias: 'dismissed' });
 
   readonly $label = computed(() => LABELS[this.$type()]);
+  readonly $iconName = computed(() => ICONS[this.$type()]);
 
   dismiss(): void {
     this.$dismissed.emit();

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal, untracked } from '@angular/core';
 import { TronControl } from '../core/tron-control';
+import { TronIconComponent } from '../tron-icon/tron-icon.component';
 
 export interface TronSelectOption {
   value: string | number;
@@ -11,7 +12,7 @@ let nextId = 0;
 
 @Component({
   selector: 'tron-select',
-  imports: [],
+  imports: [TronIconComponent],
   templateUrl: './tron-select.component.html',
   styleUrl: './tron-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

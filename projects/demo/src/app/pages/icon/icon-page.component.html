@@ -1,0 +1,46 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Icon</h1>
+    <p>Stroke glyphs, 16×16. currentColor — so the parent paints them.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Set</h2>
+    <div class="catalog__row catalog__glyphs">
+      @for (name of names; track name) {
+        <span class="catalog__figure">
+          <tron-icon [name]="name" />
+          <span class="catalog__caption">{{ name }}</span>
+        </span>
+      }
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Sizes</h2>
+    <div class="catalog__row catalog__glyphs">
+      <tron-icon name="search" size="sm" />
+      <tron-icon name="search" size="md" />
+      <tron-icon name="search" size="lg" />
+    </div>
+    <p class="catalog__note">Without size the glyph is 1em — same as the parent type. sm / md / lg lock 12 / 16 / 18px.</p>
+  </div>
+
+  <div class="catalog__block">
+    <h2>In a slot</h2>
+    <div class="catalog__row">
+      <tron-button>
+        <tron-icon tronPrefix name="plus" />
+        Create
+      </tron-button>
+      <tron-button variant="ghost">
+        <tron-icon tronPrefix name="search" />
+        Scan
+      </tron-button>
+      <tron-button variant="danger">
+        <tron-icon tronPrefix name="close" />
+        Derezz
+      </tron-button>
+    </div>
+  </div>
+</section>

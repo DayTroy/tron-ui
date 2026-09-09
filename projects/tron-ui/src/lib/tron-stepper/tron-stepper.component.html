@@ -13,15 +13,7 @@
         (click)="setStep(i)"
       >
         @if ($currentStep() > i) {
-          <svg class="tron-stepper__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <polyline
-              points="1.5 6 4.5 9 10.5 3"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="square"
-              stroke-linejoin="miter"
-            />
-          </svg>
+          <tron-icon class="tron-stepper__check" name="check" />
         } @else {
           {{ i + 1 }}
         }
