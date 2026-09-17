@@ -166,7 +166,7 @@ tron-dialog {
   }
 }
 
-@include media-down($breakpoint-sm) {
+@include mobile {
   .tron-dialog-pane.cdk-overlay-pane {
     align-items: flex-end;
   }
@@ -198,7 +198,7 @@ tron-dialog {
 
 // Выезд снизу на всю высоту — самое крупное движение в ките. Само появление
 // остаётся, чтобы диалог не возникал без предупреждения.
-@include media-down($breakpoint-sm) {
+@include mobile {
   @media (prefers-reduced-motion: reduce) {
     .tron-dialog {
       animation-name: dialog-fade-in;

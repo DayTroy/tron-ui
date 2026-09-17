@@ -22,7 +22,7 @@ tron-toast-outlet {
   gap: $space-2;
 }
 
-@include media-down($breakpoint-sm) {
+@include mobile {
   .tron-toast-outlet {
     right: $space-3;
     left: $space-3;

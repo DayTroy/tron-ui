@@ -16,3 +16,22 @@
     @content;
   }
 }
+
+// Named bands. They do not overlap: mobile < sm, tablet sm–lg, desktop ≥ lg.
+@mixin mobile {
+  @include media-down($breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg - 0.0625rem) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include media-up($breakpoint-lg) {
+    @content;
+  }
+}

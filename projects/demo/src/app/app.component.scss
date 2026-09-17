@@ -122,7 +122,7 @@
   padding: $space-6;
 }
 
-@include media-down($breakpoint-sm) {
+@include mobile {
   .shell {
     flex-direction: column;
   }

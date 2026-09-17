@@ -192,7 +192,7 @@ $border-width-thick: 2px;
 $glow-size-sm: 6px;
 $glow-size-md: 12px;
 
-// Breakpoints — @media / @container. Mobile-first: min-width = «с этого размера вверх».
+// Breakpoints — @media / @container. Named mixins: mobile < sm, tablet sm–lg, desktop ≥ lg.
 $breakpoint-sm: 40rem;  // 640px — stack / compact chrome
 $breakpoint-md: 48rem;  // 768px — tablet, одна колонка каталога
 $breakpoint-lg: 64rem;  // 1024px — сайдбар + main
