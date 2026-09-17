@@ -1,16 +1,6 @@
 // theme.scss подключён отдельной строкой в angular.json, как это сделает потребитель.
 @use 'tokens' as *;
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background-color: $color-bg;
-}
-
 .catalog {
   display: flex;
   flex-direction: column;

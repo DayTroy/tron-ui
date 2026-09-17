@@ -10,6 +10,12 @@ export interface CatalogNavGroup {
 
 export const CATALOG_NAV: CatalogNavGroup[] = [
   {
+    label: 'Foundation',
+    items: [
+      { path: '/type', label: 'Type' },
+    ],
+  },
+  {
     label: 'Controls',
     items: [
       { path: '/button', label: 'Button' },

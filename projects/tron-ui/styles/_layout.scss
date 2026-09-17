@@ -1,0 +1,23 @@
+@use 'tokens' as *;
+
+.tron-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  &--sm { gap: $space-2; }
+  &--lg { gap: $space-6; }
+}
+
+.tron-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+}
+
+.tron-panel {
+  padding: $space-4;
+  background-color: $color-surface;
+  border: $border-width solid $color-border;
+}

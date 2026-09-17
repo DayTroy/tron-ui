@@ -19,10 +19,11 @@ import { TabsPageComponent } from './pages/tabs/tabs-page.component';
 import { TextareaPageComponent } from './pages/textarea/textarea-page.component';
 import { TogglePageComponent } from './pages/toggle/toggle-page.component';
 import { TooltipPageComponent } from './pages/tooltip/tooltip-page.component';
-
+import { TypePageComponent } from './pages/type/type-page.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'button' },
+  { path: 'type', component: TypePageComponent },
   { path: 'button', component: ButtonPageComponent },
   { path: 'input', component: InputPageComponent },
   { path: 'textarea', component: TextareaPageComponent },

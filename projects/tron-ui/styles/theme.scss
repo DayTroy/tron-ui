@@ -1,5 +1,7 @@
 @use '@angular/cdk/overlay-prebuilt.css';
 @use 'tokens' as *;
+@use 'typography';
+@use 'layout';
 
 @font-face {
   font-family: 'Share Tech Mono';
@@ -24,4 +26,18 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
 }
