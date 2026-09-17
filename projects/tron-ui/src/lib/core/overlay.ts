@@ -1,4 +1,4 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef, type ConnectedPosition } from '@angular/cdk/overlay';
 import { inject, Injectable } from '@angular/core';
 
 export interface TronOverlayOptions {
@@ -42,6 +42,31 @@ export class TronOverlayService {
       positionStrategy: this.overlay.position().global().top().left(),
       scrollStrategy: this.overlay.scrollStrategies.noop(),
       disposeOnNavigation: false,
+    });
+  }
+
+  /**
+   * Content-sized pane pinned to an origin. No backdrop, no scroll lock.
+   * Follows the origin while it stays on screen (tooltip).
+   */
+  createAnchored(
+    origin: HTMLElement,
+    options: {
+      panelClass: string | string[];
+      positions: ConnectedPosition[];
+    },
+  ): OverlayRef {
+    return this.overlay.create({
+      hasBackdrop: false,
+      panelClass: options.panelClass,
+      positionStrategy: this.overlay
+        .position()
+        .flexibleConnectedTo(origin)
+        .withFlexibleDimensions(false)
+        .withPush(true)
+        .withPositions(options.positions),
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      disposeOnNavigation: true,
     });
   }
 }

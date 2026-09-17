@@ -45,6 +45,7 @@ export const CATALOG_NAV: CatalogNavGroup[] = [
       { path: '/dialog', label: 'Dialog' },
       { path: '/drawer', label: 'Drawer' },
       { path: '/toast', label: 'Toast' },
+      { path: '/tooltip', label: 'Tooltip' },
     ],
   },
   {

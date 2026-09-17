@@ -18,6 +18,8 @@ import { StepperPageComponent } from './pages/stepper/stepper-page.component';
 import { TabsPageComponent } from './pages/tabs/tabs-page.component';
 import { TextareaPageComponent } from './pages/textarea/textarea-page.component';
 import { TogglePageComponent } from './pages/toggle/toggle-page.component';
+import { TooltipPageComponent } from './pages/tooltip/tooltip-page.component';
+
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'button' },
@@ -39,6 +41,7 @@ export const routes: Routes = [
   { path: 'dialog', component: DialogPageComponent },
   { path: 'drawer', component: DrawerPageComponent },
   { path: 'toast', component: ToastPageComponent },
+  { path: 'tooltip', component: TooltipPageComponent },
   { path: 'alert', redirectTo: 'toast' },
   { path: 'form', component: FormPageComponent },
 ];

@@ -1,0 +1,40 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Tooltip</h1>
+    <p>Hover or focus. Falls back to the opposite edge if the origin is against the viewport.</p>
+  </header>
+
+  <div class="catalog__block">
+    <h2>Default</h2>
+    <div class="catalog__row">
+      <tron-button tronTooltip="Identity disc credentials">Scan</tron-button>
+      <tron-button
+        variant="ghost"
+        tronTooltip="User program"
+        aria-label="User program"
+      >
+        <tron-icon name="user" />
+      </tron-button>
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Position</h2>
+    <div class="catalog__row">
+      <tron-button tronTooltip="Above the origin">Top</tron-button>
+      <tron-button tronTooltip="Below the origin" tronTooltipPosition="bottom">Bottom</tron-button>
+      <tron-button tronTooltip="Before the origin" tronTooltipPosition="start">Start</tron-button>
+      <tron-button tronTooltip="After the origin" tronTooltipPosition="end">End</tron-button>
+    </div>
+  </div>
+
+  <div class="catalog__block">
+    <h2>Long copy</h2>
+    <div class="catalog__row">
+      <tron-button
+        variant="ghost"
+        tronTooltip="Grid access for sector 7-G requires elevated clearance before the disc can be read."
+      >Briefing</tron-button>
+    </div>
+  </div>
+</section>

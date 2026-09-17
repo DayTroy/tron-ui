@@ -30,3 +30,4 @@ export * from './lib/tron-toast/tron-toast.component';
 export * from './lib/tron-toast/tron-toast.service';
 export * from './lib/tron-dialog/tron-dialog.service';
 export * from './lib/tron-drawer/tron-drawer.service';
+export * from './lib/tron-tooltip/tron-tooltip.directive';
