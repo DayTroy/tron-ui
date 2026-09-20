@@ -2,8 +2,6 @@
  * Public API Surface of tron-ui
  */
 
-export * from './lib/core/destroyable';
-export * from './lib/core/tron-control';
 export * from './lib/tron-button/tron-button.component';
 export * from './lib/tron-input/tron-input.component';
 export * from './lib/tron-textarea/tron-textarea.component';

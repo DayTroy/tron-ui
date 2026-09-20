@@ -25,7 +25,9 @@
 }
 
 .shell__brand {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
   margin-bottom: $space-5;
   font-family: $font-primary;
   font-size: $font-size-sm;
@@ -36,6 +38,28 @@
   text-decoration: none;
   color: $color-primary;
   text-shadow: 0 0 $glow-size-md $color-primary-glow;
+}
+
+.shell__mark {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 $glow-size-md $color-primary-glow);
+}
+
+.shell__mark-disc {
+  fill: $color-bg;
+}
+
+.shell__mark-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+}
+
+.shell__mark-bit {
+  fill: $color-text;
 }
 
 .shell__topbar {

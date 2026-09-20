@@ -1,9 +1,15 @@
 {
-  "name": "tron-ui",
+  "name": "ng-tron",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DayTroy/tron-ui.git"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
+    "@angular/forms": "^19.2.0",
     "@angular/cdk": "^19.2.0"
   },
   "dependencies": {

@@ -1,11 +1,11 @@
-# tron-ui
+# ng-tron
 
 Standalone Angular 19 components. Catalog: [github.com/DayTroy/tron-ui](https://github.com/DayTroy/tron-ui).
 
 ## Install
 
 ```bash
-npm install tron-ui @angular/cdk
+npm install ng-tron @angular/cdk
 ```
 
 Peer: Angular 19. Application styles must be SCSS.
@@ -17,11 +17,11 @@ In `angular.json`:
 ```json
 {
   "stylePreprocessorOptions": {
-    "includePaths": ["node_modules/tron-ui/styles"]
+    "includePaths": ["node_modules/ng-tron/styles"]
   },
   "styles": [
     "src/styles.scss",
-    "node_modules/tron-ui/styles/theme.scss"
+    "node_modules/ng-tron/styles/theme.scss"
   ]
 }
 ```
@@ -42,7 +42,7 @@ App `.scss` can then `@use 'tokens'` and `@use 'mixins'`.
 
 ```ts
 import { Component } from '@angular/core';
-import { TronButtonComponent } from 'tron-ui';
+import { TronButtonComponent } from 'ng-tron';
 
 @Component({
   selector: 'app-login',
