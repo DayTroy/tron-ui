@@ -6,7 +6,7 @@ Angular UI kit. Dark grid, neon chrome. The [catalog](https://github.com/DayTroy
 ## Install
 
 ```bash
-npm install ng-tron @angular/cdk
+npm install ngx-tron @angular/cdk
 ```
 ## Setup
 
@@ -15,11 +15,11 @@ In `angular.json`, point `includePaths` at the kit styles and put `theme.scss` i
 ```json
 {
   "stylePreprocessorOptions": {
-    "includePaths": ["node_modules/ng-tron/styles"]
+    "includePaths": ["node_modules/ngx-tron/styles"]
   },
   "styles": [
     "src/styles.scss",
-    "node_modules/ng-tron/styles/theme.scss"
+    "node_modules/ngx-tron/styles/theme.scss"
   ]
 }
 ```
@@ -29,7 +29,7 @@ Standalone components — import what you need.
 
 ```ts
 import { Component } from '@angular/core';
-import { TronButtonComponent } from 'ng-tron';
+import { TronButtonComponent } from 'ngx-tron';
 
 @Component({
   selector: 'app-login',
