@@ -1,5 +1,5 @@
 # Tron UI
-<img width="1512" height="793" alt="Tron-Preview" src="https://github.com/user-attachments/assets/beaa43d9-8720-42f3-9f8e-36849a8c4d11" />
+<img width="1512" height="793" alt="tron_lib_preview" src="https://github.com/user-attachments/assets/380e3567-e309-4394-9458-970db9ba605a" />
 
 Angular UI kit. Dark grid, neon chrome. The [catalog](https://github.com/DayTroy/tron-ui) is the component docs.
 
